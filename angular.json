@@ -3,35 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "financeio-spa": {
+    "financeSPA": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "inlineTemplate": false,
-          "inlineStyle": false,
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:interceptor": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:resolver": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        },
         "@schematics/angular:application": {
           "strict": true
         }
@@ -43,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/financeio-spa",
+            "outputPath": "dist/finance-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -53,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -80,7 +55,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
@@ -94,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "financeio-spa:build:production"
+              "browserTarget": "financeSPA:build:production"
             },
             "development": {
-              "browserTarget": "financeio-spa:build:development"
+              "browserTarget": "financeSPA:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -105,11 +80,29 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "financeio-spa:build"
+            "browserTarget": "financeSPA:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "./node_modules/@po-ui/style/css/po-theme-default.min.css",
+              "src/styles.css"
+            ],
+            "scripts": []
           }
         }
       }
     }
   },
-  "defaultProject": "financeio-spa"
+  "defaultProject": "financeSPA"
 }
