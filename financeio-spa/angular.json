@@ -3,12 +3,12 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "finance.io-SPA": {
+    "financeio-spa": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true,
+          "inlineTemplate": false,
+          "inlineStyle": false,
           "skipTests": true
         },
         "@schematics/angular:class": {
@@ -43,7 +43,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/finance.io-spa",
+            "outputPath": "dist/financeio-spa",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -94,10 +94,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "finance.io-SPA:build:production"
+              "browserTarget": "financeio-spa:build:production"
             },
             "development": {
-              "browserTarget": "finance.io-SPA:build:development"
+              "browserTarget": "financeio-spa:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -105,11 +105,11 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "finance.io-SPA:build"
+            "browserTarget": "financeio-spa:build"
           }
         }
       }
     }
   },
-  "defaultProject": "finance.io-SPA"
+  "defaultProject": "financeio-spa"
 }
