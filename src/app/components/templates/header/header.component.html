@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="nav">
     <button (click)="drawer.toggle()" mat-icon-button aria-label="Menu que dá acesso a todos as ações do sidenav">
         <mat-icon>menu</mat-icon>
     </button>
@@ -9,18 +9,18 @@
     
     <span>FINANCE.IO</span>
     <a routerLink="/">
-        <img class="img" alt="Logo da Finance.io" src="assets/img/logo.jpg">
+      <img class="img" alt="Logo da Finance.io" src="assets/img/diamond.png">
     </a>
 </mat-toolbar>
 
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
-      <!-- <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p> -->
-      <button (click)="showFiller = !showFiller" mat-raised-button>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button class="button">
         Toggle extra text
       </button>
     </mat-drawer>
 
-    
+    <app-admin-crud></app-admin-crud>
     
 </mat-drawer-container>

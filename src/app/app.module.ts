@@ -21,13 +21,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/templates/header/header.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
+import { FooterComponent } from './components/templates/footer/footer.component';
+import {CdkTableModule} from '@angular/cdk/table';
+import { AdminCrudComponent } from './views/admin-crud/admin-crud.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UserCreateComponent,
-    UserReadComponent
+    UserReadComponent,
+    FooterComponent,
+    AdminCrudComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,8 @@ import { UserReadComponent } from './components/user/user-read/user-read.compone
     MatGridListModule,
     MatSidenavModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    CdkTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
