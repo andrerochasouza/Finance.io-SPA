@@ -1,4 +1,27 @@
-.avatar{
+.container {
+    width: 100%;
+    height: 100%;
+}
+  
+.sidenav-content {
     display: flex;
-    justify-content: flex-end;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+  
+.sidenav {
+    padding: 20px;
+}
+
+.space {
+    flex: 1 1 auto;
+  }
+
+.img{
+    max-height: 3rem;
+    margin-left: 0.5rem;
+}
+.name{
+    margin-left: 0.5rem;
 }
