@@ -1,7 +1,12 @@
-cdk-row, cdk-header-row, cdk-footer-row {
-    display: flex;
+table {
+    width: 100%;
 }
   
-cdk-cell, cdk-header-cell, cdk-footer-cell {
-    flex: 1;
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+td, th {
+    width: 25%;
 }
