@@ -1,4 +1,3 @@
-import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserReadComponent implements OnInit {
 
 
-  constructor(private userService: UserService) { };
+  constructor() { };
 
   ngOnInit(): void {
   };
