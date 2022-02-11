@@ -4,6 +4,7 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
+    height: 8%;
 }
 
 .footer > span {

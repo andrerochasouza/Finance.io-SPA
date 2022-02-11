@@ -2,15 +2,13 @@
     <button (click)="drawer.toggle()" mat-icon-button aria-label="Menu que dá acesso a todos as ações do sidenav">
         <mat-icon>menu</mat-icon>
     </button>
-    <img src="assets/img/userimg.png" alt="Imagem do Usuário" class="img">
+    <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" >
     <span class="name">{{ nameUser }}</span>
     
     <span class="space"></span>
     
     <span>FINANCE.IO</span>
-    <a routerLink="/">
-      <img class="img" alt="Logo da Finance.io" src="assets/img/diamond.png">
-    </a>
+    <img class="img" mat-card-avatar alt="Logo da Finance.io" src="assets/img/diamond.png">
 </mat-toolbar>
 
 <mat-drawer-container class="container" autosize>
