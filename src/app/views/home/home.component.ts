@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-
-export class HeaderComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   showFiller = false;
   nameUser: string = "andre";
-
+  
   constructor() { }
 
   ngOnInit(): void {
   }
+
 }

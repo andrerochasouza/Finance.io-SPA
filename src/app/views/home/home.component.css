@@ -39,3 +39,17 @@
 .name{
     margin-left: 0.7rem;
 }
+
+.footer {
+    background-color: #2e2e2eed;
+    color: wheat;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    height: 8%;
+}
+
+.footer > span {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
