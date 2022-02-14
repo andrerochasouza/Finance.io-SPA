@@ -10,16 +10,20 @@
     <span>FINANCE.IO</span>
     <img class="img" mat-card-avatar alt="Logo da Finance.io" src="assets/img/diamond.png">
 </mat-toolbar>
-
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button class="button">
-        Toggle extra text
-      </button>
+        <button routerLink="/" mat-raised-button class="button">
+            Home
+        </button>
+        <button (click)="navigateToUsers()" mat-raised-button class="button">
+            Usuários
+        </button>
+        <button (click)="navigateToAddUser()" mat-raised-button class="button">
+            Adicionar Usuário
+          </button>
     </mat-drawer>
 
-    <app-admin-crud></app-admin-crud>
+    <router-outlet></router-outlet>
     
 </mat-drawer-container>
 
