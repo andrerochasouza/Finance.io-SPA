@@ -1,9 +1,10 @@
-import { AuthGuard } from './components/account/shared/auth.guard';
+import { PoPageLoginAuthenticationType } from '@po-ui/ng-templates';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CreateAccountComponent } from './components/account/create-account/create-account.component';
 import { LoginComponent } from './components/account/login/login.component';
+import { AuthGuard } from './components/account/shared/auth.guard';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { AdminCrudComponent } from './views/admin-crud/admin-crud.component';
 import { AuthenticationComponent } from './views/authentication/authentication.component';

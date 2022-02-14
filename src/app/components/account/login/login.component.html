@@ -1,1 +1,6 @@
-<p>login works!</p>
+<po-page-login
+    [p-authentication-type]="authType"
+    [p-hide-remember-user]="true"
+    (p-login-submit)="onSubmit()"
+    p-register-url="/create-account"
+></po-page-login>

@@ -1,4 +1,5 @@
 import { CdkTableModule } from '@angular/cdk/table';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { PoModule } from '@po-ui/ng-components';
+import { PoDynamicModule, PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +29,7 @@ import { UserReadComponent } from './components/user/user-read/user-read.compone
 import { AdminCrudComponent } from './views/admin-crud/admin-crud.component';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { HomeComponent } from './views/home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -49,12 +51,14 @@ import { HomeComponent } from './views/home/home.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    HttpClientModule,
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatGridListModule,
+    PoDynamicModule,
     MatSidenavModule,
     MatIconModule,
     MatSnackBarModule,
