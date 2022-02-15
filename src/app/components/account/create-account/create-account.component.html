@@ -1,39 +1,45 @@
 <div class="box">
     <mat-card>
+
         <mat-card-title class="title">Cadastre-se</mat-card-title>
+
         <mat-card-content>
-            <form >
+
+            <form>
                 <!-- Name -->
                 <mat-form-field appearance="fill">
-                    <mat-label>Insira seu nome</mat-label>
-                    <input matInput placeholder="exemplo exemplo" [formControl]="nome" required>
+                    <mat-label>Nome</mat-label>
+                    <input [(ngModel)]="admin.name" type="text" matInput placeholder="exemplo exemplo" [formControl]="nome" required>
                 </mat-form-field>
     
                 <!-- Email -->
                 <mat-form-field appearance="fill">
-                    <mat-label>Insira seu e-mail</mat-label>
-                    <input matInput placeholder="exemplo@exemplo.com" [formControl]="email" required>
+                    <mat-label>E-mail</mat-label>
+                    <input [(ngModel)]="admin.email" type="email" matInput placeholder="exemplo@exemplo.com" [formControl]="email" required>
                     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                 </mat-form-field>
     
                 <!-- Login -->
                 <mat-form-field appearance="fill">
-                    <mat-label>Insira seu login</mat-label>
-                    <input matInput [formControl]="login">
+                    <mat-label>Login</mat-label>
+                    <input [(ngModel)]="admin.login" type="login" matInput [formControl]="login">
                 </mat-form-field>
     
                 <!-- Password -->
                 <mat-form-field appearance="fill">
-                    <mat-label>Insira sua senha</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
+                    <mat-label>Senha</mat-label>
+                    <input [(ngModel)]="admin.password" matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide" required>
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
+
             </form>
         </mat-card-content>
+
         <mat-card-actions class="button">
-            <button class="button_style" mat-button>Cadastre-se</button>
+            <button class="button_style" (click)="cancel()" mat-button>Cancelar</button>
+            <button class="button_style" (click)="onSubmit()" mat-button>Cadastre-se</button>
         </mat-card-actions>
     </mat-card>
 </div>

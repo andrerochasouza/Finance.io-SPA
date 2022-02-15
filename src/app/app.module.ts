@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { PoDynamicModule, PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -67,7 +69,8 @@ import { HomeComponent } from './views/home/home.component';
     MatSnackBarModule,
     CdkTableModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]

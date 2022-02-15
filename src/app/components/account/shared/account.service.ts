@@ -1,3 +1,4 @@
+import { Admin } from './admin.model';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,30 +12,19 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  login(user: any): Observable<string>{
+  login(admin: Admin): Observable<string>{
     const requestOption: Object = {responseType: 'text'}
-    const result = this.http.post<any>(`${environment.api}/login`, user, requestOption);
+    const result = this.http.post<string>(`${environment.api}/login`, admin, requestOption);
     if(!result){
       throw throwError(() => ("Token not found"));
     }
     return result
-
-    // async
-
-    // const result = await this.http.post<any>(`${environment.api}/login`, user).toPromise();
-    // console.log(result)
-    // if(result && result === false){
-    //   window.localStorage.setItem('token', result);
-    //   return true
-    // }
-
-    // return false
   }
 
-  createAccount(account: any): Observable<Object>{
-    const newAdmin = this.http.post<Object>(`${environment.api}/new-admin`, account);
+  createAccount(admin: Admin): Observable<Admin>{
+    const newAdmin = this.http.post<Admin>(`${environment.api}/new-admin`, admin);
     if(!newAdmin){
-      throw throwError(() => ("Account not found"));
+      throw throwError(() => ("Admin not found"));
     }
     return newAdmin
   }
