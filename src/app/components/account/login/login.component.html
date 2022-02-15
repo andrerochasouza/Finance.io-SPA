@@ -1,6 +1,6 @@
 <po-page-login
     [p-authentication-type]="authType"
     [p-hide-remember-user]="true"
-    (p-login-submit)="onSubmit()"
+    (p-login-submit)="onSubmit($event)"
     p-register-url="/create-account"
 ></po-page-login>

@@ -13,17 +13,6 @@ import { PoPageLogin, PoPageLoginAuthenticationType } from '@po-ui/ng-templates'
 export class LoginComponent implements OnInit {
 
   authType = PoPageLoginAuthenticationType.Bearer
-  loginPO: PoPageLogin = {
-    login: '',
-    password: '',
-    rememberUser: false
-  };
-
-  login: any = {
-    login: this.loginPO.login,
-    password: this.loginPO.password
-  }
-
 
   constructor(
     private accountService: AccountService,
@@ -33,17 +22,31 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onSubmit(){
-    try{
-      const result = await this.accountService.login(this.login);
-      console.log(`login efetuado: ${result}`);
-
-      // navega para a rota vazia novamente
-      this.router.navigate(['']);
-    } catch(error) {
-      console.log(this.login)
-      console.log(error);
+  onSubmit(loginPO: PoPageLogin){
+    let user = {
+      login: loginPO.login,
+      password: loginPO.password 
     }
+
+    this.accountService.login(user).subscribe(result => {
+      window.localStorage.setItem('token', result),
+      this.router.navigate([''])
+    });
+
+      
+        
+        
+        
+    // try{
+    //   const result = await this.accountService.login(this.login);
+    //   console.log(`login efetuado: ${result}`);
+
+    //   // navega para a rota vazia novamente
+    //   this.router.navigate(['']);
+    // } catch(error) {
+    //   console.log(this.login)
+    //   console.log(error);
+    // }
   }
 
 }
