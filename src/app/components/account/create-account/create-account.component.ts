@@ -1,4 +1,7 @@
+import { Router } from '@angular/router';
+import { AccountService } from './../shared/account.service';
 import { Component, OnInit } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-account',
@@ -7,20 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAccountComponent implements OnInit {
 
-  account = {
-    name: '',
-    email: '',
-    login: '',
-    password: ''
+  hide = true;
+  nome = new FormControl('', [Validators.required])
+  email = new FormControl('', [Validators.required, Validators.email]);
+  login = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{8,}')])
+  password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{5,}')])
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'Entre com seu Email';
+    }
+
+    return this.email.hasError('email') ? 'Email invalido!' : '';
   }
 
-  constructor() { }
+  constructor(
+    private accountService: AccountService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    
   }
 
-  onSubmit(){
-    
+  onSubmit(value: any){
+    //  this.accountService.createAccount().subscribe(result => {
+    //  });
   }
 
 }

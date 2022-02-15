@@ -31,9 +31,11 @@ export class AccountService {
     // return false
   }
 
-  createAccount(account: any){
-    return new Promise((resolve) => {
-      resolve(true);
-    });
+  createAccount(account: any): Observable<Object>{
+    const newAdmin = this.http.post<Object>(`${environment.api}/new-admin`, account);
+    if(!newAdmin){
+      throw throwError(() => ("Account not found"));
+    }
+    return newAdmin
   }
 }
