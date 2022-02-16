@@ -40,15 +40,14 @@
     color: #b089df;
 }
 
-.button{
+.action{
     display: flex;
     justify-content: center;
 }
 
-.button .button_style{
+.action .button_style{
     color: white;
     background-color: #63438b;
-    margin-bottom: 20px;
 }
 
 /* Cor de fundo do autocomplete */

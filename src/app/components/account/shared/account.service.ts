@@ -37,6 +37,24 @@ export class AccountService {
     return this.http.get<boolean>(`${environment.api}/is-valid-login`, requestOption);
   }
 
+  verifyValidEmailAndLogin(isEmailValid: boolean, isLoginValid: boolean): number{
+    let variavel: number = 0
+
+    if(isEmailValid == true){
+      if(isLoginValid == true){
+        variavel = 3
+      } else {
+        variavel = 2
+      }
+    } else {
+      if(isLoginValid == true){
+        variavel = 1
+      } 
+    }
+    
+    return variavel
+  }
+
   createAccount(admin: Admin): Observable<Admin>{
     const newAdmin = this.http.post<Admin>(`${environment.api}/new-admin`, admin);
     if(!newAdmin){
