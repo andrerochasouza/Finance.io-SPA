@@ -9,30 +9,30 @@ import { User } from './user';
 })
 export class UserService {
 
-  baseAPI = "http://localhost:3000/users"
+  readonly baseUserAPI = "http://localhost:3000/users/"
 
   constructor(private http: HttpClient) { }
 
   create(user: User): Observable<User> {
-    return this.http.post<User>(this.baseAPI, user)
+    return this.http.post<User>(this.baseUserAPI, user)
   }
 
   read(): Observable<User[]>{
-    return this.http.get<User[]>(this.baseAPI)
+    return this.http.get<User[]>(this.baseUserAPI)
   }
 
   readById(id: number): Observable<User>{
-    const url = `${this.baseAPI}/${id}`
+    const url = `${this.baseUserAPI}/${id}`
     return this.http.get<User>(url)
   }
 
   update(user: User): Observable<User>{
-    const url = `${this.baseAPI}/${user.id}`
+    const url = `${this.baseUserAPI}/${user.id}`
     return this.http.put<User>(url, user)
   }
 
   delete(id: number): Observable<User>{
-    const url = `${this.baseAPI}/${id}`
+    const url = `${this.baseUserAPI}/${id}`
     return this.http.delete<User>(url)
   }
 }

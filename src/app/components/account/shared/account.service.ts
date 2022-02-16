@@ -58,9 +58,9 @@ export class AccountService {
     }
     
     if(dateToken){
-      return !(dateToken.valueOf() > new Date().valueOf());
+      return (dateToken.valueOf() < new Date().valueOf());
     } else {
-      return false
+      return true
     }
   }
 
