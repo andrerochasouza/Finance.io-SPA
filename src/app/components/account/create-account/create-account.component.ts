@@ -1,8 +1,8 @@
-import { Admin } from './../shared/admin.model';
-import { Router } from '@angular/router';
-import { AccountService } from './../shared/account.service';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AccountService } from './../shared/account.service';
 
 @Component({
   selector: 'app-create-account',
@@ -12,45 +12,54 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class CreateAccountComponent implements OnInit {
 
   hide = true;
-  nome = new FormControl('', [Validators.required])
-  email = new FormControl('', [Validators.required, Validators.email]);
-  login = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{8,}')])
-  password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{5,}')])
-
-  admin: Admin = {
-    name: '',
-    email: '',
-    login: '',
-    password: ''
-  }
+  formAdmin: FormGroup;
 
   constructor(
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
     ) { }
 
-
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Entre com seu Email';
-    }
-  
-    return this.email.hasError('email') ? 'Email invalido!' : '';
+  ngOnInit(): void {
+    this.formAdmin = this.formBuilder.group({
+      name: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      login: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{7,}')]),
+      password: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{4,}')])
+    })
   }
 
-  ngOnInit(): void {
-    
+  getErrorMessage(valueString: string){
+    if(valueString === 'name'){
+      return 'Insira seu nome'
+    }
+
+    if(valueString === 'email'){
+      return 'E-mail incorreto'
+    }
+
+    if(valueString === 'login'){
+      return 'Minimo 8 caracteres'
+    }
+
+    if(valueString === 'password'){
+      return 'Minimo 5 caracteres'
+    }
+
+    return null
   }
 
   onSubmit(){
-    if(this.nome.valid && this.email.valid && this.login.valid && this.password.valid){
-      this.accountService.createAccount(this.admin).subscribe(admin => {
-        alert(admin)
-        // exibir uma msg amigavel para o usuário
-        this.router.navigate(['/login'])
+    if(this.formAdmin.valid){     
+      this.accountService.isValidEmail(this.formAdmin.get('email')?.value).subscribe(isValidEmail => {
+        this.accountService.isValidLogin(this.formAdmin.get('login')?.value).subscribe(isValidLogin => {
+          if(isValidEmail == true && isValidLogin == true){
+              this.accountService.createAccount(this.formAdmin.value).subscribe(admin => {
+                alert(admin)
+              })
+          }
+        })
       })
-    } else {
-      alert("Erro ao criar usuário")
     }
   }
 

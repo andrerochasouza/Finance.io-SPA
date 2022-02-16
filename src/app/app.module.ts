@@ -17,12 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { PoDynamicModule, PoModule } from '@po-ui/ng-components';
-import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { httpInterceptorProviders } from './http-interceptors/';
-
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,9 +25,11 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { LoginComponent } from './components/account/login/login.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
+import { httpInterceptorProviders } from './http-interceptors/';
 import { AdminCrudComponent } from './views/admin-crud/admin-crud.component';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { HomeComponent } from './views/home/home.component';
+
 
 
 
@@ -51,9 +48,7 @@ import { HomeComponent } from './views/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PoModule,
     RouterModule.forRoot([]),
-    PoTemplatesModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
@@ -64,7 +59,6 @@ import { HomeComponent } from './views/home/home.component';
     ReactiveFormsModule,
     MatToolbarModule,
     MatGridListModule,
-    PoDynamicModule,
     MatSidenavModule,
     MatIconModule,
     MatSnackBarModule,

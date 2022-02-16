@@ -1,8 +1,9 @@
-import { Admin } from './../shared/admin.model';
-import { Router } from '@angular/router';
-import { AccountService } from './../shared/account.service';
 import { Component, OnInit } from '@angular/core';
-import { PoPageLogin, PoPageLoginAuthenticationType } from '@po-ui/ng-templates';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AccountService } from './../shared/account.service';
+import { Admin } from './../shared/admin.model';
 
 @Component({
   selector: 'app-login',
@@ -11,41 +12,47 @@ import { PoPageLogin, PoPageLoginAuthenticationType } from '@po-ui/ng-templates'
 })
 export class LoginComponent implements OnInit {
 
-  authType = PoPageLoginAuthenticationType.Bearer
+  hide = true;
+  login = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{8,}')])
+  password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{5,}')])
+
+  admin: Admin = {
+    login: '',
+    password: ''
+  }
 
   constructor(
     private accountService: AccountService,
     private router: Router
   ) { }
 
+  getErrorMessageLogin() {
+    if (this.login.hasError('required')) {
+      return 'Insira um novo Login';
+    }
+  
+    return this.login.hasError('login') ? 'Mínimo de 8 caracteres!' : '';
+  }
+
+  getErrorMessagePassword() {
+    if (this.password.hasError('required')) {
+      return 'Insira uma nova Senha';
+    }
+  
+    return this.password.hasError('password') ? 'Mínimo de 5 caracteres!' : '';
+  }
+
   ngOnInit(): void {
   }
 
-  onSubmit(loginPO: PoPageLogin){
-    let admin: Admin = {
-      login: loginPO.login,
-      password: loginPO.password 
-    }
-
-    this.accountService.login(admin).subscribe(result => {
+  onSubmit(){
+    this.accountService.login(this.admin).subscribe(result => {
       window.localStorage.setItem('token', result),
       this.router.navigate([''])
     });
-
-      
-        
-        
-        
-    // try{
-    //   const result = await this.accountService.login(this.login);
-    //   console.log(`login efetuado: ${result}`);
-
-    //   // navega para a rota vazia novamente
-    //   this.router.navigate(['']);
-    // } catch(error) {
-    //   console.log(this.login)
-    //   console.log(error);
-    // }
   }
 
+  signUp(){
+    this.router.navigate(['/create-account'])
+  } 
 }

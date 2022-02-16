@@ -1,8 +1,30 @@
-<po-page-login 
-    p-logo="./assets/img/diamond.png"
-    p-secondary-logo="./assets/img/totvs.png"
-    [p-authentication-type]="authType"
-    [p-hide-remember-user]="true"
-    (p-login-submit)="onSubmit($event)"
-    p-register-url="/create-account"
-></po-page-login>
+<div class="box">
+    <mat-card>
+        <mat-card-title class="title">Entrar</mat-card-title>
+        <mat-card-content>
+            <form>
+                <!-- Login -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="label">Login</mat-label>
+                    <input [(ngModel)]="admin.login" type="login" matInput [formControl]="login">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="login.invalid">{{getErrorMessageLogin()}}</mat-error>
+                </mat-form-field>
+    
+                <!-- Password -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="label">Senha</mat-label>
+                    <input [(ngModel)]="admin.password" matInput [type]="hide ? 'password' : 'text'" [formControl]="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide" required>
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>  
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="button">
+            <button class="button_style" (click)="signUp()" mat-button>Cadastre-se</button>
+            <button class="button_style" (click)="onSubmit()" mat-button>Entrar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
