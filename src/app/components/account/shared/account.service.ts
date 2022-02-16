@@ -1,8 +1,9 @@
 import { Admin } from './admin.model';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, throwIfEmpty } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import jwtDecode from 'jwt-decode'
 
 
 @Injectable({
@@ -27,5 +28,50 @@ export class AccountService {
       throw throwError(() => ("Admin not found"));
     }
     return newAdmin
+  }
+
+  getAuthorizationToken(){
+    const token = window.localStorage.getItem('token');
+    return token;
+  }
+
+  getTokenExpirarionDate(token: string): Date | null {
+    const decoded: any = jwtDecode(token);
+
+    if(decoded.exp === undefined){
+      return null
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if(!token){
+      return true;
+    } 
+
+    const dateToken = this.getTokenExpirarionDate(token);
+    if(dateToken === undefined){
+      return false;
+    }
+    
+    if(dateToken){
+      return !(dateToken.valueOf() > new Date().valueOf());
+    } else {
+      return false
+    }
+  }
+
+  isUserLoggedIn(): boolean{
+    const token = this.getAuthorizationToken();
+    if(!token){
+      return false;
+    } else if (this.isTokenExpired(token)){
+      return false;
+    }
+
+    return true;
   }
 }

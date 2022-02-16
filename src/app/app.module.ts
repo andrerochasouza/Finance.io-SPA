@@ -20,6 +20,7 @@ import { RouterModule } from '@angular/router';
 import { PoDynamicModule, PoModule } from '@po-ui/ng-components';
 import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { httpInterceptorProviders } from './http-interceptors/';
 
 
 
@@ -72,7 +73,9 @@ import { HomeComponent } from './views/home/home.component';
     MatPaginatorModule,
     SweetAlert2Module
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

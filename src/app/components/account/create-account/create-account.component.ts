@@ -46,8 +46,11 @@ export class CreateAccountComponent implements OnInit {
     if(this.nome.valid && this.email.valid && this.login.valid && this.password.valid){
       this.accountService.createAccount(this.admin).subscribe(admin => {
         alert(admin)
-        // this.router.navigate(['/login'])
+        // exibir uma msg amigavel para o usuário
+        this.router.navigate(['/login'])
       })
+    } else {
+      alert("Erro ao criar usuário")
     }
   }
 
