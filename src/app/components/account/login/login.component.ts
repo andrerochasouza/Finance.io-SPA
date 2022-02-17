@@ -1,9 +1,9 @@
+import { catchError } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AccountService } from './../shared/account.service';
-import { Admin } from './../shared/admin.model';
 
 @Component({
   selector: 'app-login',
@@ -13,46 +13,55 @@ import { Admin } from './../shared/admin.model';
 export class LoginComponent implements OnInit {
 
   hide = true;
-  login = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{8,}')])
-  password = new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{5,}')])
-
-  admin: Admin = {
-    login: '',
-    password: ''
-  }
+  formAdmin: FormGroup;
 
   constructor(
     private accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) { }
 
-  getErrorMessageLogin() {
-    if (this.login.hasError('required')) {
-      return 'Insira um novo Login';
-    }
-  
-    return this.login.hasError('login') ? 'Mínimo de 8 caracteres!' : '';
-  }
-
-  getErrorMessagePassword() {
-    if (this.password.hasError('required')) {
-      return 'Insira uma nova Senha';
-    }
-  
-    return this.password.hasError('password') ? 'Mínimo de 5 caracteres!' : '';
-  }
 
   ngOnInit(): void {
+    this.formAdmin = this.formBuilder.group({
+      login: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{7,}')]),
+      password: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{4,}')])
+    });
   }
 
+  getErrorMessage(valueString: string){
+    if(valueString === 'login'){
+      return 'Minimo 8 caracteres'
+    }
+
+    if(valueString === 'password'){
+      return 'Minimo 5 caracteres'
+    }
+
+    return null
+  }
+
+
   onSubmit(){
-    this.accountService.login(this.admin).subscribe(result => {
-      window.localStorage.setItem('token', result),
-      this.router.navigate([''])
-    });
+    if(this.formAdmin.valid){
+      this.accountService.login(this.formAdmin.value)
+        .subscribe({
+          next: result => {
+            window.localStorage.setItem('token', result),
+            this.accountService.showMessage('Entrando...')
+            this.router.navigate([''])
+          },
+          error: err => {
+            this.accountService.showMessage('Erro no login')
+            console.error('Admin not found - Error -> ' + err)
+          }
+        });
+    } else {
+      this.accountService.showMessage('Login e senha incorretos')
+    }
   }
 
   signUp(){
     this.router.navigate(['/create-account'])
-  } 
+  }
 }

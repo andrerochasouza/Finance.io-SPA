@@ -6,7 +6,7 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { LoginComponent } from './components/account/login/login.component';
 import { AuthGuard } from './components/account/shared/auth.guard';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
-import { AdminCrudComponent } from './views/admin-crud/admin-crud.component';
+import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { HomeComponent } from './views/home/home.component';
 

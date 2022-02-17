@@ -1,5 +1,5 @@
 import { AccountService } from './../components/account/shared/account.service';
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
+
         const token = this.accountService.getAuthorizationToken();
         let request: HttpRequest<any> = req;
 
@@ -32,11 +32,11 @@ export class AuthInterceptor implements HttpInterceptor {
         if(error.error instanceof ErrorEvent){
             console.log('Ocorreu um erro:', error.error.message);
         } else {
-            console.error(
-                `Código do error ${error.status}, ` + 
-                `Erro ${JSON.stringify(error.error)}`);
-            }
-        
+          console.error(
+            `Código do erro -> ${error.status}, ` +
+            `Erro ${JSON.stringify(error.error)}`);
+        }
+
         return throwError(() => 'Ocorreu um erro, tente novamente');
     }
 }

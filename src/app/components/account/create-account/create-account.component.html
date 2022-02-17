@@ -2,15 +2,15 @@
     <mat-card>
         <mat-card-title class="title">Cadastre-se</mat-card-title>
         <mat-card-content>
-            <!-- Name -->
-            <form [formGroup]="formAdmin" (submit)="onSubmit()">
-                <mat-form-field appearance="fill">
-                    <mat-label class="label">Nome</mat-label>
-                    <input type="text" matInput formControlName="name" required>
-                    <mat-icon matSuffix>face</mat-icon>
-                    <mat-error *ngIf="this.formAdmin.get('name')?.errors">{{ getErrorMessage('name') }}</mat-error>
-                </mat-form-field>
-    
+              <!-- Name -->
+              <form [formGroup]="formAdmin" (submit)="onSubmit()">
+                  <mat-form-field appearance="fill">
+                      <mat-label class="label">Nome</mat-label>
+                      <input type="text" matInput formControlName="name" required>
+                      <mat-icon matSuffix>person</mat-icon>
+                      <mat-error *ngIf="this.formAdmin.get('name')?.errors">{{ getErrorMessage('name') }}</mat-error>
+                  </mat-form-field>
+
                 <!-- Email -->
                 <mat-form-field appearance="fill">
                     <mat-label class="label">E-mail</mat-label>
@@ -18,15 +18,15 @@
                     <mat-icon matSuffix>email</mat-icon>
                     <mat-error *ngIf="this.formAdmin.get('email')?.errors">{{ getErrorMessage('email') }}</mat-error>
                 </mat-form-field>
-    
+
                 <!-- Login -->
                 <mat-form-field appearance="fill">
                     <mat-label class="label">Login</mat-label>
                     <input type="login" matInput formControlName="login" required>
-                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-icon matSuffix>face</mat-icon>
                     <mat-error *ngIf="this.formAdmin.get('login')?.errors">{{ getErrorMessage('login') }}</mat-error>
                 </mat-form-field>
-    
+
                 <!-- Password -->
                 <mat-form-field appearance="fill">
                     <mat-label class="label">Senha</mat-label>

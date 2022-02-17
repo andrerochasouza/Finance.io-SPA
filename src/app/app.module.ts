@@ -26,12 +26,9 @@ import { LoginComponent } from './components/account/login/login.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { httpInterceptorProviders } from './http-interceptors/';
-import { AdminCrudComponent } from './views/admin-crud/admin-crud.component';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
+import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomeComponent } from './views/home/home.component';
-
-
-
 
 
 @NgModule({

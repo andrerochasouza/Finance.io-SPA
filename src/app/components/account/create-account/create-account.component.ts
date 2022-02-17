@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { exhaustMap, tap, pipe, Observable, map, iif, of } from 'rxjs';
 
 import { AccountService } from './../shared/account.service';
 
@@ -26,7 +27,7 @@ export class CreateAccountComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       login: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{7,}')]),
       password: new FormControl(null, [Validators.required, Validators.pattern('(?=.*[a-z])[A-Za-z\d$@$!%*?&].{4,}')])
-    })
+    });
   }
 
   getErrorMessage(valueString: string){
@@ -49,32 +50,26 @@ export class CreateAccountComponent implements OnInit {
     return null
   }
 
+
+
   onSubmit(){
     if(this.formAdmin.valid){
-      this.accountService.isValidEmail(this.formAdmin.get('email')?.value).pipe()
-      .subscribe(isValidEmail => {
-        // this.accountService.isValidLogin(this.formAdmin.get('login')?.value).subscribe(isValidLogin => {
-        //   let variavel: number = this.accountService.verifyValidEmailAndLogin(isValidEmail, isValidLogin)
-
-        //   if(variavel == 3){
-        //     // this.accountService.createAccount(this.formAdmin.value).subscribe(admin => {
-        //     //   alert('admin -> ' + admin.name)
-        //     // });
-        //     alert('admin ')
-        //   } else if(variavel == 2) {
-        //     alert('Login já está sendo utilizado')
-        //   } else if(variavel == 1){
-        //     alert('E-mail já está sendo utilizado')
-        //   } else {
-        //     alert('E-mail e Login já está sendo utilizado')
-        //   }
-        // });
+      this.accountService.createAccount(this.formAdmin.value)
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/login'])
+          },
+          error: err => {
+            this.accountService.showMessage('Erro no cadastro, E-mail ou Login já utilizado')
+            console.error('Admin found - Error -> ' + err)
+          }
       });
+    } else {
+      this.accountService.showMessage("Erro na validação dos dados inseridos")
     }
   }
 
   cancel(){
     this.router.navigate(['/login'])
   }
-
 }

@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import jwtDecode from 'jwt-decode';
-import { Observable, tap, throwError } from 'rxjs';
+import { Observable, of, take, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Admin } from './admin.model';
@@ -15,59 +16,35 @@ export class AccountService {
 
   private readonly API = `${environment.api}`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private http: HttpClient) { }
 
 
   login(admin: Admin): Observable<string>{
     const requestOption: Object = {responseType: 'text'}
 
-    const result = this.http.post<string>(this.API + '/login', admin, requestOption)
-      .pipe(
-        tap(console.log)
-      );
+    const result = this.http.post<string>(this.API + '/login', admin, requestOption);
 
-    if(!result){
-      throw throwError(() => ("Token not found"));
-    }
     return result
   }
 
   createAccount(admin: Admin): Observable<Admin>{
-    const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
-        .pipe(
-          tap(console.log)
-        );
-
-    if(!newAdmin){
-      throw throwError(() => ("Admin not found"));
-    }
-
-    return newAdmin;
-  }
-
-
-  // Testes para verificação de Email e Login
-
-  isValidEmail(email: string): Observable<boolean> {
-    const headers = new HttpHeaders().append('email', email);
-
-    const requestOption: Object = {headers, responseType: 'text'}
-
-    return this.http.get<boolean>(this.API + '/is-valid-email', requestOption)
+      const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
       .pipe(
-        tap(console.log)
+        tap(result => console.log("result => " + result))
       );
+
+      return newAdmin;
   }
 
-  isValidLogin(login: string): Observable<boolean> {
-    const headers = new HttpHeaders().append('login', login);
-
-    const requestOption: Object = {headers, responseType: 'text'}
-
-    return this.http.get<boolean>(this.API + '/is-valid-login', requestOption)
-      .pipe(
-        tap(console.log)
-      );;
+  showMessage(msg: string): void{
+    this.snackBar.open(msg, 'X', {
+      duration: 3000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+      panelClass: ['purple-snackbar']
+    })
   }
 
 

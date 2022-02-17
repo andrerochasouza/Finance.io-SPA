@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   nameUser: string = "andre";
-  
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
