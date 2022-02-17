@@ -1,0 +1,39 @@
+<mat-toolbar class="nav">
+    <button (click)="drawer.toggle()" mat-icon-button aria-label="Menu que dá acesso a todos as ações do sidenav">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" >
+    <span class="name">{{ nameUser }}</span>
+
+    <span class="space"></span>
+
+    <span>FINANCE.IO</span>
+    <img class="img" mat-card-avatar alt="Logo da Finance.io" src="assets/img/diamond.png">
+</mat-toolbar>
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <button routerLink="/" mat-raised-button class="button">
+            Home
+        </button>
+        <button (click)="navigateToUsers()" mat-raised-button class="button">
+            Usuários
+        </button>
+        <button (click)="navigateToAddUser()" mat-raised-button class="button">
+            Adicionar Usuário
+          </button>
+    </mat-drawer>
+
+    <router-outlet></router-outlet>
+
+</mat-drawer-container>
+
+<!-- footer -->
+<mat-toolbar class="footer">
+    <span>
+        Desenvolvido com
+        <i class="material-icons v-middle red">
+            favorite
+        </i>
+        pela <Strong>TOTVS</Strong>
+    </span>
+</mat-toolbar>
