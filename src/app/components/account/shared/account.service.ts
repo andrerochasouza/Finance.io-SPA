@@ -1,67 +1,77 @@
-import { Admin } from './admin.model';
-import { Observable, throwError, throwIfEmpty } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import jwtDecode from 'jwt-decode';
+import { Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import jwtDecode from 'jwt-decode'
+
+import { Admin } from './admin.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AccountService {
+
+  private readonly API = `${environment.api}`;
 
   constructor(private http: HttpClient) { }
 
+
   login(admin: Admin): Observable<string>{
     const requestOption: Object = {responseType: 'text'}
-    const result = this.http.post<string>(`${environment.api}/login`, admin, requestOption);
+
+    const result = this.http.post<string>(this.API + '/login', admin, requestOption)
+      .pipe(
+        tap(console.log)
+      );
+
     if(!result){
       throw throwError(() => ("Token not found"));
     }
     return result
   }
 
-  
-  isValidEmail(email: string): Observable<boolean> {
-    const headers = new HttpHeaders()
-    .append('email', email);
-    const requestOption: Object = {headers, responseType: 'text'}
-    return this.http.get<boolean>(`${environment.api}/is-valid-email`, requestOption);
-  }
-  
-  isValidLogin(login: string): Observable<boolean> {
-    const headers = new HttpHeaders()
-      .append('login', login);
-    const requestOption: Object = {headers, responseType: 'text'}
-    return this.http.get<boolean>(`${environment.api}/is-valid-login`, requestOption);
-  }
-
-  verifyValidEmailAndLogin(isEmailValid: boolean, isLoginValid: boolean): number{
-    let variavel: number = 0
-
-    if(isEmailValid == true){
-      if(isLoginValid == true){
-        variavel = 3
-      } else {
-        variavel = 2
-      }
-    } else {
-      if(isLoginValid == true){
-        variavel = 1
-      } 
-    }
-    
-    return variavel
-  }
-
   createAccount(admin: Admin): Observable<Admin>{
-    const newAdmin = this.http.post<Admin>(`${environment.api}/new-admin`, admin);
+    const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
+        .pipe(
+          tap(console.log)
+        );
+
     if(!newAdmin){
       throw throwError(() => ("Admin not found"));
     }
-    return newAdmin
+
+    return newAdmin;
   }
+
+
+  // Testes para verificação de Email e Login
+
+  isValidEmail(email: string): Observable<boolean> {
+    const headers = new HttpHeaders().append('email', email);
+
+    const requestOption: Object = {headers, responseType: 'text'}
+
+    return this.http.get<boolean>(this.API + '/is-valid-email', requestOption)
+      .pipe(
+        tap(console.log)
+      );
+  }
+
+  isValidLogin(login: string): Observable<boolean> {
+    const headers = new HttpHeaders().append('login', login);
+
+    const requestOption: Object = {headers, responseType: 'text'}
+
+    return this.http.get<boolean>(this.API + '/is-valid-login', requestOption)
+      .pipe(
+        tap(console.log)
+      );;
+  }
+
+
+  // Testes para Autorização de token
 
   getAuthorizationToken(){
     const token = window.localStorage.getItem('token');
@@ -83,13 +93,13 @@ export class AccountService {
   isTokenExpired(token?: string): boolean {
     if(!token){
       return true;
-    } 
+    }
 
     const dateToken = this.getTokenExpirarionDate(token);
     if(dateToken === undefined){
       return false;
     }
-    
+
     if(dateToken){
       return (dateToken.valueOf() < new Date().valueOf());
     } else {

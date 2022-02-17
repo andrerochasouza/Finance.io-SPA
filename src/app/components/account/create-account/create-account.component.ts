@@ -50,24 +50,25 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.formAdmin.valid){     
-      this.accountService.isValidEmail(this.formAdmin.get('email')?.value).subscribe(isValidEmail => {
-        this.accountService.isValidLogin(this.formAdmin.get('login')?.value).subscribe(isValidLogin => {
-          let variavel: number = this.accountService.verifyValidEmailAndLogin(isValidEmail, isValidLogin)
+    if(this.formAdmin.valid){
+      this.accountService.isValidEmail(this.formAdmin.get('email')?.value).pipe()
+      .subscribe(isValidEmail => {
+        // this.accountService.isValidLogin(this.formAdmin.get('login')?.value).subscribe(isValidLogin => {
+        //   let variavel: number = this.accountService.verifyValidEmailAndLogin(isValidEmail, isValidLogin)
 
-          if(variavel == 3){
-            // this.accountService.createAccount(this.formAdmin.value).subscribe(admin => {
-            //   alert('admin -> ' + admin.name)
-            // });
-            alert('admin ')
-          } else if(variavel == 2) {
-            alert('Login já está sendo utilizado')
-          } else if(variavel == 1){
-            alert('E-mail já está sendo utilizado')
-          } else {
-            alert('E-mail e Login já está sendo utilizado')
-          }
-        });
+        //   if(variavel == 3){
+        //     // this.accountService.createAccount(this.formAdmin.value).subscribe(admin => {
+        //     //   alert('admin -> ' + admin.name)
+        //     // });
+        //     alert('admin ')
+        //   } else if(variavel == 2) {
+        //     alert('Login já está sendo utilizado')
+        //   } else if(variavel == 1){
+        //     alert('E-mail já está sendo utilizado')
+        //   } else {
+        //     alert('E-mail e Login já está sendo utilizado')
+        //   }
+        // });
       });
     }
   }
