@@ -1,5 +1,13 @@
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.red {
+  color: #e35e6b;
+}
+
+.v-middle {
+  vertical-align: middle;
+}
+
 .purple-snackbar .mat-button-wrapper{
   color: #b089df;
 }
