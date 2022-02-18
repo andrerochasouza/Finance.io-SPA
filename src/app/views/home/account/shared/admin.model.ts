@@ -3,5 +3,5 @@ export interface Admin{
     name?: string
     email?: string
     login: string
-    password: string
+    password?: string
 }

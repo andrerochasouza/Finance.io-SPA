@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import jwtDecode from 'jwt-decode';
-import { Observable, of, take, tap, throwError } from 'rxjs';
+import { Observable, tap, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Admin } from './admin.model';
@@ -47,6 +47,11 @@ export class AccountService {
     })
   }
 
+  // Get Admin Information
+
+  getAccountAdmin(login: string): Observable<Admin>{
+    return this.http.get<Admin>(this.API + `/name/${login}`)
+  }
 
   // Testes para Autorização de token
 

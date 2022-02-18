@@ -21,11 +21,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateAccountComponent } from './components/account/create-account/create-account.component';
-import { LoginComponent } from './components/account/login/login.component';
+import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
+import { LoginComponent } from './views/home/account/login/login.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
-import { httpInterceptorProviders } from './http-interceptors/';
+import { httpInterceptorProviders } from './http-interceptors';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomeComponent } from './views/home/home.component';

@@ -1,7 +1,7 @@
-import { catchError } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/data.service';
 
 import { AccountService } from './../shared/account.service';
 
@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dataService: DataService
   ) { }
 
 
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
           next: result => {
             window.localStorage.setItem('token', result),
             this.accountService.showMessage('Entrando...')
+            this.dataService.set('login', this.formAdmin.get('login')?.value)
             this.router.navigate([''])
           },
           error: err => {
