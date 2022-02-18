@@ -32,6 +32,7 @@ import { LoginComponent } from './views/home/account/login/login.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomeComponent } from './views/home/home.component';
 import { registerLocaleData } from '@angular/common';
+import { HomePageComponent } from './views/home/home-page/home-page.component';
 
 registerLocaleData(localePt);
 
@@ -44,7 +45,8 @@ registerLocaleData(localePt);
     HomeComponent,
     LoginComponent,
     CreateAccountComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
