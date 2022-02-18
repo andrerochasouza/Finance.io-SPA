@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { User } from './user';
@@ -18,22 +18,22 @@ export class UserService {
     return this.http.post<User>(this.API, user)
   }
 
-  read(): Observable<User[]>{
+  listUser(): Observable<User[]>{
     return this.http.get<User[]>(this.API)
   }
 
-  readById(id: number): Observable<User>{
-    const url = `${this.API}/${id}`
+  userById(idUser: number): Observable<User>{
+    const url = `${this.API}/${idUser}`
     return this.http.get<User>(url)
   }
 
   update(user: User): Observable<User>{
-    const url = `${this.API}/${user.id}`
+    const url = `${this.API}/${user.idUser}`
     return this.http.put<User>(url, user)
   }
 
-  delete(id: number): Observable<User>{
-    const url = `${this.API}/${id}`
+  delete(idUser: number): Observable<User>{
+    const url = `${this.API}/${idUser}`
     return this.http.delete<User>(url)
   }
 }

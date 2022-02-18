@@ -35,7 +35,4 @@ export class HomeComponent implements OnInit {
   navigateToUsers(): void{
     this.router.navigate(['/home/users'])
   }
-  navigateToAddUser(): void{
-    this.router.navigate(['/home/add/users'])
-  }
 }
