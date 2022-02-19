@@ -1,4 +1,5 @@
 import { CdkTableModule } from '@angular/cdk/table';
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -18,8 +20,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,9 +30,10 @@ import { AuthenticationComponent } from './views/authentication/authentication.c
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
-import { HomeComponent } from './views/home/home.component';
-import { registerLocaleData } from '@angular/common';
 import { HomePageComponent } from './views/home/home-page/home-page.component';
+import { HomeComponent } from './views/home/home.component';
+import { GreenColorDirective } from './shared-directives/green-color.directive';
+
 
 registerLocaleData(localePt);
 
@@ -46,7 +47,8 @@ registerLocaleData(localePt);
     LoginComponent,
     CreateAccountComponent,
     AuthenticationComponent,
-    HomePageComponent
+    HomePageComponent,
+    GreenColorDirective
   ],
   imports: [
     BrowserModule,

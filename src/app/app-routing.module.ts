@@ -1,9 +1,8 @@
-import { HomePageComponent } from './views/home/home-page/home-page.component';
+import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
-import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AuthGuard } from './views/home/account/shared/auth.guard';
@@ -23,9 +22,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomePageComponent,
+    component: AppComponent,
     children: [
-      {path: '', redirectTo: 'homepage', pathMatch: 'full'},
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'create-account', component: CreateAccountComponent}
     ]
