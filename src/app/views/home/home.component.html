@@ -3,7 +3,7 @@
         <mat-icon>menu</mat-icon>
     </button>
     <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" >
-    <span class="name">{{ nameUser }}</span>
+    <span class="name" *ngIf="accountAdmin$ | async as admin">{{ admin.name }}</span>
 
     <span class="space"></span>
 
@@ -18,9 +18,9 @@
         <button (click)="navigateToUsers()" mat-raised-button class="button">
             Usuários
         </button>
-        <button (click)="navigateToAddUser()" mat-raised-button class="button">
-            Adicionar Usuário
-          </button>
+        <button (click)="logOut()" mat-raised-button class="button">
+          Sair da conta
+      </button>
     </mat-drawer>
 
     <router-outlet></router-outlet>

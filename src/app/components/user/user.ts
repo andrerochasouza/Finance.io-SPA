@@ -1,6 +1,6 @@
 export interface User {
-    id?: number
+    idUser?: number
     name: string
     cpf: string
-    value?: number
+    walletValue?: number
 }

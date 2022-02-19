@@ -1,7 +1,15 @@
-.card{
-    font-size: 1.4em;
-    font-weight: 500;
-    background-color: white;
-    box-shadow: 0 0 0.5em black;
-    margin: 2.2em;
+.card {
+  font-size: 1.4em;
+  font-weight: 500;
+  background-color: white;
+  box-shadow: 0 0 1em white;
+  margin: 2.2em;
+}
+
+.button_create {
+  background-color: #b089df;
+  margin: 20px;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
