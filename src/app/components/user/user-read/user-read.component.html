@@ -8,7 +8,7 @@
     </li>
     <li class="table-row" *ngFor="let user of listUser$ | async">
       <div class="col col-1" data-label="Nome">{{ user.name }}</div>
-      <div class="col col-2" data-label="CPF">{{ user.cpf }}</div>
+      <div class="col col-2"  data-label="CPF">{{ user.cpf | mask: '000.000.000-00' }}</div>
       <div class="col col-3" data-label="Carteira">
         <ng-template [ngIf]="isValueCalculatorNg(user.walletValue)">
           <mat-icon *ngIf="isValueP" class="v-middle" style="color: green;">local_atm</mat-icon>

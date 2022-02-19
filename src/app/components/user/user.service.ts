@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  create(user: User): Observable<User> {
+  createUser(user: User): Observable<User> {
     return this.http.post<User>(this.API, user)
   }
 

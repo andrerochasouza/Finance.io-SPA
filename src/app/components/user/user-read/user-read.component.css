@@ -42,7 +42,7 @@
 .responsive-table .col-4 {
   flex-basis: 35%;
 }
-@media all and (max-width: 767px) {
+@media all and (max-width: 880px) {
   .responsive-table .table-header {
     display: none;
   }

@@ -1,1 +1,35 @@
-<p>user-create works!</p>
+<mat-card class="card">
+  <mat-card-title>Novo Usuário</mat-card-title>
+
+  <!-- Name -->
+  <form [formGroup]="formUser" (submit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label class="label">Nome</mat-label>
+      <input type="text" matInput formControlName="name" required />
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="this.formUser.get('name')?.errors">{{
+        getErrorMessage("name")
+      }}</mat-error>
+    </mat-form-field>
+
+    <!-- CPF -->
+    <mat-form-field appearance="fill">
+      <mat-label class="label">CPF</mat-label>
+      <input type="cpf" matInput formControlName="cpf" mask="000.000.000-00" required />
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="this.formUser.get('cpf')?.errors">{{
+        getErrorMessage("cpf")
+      }}</mat-error>
+    </mat-form-field>
+
+    <!-- Actions -->
+    <mat-card-actions class="action">
+      <button mat-raised-button class="button_style" (click)="cancel()">
+        Cancelar
+      </button>
+      <button mat-raised-button class="button_style" type="submit">
+        Adicionar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

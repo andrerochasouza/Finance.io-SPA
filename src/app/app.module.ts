@@ -32,7 +32,7 @@ import { LoginComponent } from './views/home/account/login/login.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomePageComponent } from './views/home/home-page/home-page.component';
 import { HomeComponent } from './views/home/home.component';
-import { GreenColorDirective } from './shared-directives/green-color.directive';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 registerLocaleData(localePt);
@@ -47,8 +47,7 @@ registerLocaleData(localePt);
     LoginComponent,
     CreateAccountComponent,
     AuthenticationComponent,
-    HomePageComponent,
-    GreenColorDirective
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +69,8 @@ registerLocaleData(localePt);
     CdkTableModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [
     httpInterceptorProviders,
