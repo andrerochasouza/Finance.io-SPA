@@ -1,8 +1,10 @@
+import { Page, PageRequest } from './../../../shared/Pagination';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 
 import { User } from './../user';
 import { UserService } from './../user.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-read',
@@ -12,11 +14,18 @@ import { UserService } from './../user.service';
 
 export class UserReadComponent implements OnInit {
 
+  // list
+  columnTable = ['name', 'cpf', 'walletValue', 'options']
+  page: Page<User> = new Page([], 0);
+  pageEvent: PageEvent;
 
-  listUser$: Observable<User[]>
+  // Value color
   isValueP = false
   isValueN = false
   isValueE = false
+
+  // carregando pagina
+  loading = false;
 
   constructor(
     private userService: UserService
@@ -24,8 +33,53 @@ export class UserReadComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.listUser$ = this.userService.listUser()
+    this.listUser();
   }
+
+  // Lista os usuários
+
+  listUser(){
+    this.loading = true
+    let queryAdicional
+    this.userService.listUser(
+      new PageRequest(
+        {
+          pageNumber: this.pageEvent? this.pageEvent.pageIndex: 0,
+          pageSize: this.pageEvent? this.pageEvent.pageSize: 5
+        },
+        queryAdicional
+      )
+    ).pipe(
+        take(1)
+    )
+    .subscribe({
+      next: page => {
+        this.page = page;
+        this.loading = false;
+      },
+      error: () => {
+        this.page = new Page([], 0)
+        this.loading = false
+      }
+    })
+  }
+
+  // Manda para walletRead do usuário
+  viewUser(id: number){
+
+  }
+
+  // Edita o usuário
+  editUser(id: number){
+
+  }
+
+  // Exclui o usuário
+  deleteUser(id: number){
+
+  }
+
+  // Verificar as cores do wallet
 
   isValuePositiveNg(walletValue: number | undefined): boolean{
     if(walletValue != undefined){
