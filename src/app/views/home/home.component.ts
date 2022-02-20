@@ -1,9 +1,10 @@
-import { DataService } from './../../data.service';
-import { Admin } from './account/shared/admin.model';
-import { Observable } from 'rxjs';
-import { AccountService } from './account/shared/account.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { DataService } from './../../data.service';
+import { AccountService } from './account/shared/account.service';
+import { Admin } from './account/shared/admin.model';
 
 @Component({
   selector: 'app-home',

@@ -31,7 +31,6 @@ import { AuthenticationComponent } from './views/authentication/authentication.c
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
-import { HomePageComponent } from './views/home/home-page/home-page.component';
 import { HomeComponent } from './views/home/home.component';
 
 
@@ -46,8 +45,7 @@ registerLocaleData(localePt);
     HomeComponent,
     LoginComponent,
     CreateAccountComponent,
-    AuthenticationComponent,
-    HomePageComponent
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
