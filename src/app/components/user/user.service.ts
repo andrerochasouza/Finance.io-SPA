@@ -21,6 +21,7 @@ export class UserService {
     return this.http.post<User>(`${this.API}/${this.endpoint}`, user)
   }
 
+
   listUser(queryBuilder: QueryBuilder): Observable<Page<User>>{
     return this.http
       .get<User[]>(`${this.API}/${this.endpoint}?${queryBuilder.buildQueryString()}`, {observe: 'response'})
@@ -42,8 +43,8 @@ export class UserService {
   }
 
 
-  delete(idUser: number): Observable<User>{
-    const url = `${this.API}/${idUser}`
+  deleteUserById(id: number): Observable<User>{
+    const url =  `${this.API}/${this.endpoint}?iduser=${id}`
     return this.http.delete<User>(url)
   }
 }

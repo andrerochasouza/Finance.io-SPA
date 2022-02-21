@@ -51,7 +51,7 @@
   <div *ngIf="loading">
     <mat-spinner class="spinner"></mat-spinner>
   </div>
-  <div *ngIf="!loading && page.totalElements === 0">
+  <div class="notRegister" *ngIf="!loading && page.totalElements === 0">
     Nenhum registro carregado
   </div>
   <mat-paginator

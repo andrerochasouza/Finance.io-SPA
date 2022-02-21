@@ -16,7 +16,7 @@
     <mat-form-field appearance="fill">
       <mat-label class="label">{{ cpfOld | mask: '000.000.000-00' }}</mat-label>
       <input type="cpf" matInput formControlName="cpf" mask="000.000.000-00" required />
-      <mat-icon matSuffix> contacts</mat-icon>
+      <mat-icon matSuffix>contacts</mat-icon>
       <mat-error *ngIf="this.formUser.get('cpf')?.errors">{{
         getErrorMessage("cpf")
       }}</mat-error>

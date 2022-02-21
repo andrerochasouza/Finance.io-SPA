@@ -1,11 +1,11 @@
-import { Router } from '@angular/router';
-import { Page, PageRequest } from './../../../shared/Pagination';
 import { Component, OnInit } from '@angular/core';
-import { Observable, take } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
+import { Page, PageRequest } from './../../../shared/Pagination';
 import { User } from './../user';
 import { UserService } from './../user.service';
-import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-read',
@@ -68,6 +68,7 @@ export class UserReadComponent implements OnInit {
 
   // Manda para walletRead do usuário
   viewUser(id: number){
+    return this.router.navigate(['home/user/view/', id]);
   }
 
   // Edita o usuário
@@ -77,7 +78,14 @@ export class UserReadComponent implements OnInit {
 
   // Exclui o usuário
   deleteUser(id: number){
+    if(confirm("Deseja realmente excluir esse usuário -- ID: " + id)) {
+      this.userService.deleteUserById(id)
+      .pipe(
+        take(1)
+      )
+      .subscribe(user => this.listUser());
 
+    }
   }
 
   // Verificar as cores do wallet

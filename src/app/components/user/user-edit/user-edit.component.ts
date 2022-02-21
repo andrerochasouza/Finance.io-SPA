@@ -1,4 +1,4 @@
-import { take } from 'rxjs';
+import { delay, take } from 'rxjs';
 import { Validacoes } from './../../../shared/validatorCPF';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from './../../../views/home/account/shared/account.service';
@@ -29,13 +29,12 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.createFormUser();
     this.getUserOld();
+    this.updateFormUser();
   }
 
 
   onSubmit(): void {
-    console.log("id user -> " + this.formUser.get('id')?.value)
     if (this.formUser.valid) {
       this.userService.updateUser(this.formUser.value)
         .pipe(
@@ -64,7 +63,7 @@ export class UserEditComponent implements OnInit {
 
   getErrorMessage(valueString: string) {
     if (valueString === 'name') {
-      return 'Insira seu novo nome'
+      return 'Insira seu novo nome (Minimo 5 caracteres)'
     }
 
     if (valueString === 'cpf') {
@@ -88,13 +87,12 @@ export class UserEditComponent implements OnInit {
   }
 
   // Criando FormUser
-
-  createFormUser() {
+  updateFormUser() {
     this.formUser = this.formBuilder.group({
       id: new FormControl(this.idUser),
       name: new FormControl(null, Validators.compose([
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(5),
         Validators.maxLength(100)])),
       cpf: new FormControl(null, Validators.compose([
         Validators.required,

@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
       console.log('Ocorreu um erro:', error.error.message);
     } else {
       console.error(`Código do erro -> ${error.status}`);
-      console.error(`Erro ${JSON.stringify(error.error)}`);
+      console.error(`Erro: ${JSON.stringify(error.error)}`);
     }
 
     return throwError(() => 'Ocorreu um erro, tente novamente');

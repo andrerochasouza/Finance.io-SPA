@@ -1,9 +1,10 @@
-import { UserEditComponent } from './components/user/user-edit/user-edit.component';
-import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AppComponent } from './app.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
+import { UserViewComponent } from './components/user/user-view/user-view.component';
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AuthGuard } from './views/home/account/shared/auth.guard';
@@ -18,7 +19,8 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'home/users', component: AdminCrudComponent},
       {path: 'home/add/user', component: UserCreateComponent},
-      {path: 'home/user/edit/:id', component: UserEditComponent}
+      {path: 'home/user/edit/:id', component: UserEditComponent},
+      {path: 'home/user/view/:id', component: UserViewComponent}
     ],
     canActivate: [AuthGuard]
   },
