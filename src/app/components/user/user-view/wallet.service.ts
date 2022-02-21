@@ -46,8 +46,8 @@ export class WalletService {
   }
 
 
-  deleteAppById(id: number): Observable<App>{
-    const url =  `${this.API}/${this.endpoint}?iduser=${id}`
+  deleteAppById(idUser: number, idApp: number): Observable<App>{
+    const url =  `${this.API}/${this.endpoint}/${idUser}/delete/app?idapp=${idApp}`
     return this.http.delete<App>(url)
   }
 }

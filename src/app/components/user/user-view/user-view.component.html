@@ -1,4 +1,12 @@
 <mat-card>
+  <mat-card>
+    <div>{{ nameUser }}</div>
+    <button mat-button (click)="createApp()">Adicionar uma Aplicação</button>
+    <div>
+      <mat-icon class="v-middle" >local_atm</mat-icon>
+      {{ walletValue | currency: 'BRL' }}
+    </div>
+  </mat-card>
   <div class="container">
     <table mat-table class="mat-elevation-z8" [dataSource]="page.content">
 
@@ -12,7 +20,7 @@
       <ng-container matColumnDef="value">
         <th mat-header-cell *matHeaderCellDef>Valor</th>
         <td mat-cell class="duration-cell" *matCellDef="let app">
-          <ng-template [ngIf]="isValueCalculatorNg(app.value)">
+          <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
             <mat-icon *ngIf="isValueP" class="v-middle" style="color: green">add_circle_outline</mat-icon>
             <mat-icon *ngIf="isValueN" class="v-middle" style="color: red">remove_circle_outline</mat-icon>
             <mat-icon *ngIf="isValueE" class="v-middle" style="color: black">border_clear</mat-icon>
@@ -31,7 +39,7 @@
           <button mat-button (click)="editApp(app.idApp)">
             <mat-icon>build icon</mat-icon>
           </button>
-          <button mat-button (click)="deleteApp(app.idApp)">
+          <button mat-button (click)="deleteApp(app.name, app.idApp)">
             <mat-icon>delete forever icon</mat-icon>
           </button>
         </td>

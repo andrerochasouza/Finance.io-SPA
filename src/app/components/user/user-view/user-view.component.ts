@@ -81,6 +81,11 @@ export class UserViewComponent implements OnInit {
   }
 
 
+  // Cria uma aplicação
+  createApp(){
+    return this.router.navigate(['home/user/app/new']);
+  }
+
   // Manda para walletRead do usuário
   viewApp(id: number){
     return this.router.navigate(['home/user/app/view', id]);
@@ -92,57 +97,37 @@ export class UserViewComponent implements OnInit {
   }
 
   // Exclui o usuário
-  deleteApp(id: number){
-    if(confirm("Deseja realmente excluir esse usuário -- ID: " + id)) {
-      this.walletService.deleteAppById(id)
+  deleteApp(name: string, idApp: number){
+    if(confirm("Deseja realmente excluir essa aplicação: " + name)) {
+      this.walletService.deleteAppById(this.idUser, idApp)
       .pipe(
         take(1)
       )
-      .subscribe(() => this.listApp(this.idUser));
-
+      .subscribe(() => {
+        this.getWallet(this.idUser)
+        this.listApp(this.idUser)
+      });
     }
   }
 
 
   // Verificar as cores do wallet
-  isValuePositiveNg(value: number | undefined): boolean {
-    if (value != undefined) {
-      if (value > 0) {
-        return true
-      } else {
-        return false
-      }
-    }
-    return false
-  }
-
-  isValueNegativeNg(value: number | undefined): boolean {
-    if (value != undefined) {
-      if (value < 0) {
-        return true
-      } else {
-        return false
-      }
-    }
-    return false
-  }
-
-  isValueCalculatorNg(value: number | undefined): boolean {
-    if (value != undefined) {
-      if (value > 0) {
-        this.isValueP = true
-        this.isValueN = false
-        this.isValueE = false
-      } else if (value < 0) {
-        this.isValueP = false
-        this.isValueN = true
-        this.isValueE = false
-      } else {
-        this.isValueP = false
-        this.isValueN = false
-        this.isValueE = true
-      }
+  isValueCalculatorNg(typeAplication: string | undefined, value: number): boolean {
+    if(value === 0){
+      this.isValueP = false
+      this.isValueN = false
+      this.isValueE = true
       return true
+    } else {
+      if (typeAplication === 'RECEITA') {
+          this.isValueP = true
+          this.isValueN = false
+          this.isValueE = false
+      } else if (typeAplication === 'DESPESA') {
+          this.isValueP = false
+          this.isValueN = true
+          this.isValueE = false
+      }
     }
     return true
   }
