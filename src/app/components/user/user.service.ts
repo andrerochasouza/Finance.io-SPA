@@ -18,7 +18,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.API, user)
+    return this.http.post<User>(`${this.API}/${this.endpoint}`, user)
   }
 
   listUser(queryBuilder: QueryBuilder): Observable<Page<User>>{
