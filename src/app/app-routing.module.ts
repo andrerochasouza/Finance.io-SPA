@@ -1,3 +1,4 @@
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,7 +17,8 @@ const routes: Routes = [
     children: [
       {path: 'home', component: HomeComponent},
       {path: 'home/users', component: AdminCrudComponent},
-      {path: 'home/add/user', component: UserCreateComponent}
+      {path: 'home/add/user', component: UserCreateComponent},
+      {path: 'home/user/edit/:id', component: UserEditComponent}
     ],
     canActivate: [AuthGuard]
   },

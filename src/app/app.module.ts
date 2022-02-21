@@ -25,6 +25,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
@@ -45,7 +46,8 @@ registerLocaleData(localePt);
     HomeComponent,
     LoginComponent,
     CreateAccountComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

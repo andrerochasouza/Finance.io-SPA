@@ -29,15 +29,18 @@ export class UserService {
     );
   }
 
-  userById(idUser: number): Observable<User>{
-    const url = `${this.API}/${idUser}`
+  updateUser(user: any): Observable<User>{
+    const url = `${this.API}/${this.endpoint}?iduser=${user.id}`
+    console.log(url)
+    return this.http.put<User>(url, user)
+  }
+
+  userById(id: number): Observable<User>{
+    const url = `${this.API}/${this.endpoint}/${id}`
+    console.log(url)
     return this.http.get<User>(url)
   }
 
-  update(user: User): Observable<User>{
-    const url = `${this.API}/${user.idUser}`
-    return this.http.put<User>(url, user)
-  }
 
   delete(idUser: number): Observable<User>{
     const url = `${this.API}/${idUser}`

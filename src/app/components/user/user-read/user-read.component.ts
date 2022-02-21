@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Page, PageRequest } from './../../../shared/Pagination';
 import { Component, OnInit } from '@angular/core';
 import { Observable, take } from 'rxjs';
@@ -15,7 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class UserReadComponent implements OnInit {
 
   // list
-  columnTable = ['name', 'cpf', 'walletValue', 'options']
+  columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
   page: Page<User> = new Page([], 0);
   pageEvent: PageEvent;
 
@@ -28,7 +29,8 @@ export class UserReadComponent implements OnInit {
   loading = false;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
 
@@ -45,7 +47,7 @@ export class UserReadComponent implements OnInit {
       new PageRequest(
         {
           pageNumber: this.pageEvent? this.pageEvent.pageIndex: 0,
-          pageSize: this.pageEvent? this.pageEvent.pageSize: 5
+          pageSize: this.pageEvent? this.pageEvent.pageSize: 10
         },
         queryAdicional
       )
@@ -66,12 +68,11 @@ export class UserReadComponent implements OnInit {
 
   // Manda para walletRead do usuário
   viewUser(id: number){
-
   }
 
   // Edita o usuário
   editUser(id: number){
-
+    return this.router.navigate(['home/user/edit/', id]);
   }
 
   // Exclui o usuário
