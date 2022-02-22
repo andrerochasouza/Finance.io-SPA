@@ -2,7 +2,7 @@
   <mat-card-title>Novo Usuário</mat-card-title>
 
   <!-- Name -->
-  <form [formGroup]="formUser" (submit)="onSubmit()">
+  <form [formGroup]="formUser" (submit)="onSubmit()" autocomplete="off">
     <mat-form-field title="Insira um nome" appearance="fill">
       <mat-label class="label">Nome</mat-label>
       <input type="text" matInput formControlName="name"  maxlength="100" required />
@@ -15,7 +15,7 @@
     <!-- CPF -->
     <mat-form-field title="Insira um CPF" appearance="fill">
       <mat-label class="label">CPF</mat-label>
-      <input type="cpf" matInput formControlName="cpf" mask="000.000.000-00" required />
+      <input type="text" matInput formControlName="cpf" mask="000.000.000-00" required />
       <mat-icon matSuffix>contacts</mat-icon>
       <mat-error *ngIf="this.formUser.get('cpf')?.errors">{{
         getErrorMessage("cpf")

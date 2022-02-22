@@ -33,21 +33,19 @@ export class WalletService {
     return this.http.get<Wallet>(`${this.API}/${this.endpoint}/${idUser}?page=0&limit=10`)
   }
 
-  updateApp(app: any): Observable<App>{
-    const url = `${this.API}/${this.endpoint}?iduser=${app.id}`
-    console.log(url)
+  updateApp(app: any, idUser: number, idApp: number): Observable<App>{
+    const url = `${this.API}/${this.endpoint}/${idUser}?idapp=${idApp}`
     return this.http.put<App>(url, app)
   }
 
-  appById(id: number): Observable<App>{
-    const url = `${this.API}/${this.endpoint}/${id}`
-    console.log(url)
+  appById(idUser: number, idApp: number): Observable<App>{
+    const url = `${this.API}/${this.endpoint}/app/${idUser}?idapp=${idApp}`
     return this.http.get<App>(url)
   }
 
 
   deleteAppById(idUser: number, idApp: number): Observable<App>{
-    const url =  `${this.API}/${this.endpoint}/${idUser}/delete/app?idapp=${idApp}`
+    const url = `${this.API}/${this.endpoint}/${idUser}/delete/app?idapp=${idApp}`
     return this.http.delete<App>(url)
   }
 }

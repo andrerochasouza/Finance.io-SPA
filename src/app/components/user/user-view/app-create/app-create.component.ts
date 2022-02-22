@@ -38,7 +38,7 @@ export class AppCreateComponent implements OnInit {
       this.walletService.createApp(this.formApp.value, this.idUser)
         .subscribe({
           next: () => {
-            this.router.navigate([`/home/user/view`, this.idUser])
+            this.router.navigate([`/home/user/wallet`, this.idUser])
           },
           error: err => {
             this.accountService.showMessage('Erro ao inserir a Aplicação')
@@ -51,7 +51,7 @@ export class AppCreateComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate([`/home/user/view`, this.idUser])
+    this.router.navigate([`/home/user/wallet`, this.idUser])
   }
 
 

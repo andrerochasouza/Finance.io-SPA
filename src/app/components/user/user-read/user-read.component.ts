@@ -68,12 +68,12 @@ export class UserReadComponent implements OnInit {
 
   // Manda para walletRead do usuário
   viewUser(id: number){
-    return this.router.navigate(['home/user/view/', id]);
+    return this.router.navigate(['home/user/wallet', id]);
   }
 
   // Edita o usuário
   editUser(id: number){
-    return this.router.navigate(['home/user/edit/', id]);
+    return this.router.navigate(['home/user/edit', id]);
   }
 
   // Exclui o usuário

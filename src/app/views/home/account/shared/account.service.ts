@@ -31,10 +31,6 @@ export class AccountService {
 
   createAccount(admin: Admin): Observable<Admin>{
       const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
-      .pipe(
-        tap(result => console.log("result => " + result))
-      );
-
       return newAdmin;
   }
 
