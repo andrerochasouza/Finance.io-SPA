@@ -16,6 +16,6 @@ export class AdminCrudComponent implements OnInit {
   }
 
   newUser(): void{
-    this.router.navigate(['/home/add/user']);
+    this.router.navigate(['home/user/add']);
   }
 }

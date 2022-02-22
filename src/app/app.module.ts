@@ -27,6 +27,8 @@ import { AppComponent } from './app.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
+import { AppCreateComponent } from './components/user/user-view/app-create/app-create.component';
+import { AppEditComponent } from './components/user/user-view/app-edit/app-edit.component';
 import { UserViewComponent } from './components/user/user-view/user-view.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
@@ -49,7 +51,9 @@ registerLocaleData(localePt);
     CreateAccountComponent,
     AuthenticationComponent,
     UserEditComponent,
-    UserViewComponent
+    UserViewComponent,
+    AppCreateComponent,
+    AppEditComponent
   ],
   imports: [
     BrowserModule,

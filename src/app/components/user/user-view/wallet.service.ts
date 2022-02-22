@@ -17,8 +17,8 @@ export class WalletService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(app: App): Observable<App> {
-    return this.http.post<App>(`${this.API}/${this.endpoint}`, app)
+  createApp(app: App, idUser: number): Observable<App> {
+    return this.http.post<App>(`${this.API}/${this.endpoint}/${idUser}/add/app`, app)
   }
 
   listApp(idUser: number, queryBuilder: QueryBuilder): Observable<Page<App>>{

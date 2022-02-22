@@ -3,9 +3,9 @@
 
   <!-- Name -->
   <form [formGroup]="formUser" (submit)="onSubmit()">
-    <mat-form-field appearance="fill">
+    <mat-form-field title="Insira um nome" appearance="fill">
       <mat-label class="label">{{ nameOld }}</mat-label>
-      <input type="text" matInput formControlName="name" required />
+      <input type="text" matInput formControlName="name" maxlength="100" required />
       <mat-icon matSuffix>person</mat-icon>
       <mat-error *ngIf="this.formUser.get('name')?.errors">{{
         getErrorMessage("name")
@@ -13,7 +13,7 @@
     </mat-form-field>
 
     <!-- CPF -->
-    <mat-form-field appearance="fill">
+    <mat-form-field title="Insira um CPF" appearance="fill">
       <mat-label class="label">{{ cpfOld | mask: '000.000.000-00' }}</mat-label>
       <input type="cpf" matInput formControlName="cpf" mask="000.000.000-00" required />
       <mat-icon matSuffix>contacts</mat-icon>
@@ -24,10 +24,10 @@
 
     <!-- Actions -->
     <mat-card-actions class="action">
-      <button mat-raised-button class="button_style" (click)="cancel()">
+      <button mat-raised-button class="button_style" title="Voltar ao menu" (click)="cancel()">
         Cancelar
       </button>
-      <button mat-raised-button class="button_style" type="submit">
+      <button mat-raised-button class="button_style" title="Atualiza o usuário" type="submit">
         Atualizar
       </button>
     </mat-card-actions>

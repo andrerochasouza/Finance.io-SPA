@@ -8,13 +8,19 @@
   padding-right: 10px;
 }
 
+button:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+button{
+  transition: 0.5s;
+}
+
 table {
   width: 100%;
 }
 
-.button{
-  margin-right: 10px;
-}
 
 .spinner{
   position: relative;

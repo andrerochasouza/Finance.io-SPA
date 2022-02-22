@@ -80,10 +80,14 @@ export class UserViewComponent implements OnInit {
     })
   }
 
+  // Volta para os usuários
+  toUsers(){
+    return this.router.navigate([`/home/users`])
+  }
 
   // Cria uma aplicação
   createApp(){
-    return this.router.navigate(['home/user/app/new']);
+    return this.router.navigate([`home/user/view/${this.idUser}/app/add`]);
   }
 
   // Manda para walletRead do usuário

@@ -4,19 +4,19 @@
     <!-- Name -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>#</th>
-      <td mat-cell *matCellDef="let user">{{ user.idUser }}</td>
+      <td mat-cell title="Id do usuário" *matCellDef="let user">{{ user.idUser }}</td>
     </ng-container>
 
     <!-- Name -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Nome</th>
-      <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      <td mat-cell title="Nome do usuário" *matCellDef="let user">{{ user.name }}</td>
     </ng-container>
 
     <!-- CPF -->
     <ng-container matColumnDef="cpf">
       <th mat-header-cell *matHeaderCellDef>CPF</th>
-      <td mat-cell class="description-cell" *matCellDef="let user">
+      <td mat-cell title="CPF do usuário" class="description-cell" *matCellDef="let user">
         {{ user.cpf | mask: '000.000.000-00' }}
       </td>
     </ng-container>
@@ -24,11 +24,11 @@
     <!-- Wallet Value -->
     <ng-container matColumnDef="walletValue">
       <th mat-header-cell *matHeaderCellDef>Saldo</th>
-      <td mat-cell class="duration-cell" *matCellDef="let user">
+      <td mat-cell title="Carteira do usuário" class="duration-cell" *matCellDef="let user">
         <ng-template [ngIf]="isValueCalculatorNg(user.walletValue)">
-          <mat-icon *ngIf="isValueP" class="v-middle" style="color: green">local_atm</mat-icon>
-          <mat-icon *ngIf="isValueN" class="v-middle" style="color: red">local_atm</mat-icon>
-          <mat-icon *ngIf="isValueE" class="v-middle" style="color: black">local_atm</mat-icon>
+          <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">account_balance_wallet</mat-icon>
+          <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">account_balance_wallet</mat-icon>
+          <mat-icon *ngIf="isValueE" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
         </ng-template>
         {{ user.walletValue | currency: 'BRL' }}
       </td>
@@ -37,10 +37,10 @@
     <!-- Options -->
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opções</th>
-      <td mat-cellclass="duration-cell" *matCellDef="let user">
-        <button mat-button (click)="viewUser(user.idUser)"><mat-icon>assessment icon</mat-icon></button>
-        <button mat-button (click)="editUser(user.idUser)"><mat-icon>build icon</mat-icon></button>
-        <button mat-button (click)="deleteUser(user.idUser)"><mat-icon>delete forever icon</mat-icon></button>
+      <td mat-cell class="duration-cell" *matCellDef="let user">
+        <button mat-button title="Detalhes do usuário" (click)="viewUser(user.idUser)"><mat-icon>more</mat-icon></button>
+        <button mat-button title="Configurar usuário" (click)="editUser(user.idUser)"><mat-icon>build icon</mat-icon></button>
+        <button mat-button title="Deletar usuário" (click)="deleteUser(user.idUser)"><mat-icon>delete forever icon</mat-icon></button>
       </td>
     </ng-container>
 

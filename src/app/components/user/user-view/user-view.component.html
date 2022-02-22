@@ -1,9 +1,12 @@
-<mat-card>
+<mat-card class="card">
   <mat-card>
-    <div>{{ nameUser }}</div>
-    <button mat-button (click)="createApp()">Adicionar uma Aplicação</button>
-    <div>
-      <mat-icon class="v-middle" >local_atm</mat-icon>
+    <button mat-button title="Voltar" (click)="toUsers()"><mat-icon>arrow_back</mat-icon></button>
+    <div class="title" title="Nome do usuário">{{ nameUser }}</div>
+    <button mat-button title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma Aplicação</button>
+    <div title="Carteira">
+      <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">account_balance_wallet</mat-icon>
+      <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">account_balance_wallet</mat-icon>
+      <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
       {{ walletValue | currency: 'BRL' }}
     </div>
   </mat-card>
@@ -13,17 +16,17 @@
       <!-- Name -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let app">{{ app.name }}</td>
+        <td mat-cell title="Nome da aplicação" *matCellDef="let app">{{ app.name }}</td>
       </ng-container>
 
       <!-- Value -->
       <ng-container matColumnDef="value">
         <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td mat-cell class="duration-cell" *matCellDef="let app">
+        <td mat-cell title="Valor da Aplicação" class="duration-cell" *matCellDef="let app">
           <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
-            <mat-icon *ngIf="isValueP" class="v-middle" style="color: green">add_circle_outline</mat-icon>
-            <mat-icon *ngIf="isValueN" class="v-middle" style="color: red">remove_circle_outline</mat-icon>
-            <mat-icon *ngIf="isValueE" class="v-middle" style="color: black">border_clear</mat-icon>
+            <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline</mat-icon>
+            <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline</mat-icon>
+            <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear</mat-icon>
           </ng-template>
           {{ app.value | currency: 'BRL' }}
         </td>
@@ -32,14 +35,14 @@
       <!-- Options -->
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef>Opções</th>
-        <td mat-cellclass="duration-cell" *matCellDef="let app">
-          <button mat-button (click)="viewApp(app.idApp)">
-            <mat-icon>assessment icon</mat-icon>
+        <td mat-cell class="duration-cell" *matCellDef="let app">
+          <button class="button_hover" mat-button title="Ver descrição" (click)="viewApp(app.idApp)">
+            <mat-icon>arrow_drop_down_circle</mat-icon>
           </button>
-          <button mat-button (click)="editApp(app.idApp)">
+          <button class="button_hover" mat-button title="Editar aplicação" (click)="editApp(app.idApp)">
             <mat-icon>build icon</mat-icon>
           </button>
-          <button mat-button (click)="deleteApp(app.name, app.idApp)">
+          <button class="button_hover" mat-button title="Deletar aplicação" (click)="deleteApp(app.name, app.idApp)">
             <mat-icon>delete forever icon</mat-icon>
           </button>
         </td>
