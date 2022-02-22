@@ -2,7 +2,7 @@
   <mat-card-title>Novo Aplicação</mat-card-title>
 
   <!-- Name -->
-  <form [formGroup]="formApp" (submit)="onSubmit()">
+  <form [formGroup]="formApp" (submit)="onSubmit()" autocomplete="off">
     <mat-form-field appearance="fill">
       <mat-label class="label">Nome</mat-label>
       <input type="text" matInput formControlName="name" maxlength="100" required />
@@ -15,7 +15,7 @@
     <!-- Value -->
     <mat-form-field appearance="fill">
       <mat-label class="label">Valor</mat-label>
-      <input type="number" matInput formControlName="value" maxlength="255" required />
+      <input type="text" matInput formControlName="value" maxlength="255" required />
       <mat-icon matSuffix> attach_money</mat-icon>
       <mat-error *ngIf="this.formApp.get('value')?.errors">{{
         getErrorMessage("value")

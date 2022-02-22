@@ -87,17 +87,17 @@ export class UserViewComponent implements OnInit {
 
   // Cria uma aplicação
   createApp(){
-    return this.router.navigate([`home/user/view/${this.idUser}/app/add`]);
+    return this.router.navigate([`home/user/wallet/${this.idUser}/app/add`]);
+  }
+
+  // Edita o usuário
+  editApp(idApp: number){
+    return this.router.navigate([`home/user/wallet/${this.idUser}/app/edit/${idApp}`]);
   }
 
   // Manda para walletRead do usuário
   viewApp(id: number){
-    return this.router.navigate(['home/user/app/view', id]);
-  }
 
-  // Edita o usuário
-  editApp(id: number){
-    return this.router.navigate(['home/user/app/edit/', id]);
   }
 
   // Exclui o usuário

@@ -1,3 +1,4 @@
+import { AppEditComponent } from './components/user/user-view/app-edit/app-edit.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -17,12 +18,19 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
+
+      // home
       {path: 'home', component: HomeComponent},
+
+      // página com a lista de usuários
       {path: 'home/users', component: AdminCrudComponent},
       {path: 'home/user/add', component: UserCreateComponent},
       {path: 'home/user/edit/:id', component: UserEditComponent},
-      {path: 'home/user/view/:id', component: UserViewComponent},
-      {path: 'home/user/view/:id/app/add', component: AppCreateComponent}
+
+      // página com a lista de aplicações
+      {path: 'home/user/wallet/:id', component: UserViewComponent},
+      {path: 'home/user/wallet/:id/app/add', component: AppCreateComponent},
+      {path: 'home/user/wallet/:id/app/edit/:idapp', component: AppEditComponent}
     ],
     canActivate: [AuthGuard]
   },
@@ -30,6 +38,8 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     children: [
+
+      // login e create account
       {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'create-account', component: CreateAccountComponent}
