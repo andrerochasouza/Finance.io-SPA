@@ -4,7 +4,7 @@
         <mat-card-content>
               <!-- Name -->
               <form [formGroup]="formAdmin" (submit)="onSubmit()">
-                  <mat-form-field appearance="fill">
+                  <mat-form-field title="Insira seu nome" appearance="fill">
                       <mat-label class="label">Nome</mat-label>
                       <input type="text" matInput formControlName="name" required>
                       <mat-icon matSuffix>person</mat-icon>
@@ -12,7 +12,7 @@
                   </mat-form-field>
 
                 <!-- Email -->
-                <mat-form-field appearance="fill">
+                <mat-form-field title="Insira seu e-mail" appearance="fill">
                     <mat-label class="label">E-mail</mat-label>
                     <input type="email" matInput formControlName="email" required>
                     <mat-icon matSuffix>email</mat-icon>
@@ -20,7 +20,7 @@
                 </mat-form-field>
 
                 <!-- Login -->
-                <mat-form-field appearance="fill">
+                <mat-form-field title="Insira um novo login" appearance="fill">
                     <mat-label class="label">Login</mat-label>
                     <input type="login" matInput formControlName="login" required>
                     <mat-icon matSuffix>face</mat-icon>
@@ -28,7 +28,7 @@
                 </mat-form-field>
 
                 <!-- Password -->
-                <mat-form-field appearance="fill">
+                <mat-form-field title="Insira uma nova senha" appearance="fill">
                     <mat-label class="label">Senha</mat-label>
                     <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required>
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide" required>
@@ -39,9 +39,9 @@
 
                 <!-- Actions -->
                 <mat-card-actions class="action">
-                    <button mat-raised-button class="button_style" (click)="cancel()">Cancelar
+                    <button mat-raised-button class="button_style" title="Página de Login" (click)="cancel()">Cancelar
                     </button>
-                    <button mat-raised-button class="button_style" type="submit">Cadastrar
+                    <button mat-raised-button class="button_style" title="Cadastra uma nova conta" type="submit">Cadastrar
                     </button>
                 </mat-card-actions>
             </form>

@@ -1,24 +1,24 @@
 <mat-toolbar class="nav">
-    <button (click)="drawer.toggle()" mat-icon-button aria-label="Menu que dá acesso a todos as ações do sidenav">
+    <button (click)="drawer.toggle()" title="Menu" mat-icon-button aria-label="Menu que dá acesso a todos as ações do sidenav">
         <mat-icon>menu</mat-icon>
     </button>
-    <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" >
-    <span class="name" *ngIf="accountAdmin$ | async as admin">{{ admin.name }}</span>
+    <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" title="Imagem do usuário" >
+    <span class="name" *ngIf="accountAdmin$ | async as admin" title="Seu nome">{{ admin.name }}</span>
 
     <span class="space"></span>
 
-    <span>FINANCE.IO</span>
-    <img class="img" mat-card-avatar alt="Logo da Finance.io" src="assets/img/diamond.png">
+    <span title="Título">FINANCE.IO</span>
+    <img title="Finance.io" class="img" mat-card-avatar alt="Logo da Finance.io" src="assets/img/diamond.png">
 </mat-toolbar>
 <mat-drawer-container class="container" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
-        <button routerLink="/" mat-raised-button class="button">
+        <button title="Página Home" routerLink="/" mat-raised-button class="button">
             Home
         </button>
-        <button (click)="navigateToUsers()" mat-raised-button class="button">
+        <button title="Página de usuários" (click)="navigateToUsers()" mat-raised-button class="button">
             Usuários
         </button>
-        <button (click)="logOut()" mat-raised-button class="button">
+        <button title="Desconectar" (click)="logOut()" mat-raised-button class="button">
           Sair da conta
       </button>
     </mat-drawer>
@@ -28,12 +28,12 @@
 </mat-drawer-container>
 
 <!-- footer -->
-<mat-toolbar class="footer">
+<mat-toolbar title="Footer" class="footer">
     <span>
         Desenvolvido com
         <i class="material-icons v-middle red">
             favorite
         </i>
-        pela <Strong>TOTVS</Strong>
+        pela <Strong title="TOTVS">TOTVS</Strong>
     </span>
 </mat-toolbar>

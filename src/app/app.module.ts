@@ -20,19 +20,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
+import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { UserReadComponent } from './components/user/user-read/user-read.component';
+import { AppCreateComponent } from './components/user/user-view/app-create/app-create.component';
+import { AppEditComponent } from './components/user/user-view/app-edit/app-edit.component';
+import { UserViewComponent } from './components/user/user-view/user-view.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
-import { HomePageComponent } from './views/home/home-page/home-page.component';
 import { HomeComponent } from './views/home/home.component';
-import { NgxMaskModule } from 'ngx-mask';
 
 
 registerLocaleData(localePt);
@@ -47,7 +50,10 @@ registerLocaleData(localePt);
     LoginComponent,
     CreateAccountComponent,
     AuthenticationComponent,
-    HomePageComponent
+    UserEditComponent,
+    UserViewComponent,
+    AppCreateComponent,
+    AppEditComponent
   ],
   imports: [
     BrowserModule,

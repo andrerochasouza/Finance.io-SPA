@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
+import { Page, PageRequest } from './../../../shared/Pagination';
 import { User } from './../user';
 import { UserService } from './../user.service';
 
@@ -12,20 +15,80 @@ import { UserService } from './../user.service';
 
 export class UserReadComponent implements OnInit {
 
+  // list
+  columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
+  page: Page<User> = new Page([], 0);
+  pageEvent: PageEvent;
 
-  listUser$: Observable<User[]>
+  // Value color
   isValueP = false
   isValueN = false
   isValueE = false
 
+  // carregando pagina
+  loading = false;
+
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
 
   ngOnInit(): void {
-    this.listUser$ = this.userService.listUser()
+    this.listUser();
   }
+
+  // Lista os usuários
+
+  listUser(){
+    this.loading = true
+    let queryAdicional
+    this.userService.listUser(
+      new PageRequest(
+        {
+          pageNumber: this.pageEvent? this.pageEvent.pageIndex: 0,
+          pageSize: this.pageEvent? this.pageEvent.pageSize: 10
+        },
+        queryAdicional
+      )
+    ).pipe(
+        take(1)
+    )
+    .subscribe({
+      next: page => {
+        this.page = page;
+        this.loading = false;
+      },
+      error: () => {
+        this.page = new Page([], 0)
+        this.loading = false
+      }
+    })
+  }
+
+  // Manda para walletRead do usuário
+  viewUser(id: number){
+    return this.router.navigate(['home/user/view/', id]);
+  }
+
+  // Edita o usuário
+  editUser(id: number){
+    return this.router.navigate(['home/user/edit/', id]);
+  }
+
+  // Exclui o usuário
+  deleteUser(id: number){
+    if(confirm("Deseja realmente excluir esse usuário -- ID: " + id)) {
+      this.userService.deleteUserById(id)
+      .pipe(
+        take(1)
+      )
+      .subscribe(user => this.listUser());
+
+    }
+  }
+
+  // Verificar as cores do wallet
 
   isValuePositiveNg(walletValue: number | undefined): boolean{
     if(walletValue != undefined){

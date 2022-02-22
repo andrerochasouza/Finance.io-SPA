@@ -1,3 +1,11 @@
+.card {
+  font-size: 1.4em;
+  font-weight: 500;
+  background-color: white;
+  box-shadow: 0 0 1em white;
+  margin: 2.2em;
+}
+
 .container {
   max-height: 600px;
   max-width: 1000px;
@@ -8,7 +16,7 @@
   padding-right: 10px;
 }
 
-button:hover {
+.button_hover:hover {
   transform: scale(1.1);
   transition: all 0.5s;
 }
@@ -21,6 +29,9 @@ table {
   width: 100%;
 }
 
+.button{
+  margin-right: 10px;
+}
 
 .spinner{
   position: relative;
@@ -28,7 +39,7 @@ table {
   margin-top: 15%;
 }
 
-.notRegister{
+.notApp{
   position: relative;
   margin-left: 45%;
   margin-top: 15%;
