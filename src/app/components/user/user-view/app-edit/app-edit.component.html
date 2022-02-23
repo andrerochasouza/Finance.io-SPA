@@ -4,8 +4,8 @@
   <!-- Name -->
   <form [formGroup]="formApp" (submit)="onSubmit()" autocomplete="off">
     <mat-form-field title="Insira um novo nome" appearance="fill">
-      <mat-label class="label">{{ nameOld }}</mat-label>
-      <input type="text" matInput formControlName="name" maxlength="100" required />
+      <mat-label class="label">Nome</mat-label>
+      <input type="text" matInput formControlName="name" [value]="nameOld" maxlength="100" required />
       <mat-icon matSuffix>person</mat-icon>
       <mat-error *ngIf="this.formApp.get('name')?.errors">{{
         getErrorMessage("name")
@@ -14,18 +14,18 @@
 
     <!-- Value -->
     <mat-form-field title="Insira um novo valor" appearance="fill">
-      <mat-label class="label">{{ valueOld | currency: 'BRL' }}</mat-label>
-      <input type="text" matInput formControlName="value" maxlength="255" required />
+      <mat-label class="label">Valor</mat-label>
+      <input type="text" matInput formControlName="value" maxlength="255" [value]="valueOld" required />
       <mat-icon matSuffix>person</mat-icon>
-      <mat-error *ngIf="this.formApp.get('value')?.errors">{{
-        getErrorMessage("value")
-      }}</mat-error>
+      <mat-error *ngIf="this.formApp.get('value')?.errors">
+        {{ getErrorMessage("value") }}
+      </mat-error>
     </mat-form-field>
 
 
     <!-- Type Aplication -->
     <mat-form-field title="Selecione um novo tipo de aplicação" appearance="fill">
-      <mat-label class="label">{{ typeOld }}</mat-label>
+      <mat-label class="label">Aplicação</mat-label>
       <mat-icon matSuffix>account_balance_wallet</mat-icon>
       <mat-select formControlName="typeAplication" required>
         <mat-option *ngFor="let typeAplication of typeAplications" [value]="typeAplication">{{ typeAplication }}</mat-option>
@@ -39,7 +39,7 @@
     <!-- Description -->
     <mat-form-field title="Insira uma nova descrição" appearance="fill">
       <mat-label class="label">Descrição</mat-label>
-      <input type="text" matInput formControlName="descricao" required />
+      <input type="text" matInput formControlName="descricao" [value]="descricaoOld" required />
       <mat-icon matSuffix>contacts</mat-icon>
       <mat-error *ngIf="this.formApp.get('descricao')?.errors">{{
         getErrorMessage("descricao")

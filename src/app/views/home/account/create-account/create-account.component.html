@@ -1,50 +1,68 @@
 <div class="box">
-    <mat-card>
-        <mat-card-title class="title">Cadastre-se</mat-card-title>
-        <mat-card-content>
-              <!-- Name -->
-              <form [formGroup]="formAdmin" (submit)="onSubmit()">
-                  <mat-form-field title="Insira seu nome" appearance="fill">
-                      <mat-label class="label">Nome</mat-label>
-                      <input type="text" matInput formControlName="name" required>
-                      <mat-icon matSuffix>person</mat-icon>
-                      <mat-error *ngIf="this.formAdmin.get('name')?.errors">{{ getErrorMessage('name') }}</mat-error>
-                  </mat-form-field>
+  <mat-card>
+    <mat-card-title class="title">Cadastre-se</mat-card-title>
+    <mat-card-content>
+      <!-- Name -->
+      <form [formGroup]="formAdmin" (submit)="onSubmit()">
+        <mat-form-field title="Insira seu nome" appearance="fill">
+          <mat-label class="label">Nome</mat-label>
+          <input type="text" matInput formControlName="name" required />
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="this.formAdmin.get('name')?.errors">{{
+            getErrorMessage("name")
+            }}</mat-error>
+        </mat-form-field>
 
-                <!-- Email -->
-                <mat-form-field title="Insira seu e-mail" appearance="fill">
-                    <mat-label class="label">E-mail</mat-label>
-                    <input type="email" matInput formControlName="email" required>
-                    <mat-icon matSuffix>email</mat-icon>
-                    <mat-error *ngIf="this.formAdmin.get('email')?.errors">{{ getErrorMessage('email') }}</mat-error>
-                </mat-form-field>
+        <!-- Email -->
+        <mat-form-field title="Insira seu e-mail" appearance="fill">
+          <mat-label class="label">E-mail</mat-label>
+          <input type="email" matInput formControlName="email" required />
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="this.formAdmin.get('email')?.errors?.['required'] || this.formAdmin.get('email')?.errors?.['email']">
+            {{ getErrorMessage("email") }}
+          </mat-error>
+          <mat-error *ngIf="this.formAdmin.get('email')?.errors?.['emailTaken']">
+            E-mail já utilizado, insira um válido
+          </mat-error>
+        </mat-form-field>
 
-                <!-- Login -->
-                <mat-form-field title="Insira um novo login" appearance="fill">
-                    <mat-label class="label">Login</mat-label>
-                    <input type="login" matInput formControlName="login" required>
-                    <mat-icon matSuffix>face</mat-icon>
-                    <mat-error *ngIf="this.formAdmin.get('login')?.errors">{{ getErrorMessage('login') }}</mat-error>
-                </mat-form-field>
+        <!-- Login -->
+        <mat-form-field title="Insira um novo login" appearance="fill">
+          <mat-label class="label">Login</mat-label>
+          <input type="login" matInput formControlName="login" required />
+          <mat-icon matSuffix>face</mat-icon>
+          <span *ngIf=""> Login já foi cadastrado, tente outro </span>
+          <mat-error *ngIf="this.formAdmin.get('login')?.errors?.['required'] || this.formAdmin.get('login')?.errors?.['maxLength'] || this.formAdmin.get('login')?.errors?.['pattern']">
+            {{ getErrorMessage("login") }}
+          </mat-error>
+          <mat-error *ngIf="this.formAdmin.get('login')?.errors?.['loginTaken']">
+            Login já utilizado, insira um válido
+          </mat-error>
+        </mat-form-field>
 
-                <!-- Password -->
-                <mat-form-field title="Insira uma nova senha" appearance="fill">
-                    <mat-label class="label">Senha</mat-label>
-                    <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide" required>
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    <mat-error *ngIf="this.formAdmin.get('password')?.errors">{{ getErrorMessage('password') }}</mat-error>
-                </mat-form-field>
+        <!-- Password -->
+        <mat-form-field title="Insira uma nova senha" appearance="fill">
+          <mat-label class="label">Senha</mat-label>
+          <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'"
+            [attr.aria-pressed]="hide" required>
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="this.formAdmin.get('password')?.errors">{{
+            getErrorMessage("password")
+            }}</mat-error>
+        </mat-form-field>
 
-                <!-- Actions -->
-                <mat-card-actions class="action">
-                    <button mat-raised-button class="button_style" title="Página de Login" (click)="cancel()">Cancelar
-                    </button>
-                    <button mat-raised-button class="button_style" title="Cadastra uma nova conta" type="submit">Cadastrar
-                    </button>
-                </mat-card-actions>
-            </form>
-        </mat-card-content>
-    </mat-card>
+        <!-- Actions -->
+        <mat-card-actions class="action">
+          <button mat-raised-button class="button_style" title="Página de Login" (click)="cancel()">
+            Cancelar
+          </button>
+          <button mat-raised-button class="button_style" title="Cadastra uma nova conta" type="submit">
+            Cadastrar
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

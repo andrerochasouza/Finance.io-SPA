@@ -1,5 +1,5 @@
 import { CdkTableModule } from '@angular/cdk/table';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -53,10 +53,11 @@ registerLocaleData(localePt);
     UserEditComponent,
     UserViewComponent,
     AppCreateComponent,
-    AppEditComponent
+    AppEditComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
     BrowserAnimationsModule,

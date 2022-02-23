@@ -36,10 +36,10 @@ export class AppEditComponent implements OnInit {
       this.idUser = params['id']
       this.idApp = params['idapp']
     });
+    this.getUserOld();
   }
 
   ngOnInit(): void {
-    this.getUserOld();
     this.updateFormApp();
   }
 
@@ -105,19 +105,16 @@ export class AppEditComponent implements OnInit {
   // Criando FormUser
   updateFormApp() {
     this.formApp = this.formBuilder.group({
-      name: new FormControl(null, Validators.compose([
-        Validators.required,
+      name: new FormControl(this.nameOld, Validators.compose([
         Validators.minLength(5),
         Validators.maxLength(100)])),
-      value: new FormControl(null, Validators.compose([
-        Validators.required,
+      value: new FormControl(this.valueOld, Validators.compose([
         Validators.min(0),
         Validators.maxLength(255)])),
       typeAplication: new FormControl(null, Validators.compose([
         Validators.required])),
-      descricao: new FormControl(null, Validators.compose([
-        Validators.nullValidator,
-        Validators.maxLength(255)])),
+      descricao: new FormControl(this.descricaoOld, Validators.compose([
+        Validators.maxLength(255)]))
     });
   }
 
