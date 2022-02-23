@@ -1,15 +1,16 @@
 .card {
   font-size: 1.4em;
   font-weight: 500;
-  background-color: white;
-  box-shadow: 0 0 1em white;
-  margin: 2.2em;
+  background-color: #e6e1e1;
+  margin: 25px;
+  border-radius: 20px;
 }
 
 .button_create {
-  background-color: #b089df;
+  border-radius: 10px;
+  background-color: #06c17f;
+  min-width: 100px;
+  min-height: 50px;
   margin: 20px;
   max-width: 200px;
-  margin-left: auto;
-  margin-right: auto;
 }

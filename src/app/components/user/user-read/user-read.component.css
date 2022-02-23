@@ -1,7 +1,7 @@
 .container {
   max-height: 600px;
   max-width: 1000px;
-  overflow: auto !important;
+  overflow: hidden !important;
   margin-left: auto;
   margin-right: auto;
   padding-left: 10px;
@@ -17,10 +17,15 @@ button{
   transition: 0.5s;
 }
 
+
 table {
   width: 100%;
+  background-color: #f1f1f1;
 }
 
+.paginator{
+  background-color: #f1f1f1;
+}
 
 .spinner{
   position: relative;

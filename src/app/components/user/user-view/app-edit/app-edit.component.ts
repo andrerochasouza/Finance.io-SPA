@@ -15,10 +15,6 @@ export class AppEditComponent implements OnInit {
   formApp: FormGroup;
   idUser: number
   idApp: number
-  nameOld: string
-  valueOld: number
-  typeOld: string
-  descricaoOld: string | undefined
 
   typeAplications = [
     'RECEITA',
@@ -36,11 +32,16 @@ export class AppEditComponent implements OnInit {
       this.idUser = params['id']
       this.idApp = params['idapp']
     });
-    this.getUserOld();
   }
 
   ngOnInit(): void {
-    this.updateFormApp();
+    this.formApp = this.formBuilder.group({
+      name: [null, [Validators.minLength(5), Validators.maxLength(100)]],
+      value: [null, [Validators.min(0), Validators.maxLength(255)]],
+      typeAplication: [null, [Validators.required]],
+      descricao: [null, [Validators.maxLength(255)]]
+    });
+    this.getUserOld();
   }
 
 
@@ -95,27 +96,12 @@ export class AppEditComponent implements OnInit {
         take(1)
       )
       .subscribe(app => {
-        this.nameOld = app.name
-        this.valueOld = app.value
-        this.typeOld = app.typeAplication
-        this.descricaoOld = app.descricao
+        this.formApp.setValue({
+          name: app.name,
+          value: app.value,
+          typeAplication: app.typeAplication,
+          descricao: app.descricao
+        })
       })
   }
-
-  // Criando FormUser
-  updateFormApp() {
-    this.formApp = this.formBuilder.group({
-      name: new FormControl(this.nameOld, Validators.compose([
-        Validators.minLength(5),
-        Validators.maxLength(100)])),
-      value: new FormControl(this.valueOld, Validators.compose([
-        Validators.min(0),
-        Validators.maxLength(255)])),
-      typeAplication: new FormControl(null, Validators.compose([
-        Validators.required])),
-      descricao: new FormControl(this.descricaoOld, Validators.compose([
-        Validators.maxLength(255)]))
-    });
-  }
-
 }
