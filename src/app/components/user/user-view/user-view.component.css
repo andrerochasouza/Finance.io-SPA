@@ -37,14 +37,6 @@
   transition: all 0.5s;
 }
 
-.voltar{
-  border: solid 2px black;
-  margin-left: 35px;
-  background: #121212;
-  color: #b089df;
-  margin-bottom: 10px;
-}
-
 button{
   transition: 0.5s;
 }
@@ -76,34 +68,38 @@ table {
   padding-top: 30px;
   text-align: center;
 }
+
+.voltar{
+  border: solid 2px black;
+  background: #121212;
+  color: #b089df;
+  display: inline;
+  width: 10%;
+  float: left;
+}
+
 .button_create {
-  border-radius: 10px;
   background-color: #06c17f;
   min-width: 100px;
   min-height: 30px;
-  margin: 20px;
   max-width: 200px;
-  text-align: right;
-}
-.panel_user{
-  max-height: 600px;
-  max-width: 1000px;
-  margin-left: 25px;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  line-height: 25px;
-  margin-top: 10px;
-}
-
-.div_button_create{
-  position: relative;
-  display: inline-block;
+  display: inline;
+  width: 25%;
   float: right;
 }
 
 .name_and_wallet{
-  position: relative;
-  display: inline-block;
+  width: 100%;
+}
+
+.title_wallet{
+  font-size: 25px;
+  display: inline;
+  width: 50%;
   float: left;
+  margin-left: 5%;
+}
+
+.title{
+  padding-bottom: 3px;
 }

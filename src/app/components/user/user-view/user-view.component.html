@@ -1,20 +1,24 @@
 <mat-card class="card">
   <mat-card class="card_container">
-    <button mat-button class="voltar" title="Voltar" (click)="toUsers()"><mat-icon>arrow_back</mat-icon></button>
-    <div class = panel_user>
-      <div class="name_and_wallet">
-    <div class="title" title="Nome do usuário">{{ nameUser }}</div>
-    <div title="Carteira">
-      <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">account_balance_wallet</mat-icon>
-      <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">account_balance_wallet</mat-icon>
-      <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
-      {{ walletValue | currency: 'BRL' }}
-    </div>
-  </div>
-      <div class="div_button_create">
-        <button mat-button class="button_create" title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma Aplicação</button>
+    <div class="name_and_wallet">
+      <button mat-button class="voltar" title="Voltar" (click)="toUsers()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="title_wallet">
+        <div class="title" title="Nome do usuário">{{ nameUser }}</div>
+        <div title="Carteira">
+          <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">
+            account_balance_wallet</mat-icon>
+          <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">
+            account_balance_wallet</mat-icon>
+          <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
+          {{ walletValue | currency: 'BRL' }}
+        </div>
       </div>
-  </div>
+      <button mat-button class="button_create" title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma
+        Aplicação
+      </button>
+    </div>
   </mat-card>
   <mat-card class="container">
     <table mat-table class="mat-elevation-z8" [dataSource]="page.content">
@@ -30,9 +34,12 @@
         <th mat-header-cell *matHeaderCellDef>Valor</th>
         <td mat-cell title="Valor da Aplicação" class="duration-cell" *matCellDef="let app">
           <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
-            <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline</mat-icon>
-            <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline</mat-icon>
-            <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear</mat-icon>
+            <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear
+            </mat-icon>
           </ng-template>
           {{ app.value | currency: 'BRL' }}
         </td>
