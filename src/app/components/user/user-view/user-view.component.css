@@ -15,6 +15,8 @@
   margin-right: auto;
   padding-left: 10px;
   padding-right: 10px;
+  margin-bottom: 10px;
+
 }
 
 .button_hover:hover {
@@ -44,4 +46,23 @@ table {
   position: relative;
   margin-left: 45%;
   margin-top: 15%;
+}
+.button_create {
+  border-radius: 10px;
+  background-color: #06c17f;
+  min-width: 100px;
+  min-height: 30px;
+  margin: 20px;
+  max-width: 200px;
+  text-align: right;
+}
+.panel_user{
+  max-height: 600px;
+  max-width: 1000px;
+  margin-left: 25px;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 25px;
+  margin-top: 10px;
 }
