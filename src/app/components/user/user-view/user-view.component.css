@@ -2,11 +2,23 @@
   font-size: 1.4em;
   font-weight: 500;
   background-color: #e6e1e1;
-  max-width: 1100px;
+  max-width: 1000px;
   border-radius: 20px;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden !important;
+}
+
+.card_container{
+  max-height: 600px;
+  max-width: 900px;
+  overflow: hidden !important;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .container {
@@ -23,6 +35,14 @@
 .button_hover:hover {
   transform: scale(1.1);
   transition: all 0.5s;
+}
+
+.voltar{
+  border: solid 2px black;
+  margin-left: 35px;
+  background: #121212;
+  color: #b089df;
+  margin-bottom: 10px;
 }
 
 button{
@@ -54,7 +74,6 @@ table {
 .notApp{
   margin-top: 25px;
   padding-top: 30px;
-  background-color: white;
   text-align: center;
 }
 .button_create {
@@ -75,4 +94,16 @@ table {
   padding-right: 10px;
   line-height: 25px;
   margin-top: 10px;
+}
+
+.div_button_create{
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+
+.name_and_wallet{
+  position: relative;
+  display: inline-block;
+  float: left;
 }
