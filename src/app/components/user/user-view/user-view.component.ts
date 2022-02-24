@@ -102,7 +102,7 @@ export class UserViewComponent implements OnInit {
 
   // Exclui o usuário
   deleteApp(name: string, idApp: number){
-    if(confirm("Deseja realmente excluir essa aplicação: " + name)) {
+    if(confirm("Nome: "+ name + " - Deseja realmente excluir essa aplicação")) {
       this.walletService.deleteAppById(this.idUser, idApp)
       .pipe(
         take(1)
