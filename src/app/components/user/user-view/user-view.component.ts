@@ -15,6 +15,9 @@ export class UserViewComponent implements OnInit {
 
   // list
   columnTable = ['name', 'value', 'options']
+  onViewDesc = false
+  idAppOld: number | undefined
+  descricao: string | undefined
   page: Page<App> = new Page([], 0);
   pageEvent: PageEvent;
 
@@ -96,13 +99,21 @@ export class UserViewComponent implements OnInit {
   }
 
   // Manda para walletRead do usuário
-  viewApp(id: number){
-
+  viewApp(idApp: number){
+    this.walletService.appById(this.idUser, idApp).subscribe(app => {
+      this.descricao = app.descricao
+      if(this.onViewDesc === true && this.idAppOld === app.idApp){
+        this.onViewDesc = false
+      } else {
+        this.idAppOld = app.idApp
+        this.onViewDesc = true
+      }
+    })
   }
 
   // Exclui o usuário
   deleteApp(name: string, idApp: number){
-    if(confirm("Deseja realmente excluir essa aplicação: " + name)) {
+    if(confirm("Nome: "+ name + " - Deseja realmente excluir essa aplicação")) {
       this.walletService.deleteAppById(this.idUser, idApp)
       .pipe(
         take(1)

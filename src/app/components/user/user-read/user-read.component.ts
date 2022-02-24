@@ -78,7 +78,7 @@ export class UserReadComponent implements OnInit {
 
   // Exclui o usuário
   deleteUser(id: number){
-    if(confirm("Deseja realmente excluir esse usuário -- ID: " + id)) {
+    if(confirm("ID: " + id + " - Deseja realmente excluir esse usuário" )) {
       this.userService.deleteUserById(id)
       .pipe(
         take(1)

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import jwtDecode from 'jwt-decode';
-import { Observable, tap } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { Admin } from './admin.model';
@@ -32,6 +32,14 @@ export class AccountService {
   createAccount(admin: Admin): Observable<Admin>{
       const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
       return newAdmin;
+  }
+
+  checkIfLoginExists(login: string): Observable<boolean> {
+    return this.http.get<boolean>(this.API + '/exists/login/' + login).pipe(delay(500));
+  }
+
+  checkIfEmailExists(email: string): Observable<boolean>{
+    return this.http.get<boolean>(this.API + '/exists/email/' + email);
   }
 
   showMessage(msg: string): void{

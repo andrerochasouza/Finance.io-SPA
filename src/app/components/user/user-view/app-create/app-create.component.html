@@ -15,7 +15,7 @@
     <!-- Value -->
     <mat-form-field appearance="fill">
       <mat-label class="label">Valor</mat-label>
-      <input type="text" matInput formControlName="value" maxlength="255" required />
+      <input type="text" matInput formControlName="value"  currency="BRL"  maxlength="255" required />
       <mat-icon matSuffix> attach_money</mat-icon>
       <mat-error *ngIf="this.formApp.get('value')?.errors">{{
         getErrorMessage("value")

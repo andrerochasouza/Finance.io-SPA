@@ -1,4 +1,8 @@
 <mat-card class="card">
-    <button title="Cria um novo usuário" mat-button class="button_create" (click)="newUser()">Criar um usuário</button>
-    <app-user-read></app-user-read>
+  <mat-card-title>Lista de Usuários</mat-card-title>
+  <div class = "div_button_create">
+    <button title="Cria um novo usuário" mat-button class="button_create" (click)="newUser()">Inserir Novo Registro</button>
+  </div>
+
+  <app-user-read></app-user-read>
 </mat-card>

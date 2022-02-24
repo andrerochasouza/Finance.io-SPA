@@ -32,13 +32,11 @@ export class UserService {
 
   updateUser(user: any): Observable<User>{
     const url = `${this.API}/${this.endpoint}?iduser=${user.id}`
-    console.log(url)
     return this.http.put<User>(url, user)
   }
 
   userById(id: number): Observable<User>{
     const url = `${this.API}/${this.endpoint}/${id}`
-    console.log(url)
     return this.http.get<User>(url)
   }
 

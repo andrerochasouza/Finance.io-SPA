@@ -1,39 +1,39 @@
 <mat-toolbar class="nav">
-    <button (click)="drawer.toggle()" title="Menu" mat-icon-button aria-label="Menu que dá acesso a todos as ações do sidenav">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" title="Imagem do usuário" >
-    <span class="name" *ngIf="accountAdmin$ | async as admin" title="Seu nome">{{ admin.name }}</span>
+  <button (click)="drawer.toggle()" title="Menu" mat-icon-button
+    aria-label="Menu que dá acesso a todos as ações do sidenav">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img class="img" src="assets/img/userimg.png" alt="Imagem do Usuário" title="Imagem do usuário" />
+  <span class="name" *ngIf="accountAdmin$ | async as admin" title="Seu nome">{{
+    admin.name
+    }}</span>
 
-    <span class="space"></span>
+  <span class="space"></span>
 
-    <span title="Título">FINANCE.IO</span>
-    <img title="Finance.io" class="img" mat-card-avatar alt="Logo da Finance.io" src="assets/img/diamond.png">
+  <span title="Título">FINANCE.IO</span>
+  <img title="Finance.io" class="img" alt="Logo da Finance.io" src="assets/img/diamond.png" />
 </mat-toolbar>
 <mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side">
-        <button title="Página Home" routerLink="/" mat-raised-button class="button">
-            Home
-        </button>
-        <button title="Página de usuários" (click)="navigateToUsers()" mat-raised-button class="button">
-            Usuários
-        </button>
-        <button title="Desconectar" (click)="logOut()" mat-raised-button class="button">
-          Sair da conta
-      </button>
-    </mat-drawer>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <button title="Página Home" routerLink="/" mat-raised-button class="button">
+      Dashboard
+    </button>
+    <button title="Página de usuários" (click)="navigateToUsers()" mat-raised-button class="button">
+      Usuários
+    </button>
+    <button title="Desconectar" (click)="logOut()" mat-raised-button class="button">
+      Sair da conta
+    </button>
+  </mat-drawer>
 
-    <router-outlet></router-outlet>
-
+  <router-outlet></router-outlet>
 </mat-drawer-container>
 
 <!-- footer -->
 <mat-toolbar title="Footer" class="footer">
-    <span>
-        Desenvolvido com
-        <i class="material-icons v-middle red">
-            favorite
-        </i>
-        pela <Strong title="TOTVS">TOTVS</Strong>
-    </span>
+  <span>
+    Desenvolvido com
+    <i class="material-icons v-middle red"> favorite </i>
+    pela <Strong title="TOTVS">TOTVS</Strong>
+  </span>
 </mat-toolbar>

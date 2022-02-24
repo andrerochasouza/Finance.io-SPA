@@ -15,8 +15,6 @@ export class UserEditComponent implements OnInit {
 
   formUser: FormGroup;
   idUser: number
-  nameOld: string
-  cpfOld: string
 
   constructor(
     private userService: UserService,
@@ -29,8 +27,12 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.formUser = this.formBuilder.group({
+      id: [this.idUser],
+      name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+      cpf: [null, [Validators.required, Validacoes.ValidaCpf]]
+    });
     this.getUserOld();
-    this.updateFormUser();
   }
 
 
@@ -81,23 +83,10 @@ export class UserEditComponent implements OnInit {
         take(1)
       )
       .subscribe(user => {
-        this.nameOld = user.name
-        this.cpfOld = user.cpf
+        this.formUser.patchValue({
+          name: user.name,
+          cpf: user.cpf
+        })
       })
   }
-
-  // Criando FormUser
-  updateFormUser() {
-    this.formUser = this.formBuilder.group({
-      id: new FormControl(this.idUser),
-      name: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(100)])),
-      cpf: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validacoes.ValidaCpf]))
-    });
-  }
-
 }

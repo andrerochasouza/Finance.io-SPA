@@ -1,14 +1,18 @@
 <mat-card class="card">
-  <mat-card>
+  <mat-card class="container">
     <button mat-button title="Voltar" (click)="toUsers()"><mat-icon>arrow_back</mat-icon></button>
+    <div class = panel_user>
     <div class="title" title="Nome do usuário">{{ nameUser }}</div>
-    <button mat-button title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma Aplicação</button>
     <div title="Carteira">
       <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">account_balance_wallet</mat-icon>
       <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">account_balance_wallet</mat-icon>
       <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
       {{ walletValue | currency: 'BRL' }}
     </div>
+      <div style="text-align: right;">
+        <button mat-button class="button_create" title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma Aplicação</button>
+      </div>
+  </div>
   </mat-card>
   <div class="container">
     <table mat-table class="mat-elevation-z8" [dataSource]="page.content">
@@ -56,8 +60,14 @@
       <mat-spinner class="spinner"></mat-spinner>
     </div>
     <div class="notApp" *ngIf="!loading && page.totalElements === 0">
-      Nenhuma aplicação carregada
+      <h1>
+        <b>Nenhuma aplicação na carteira</b>
+      </h1>
+      <img class="notAppImg" src="../../../../assets/img/empty_wallet.png" alt="">
     </div>
+    <mat-card *ngIf="onViewDesc">
+      <mat-card-content> {{ descricao }} </mat-card-content>
+    </mat-card>
     <mat-paginator class="paginator" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"
       aria-label="Selecione a pagina" (page)="pageEvent = $event; listApp(idUser)">
     </mat-paginator>
