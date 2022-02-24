@@ -60,7 +60,10 @@
       <mat-spinner class="spinner"></mat-spinner>
     </div>
     <div class="notApp" *ngIf="!loading && page.totalElements === 0">
-      Nenhuma aplicação carregada
+      <h1>
+        <b>Nenhuma aplicação na carteira</b>
+      </h1>
+      <img class="notAppImg" src="../../../../assets/img/empty_wallet.png" alt="">
     </div>
     <mat-card *ngIf="onViewDesc">
       <mat-card-content> {{ descricao }} </mat-card-content>

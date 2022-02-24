@@ -1,6 +1,6 @@
 .container {
   max-height: 600px;
-  max-width: 1300px;
+  max-width: 900px;
   overflow: hidden !important;
   margin-left: auto;
   margin-right: auto;
@@ -31,13 +31,14 @@ table {
 .spinner{
   position: relative;
   margin-left: 45%;
-  margin-top: 15%;
+  margin-top: 9%;
+  padding-bottom: 20%;
 }
 
 .notRegister{
-  position: relative;
-  margin-left: 45%;
-  margin-top: 15%;
+  margin-top: 25px;
+  background-color: white;
+  text-align: center;
 }
 
 .div_button_create{

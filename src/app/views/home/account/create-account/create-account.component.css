@@ -7,6 +7,16 @@
     width: 100vw;
 }
 
+.logo{
+  min-width: 70px;
+  min-height: 70px;
+  max-height: 120px;
+  max-width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+
 .title{
     color: #b089df;
     text-align: center;
@@ -15,12 +25,15 @@
 
 .mat-card{
     background: #1e1e1e;
+    max-width: 400px;
+    max-height: 700px;
 }
 
 .mat-form-field {
     color: white;
     display: block;
     min-width: 300px;
+    max-width: 300px;
     width: 20vw;
     margin-bottom: 8px;
 }
