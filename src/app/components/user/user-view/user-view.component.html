@@ -1,22 +1,29 @@
 <mat-card class="card">
   <mat-card class="container">
-    <button mat-button title="Voltar" (click)="toUsers()"><mat-icon>arrow_back</mat-icon></button>
+    <button mat-button title="Voltar" (click)="toUsers()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <div class="title" title="Nome do usuário">{{ nameUser }}</div>
-    <button mat-button title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma Aplicação</button>
+    <button mat-button title="Criar uma nova aplicação" (click)="createApp()">
+      Adicionar uma Aplicação
+    </button>
     <div title="Carteira">
-      <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">account_balance_wallet</mat-icon>
-      <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">account_balance_wallet</mat-icon>
+      <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">
+        account_balance_wallet</mat-icon>
+      <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">
+        account_balance_wallet</mat-icon>
       <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
-      {{ walletValue | currency: 'BRL' }}
+      {{ walletValue | currency: "BRL" }}
     </div>
   </mat-card>
   <div class="container">
     <table mat-table class="mat-elevation-z8" [dataSource]="page.content">
-
       <!-- Name -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell title="Nome da aplicação" *matCellDef="let app">{{ app.name }}</td>
+        <td mat-cell title="Nome da aplicação" *matCellDef="let app">
+          {{ app.name }}
+        </td>
       </ng-container>
 
       <!-- Value -->
@@ -24,11 +31,14 @@
         <th mat-header-cell *matHeaderCellDef>Valor</th>
         <td mat-cell title="Valor da Aplicação" class="duration-cell" *matCellDef="let app">
           <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
-            <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline</mat-icon>
-            <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline</mat-icon>
-            <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear</mat-icon>
+            <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline
+            </mat-icon>
+            <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear
+            </mat-icon>
           </ng-template>
-          {{ app.value | currency: 'BRL' }}
+          {{ app.value | currency: "BRL" }}
         </td>
       </ng-container>
 
@@ -48,9 +58,9 @@
         </td>
       </ng-container>
 
+
       <tr mat-header-row *matHeaderRowDef="columnTable"></tr>
       <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"></tr>
-
     </table>
     <div *ngIf="loading">
       <mat-spinner class="spinner"></mat-spinner>
@@ -58,9 +68,11 @@
     <div class="notApp" *ngIf="!loading && page.totalElements === 0">
       Nenhuma aplicação carregada
     </div>
+    <mat-card *ngIf="onViewDesc">
+      <mat-card-content> {{ descricao }} </mat-card-content>
+    </mat-card>
     <mat-paginator class="paginator" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"
       aria-label="Selecione a pagina" (page)="pageEvent = $event; listApp(idUser)">
     </mat-paginator>
-
   </div>
 </mat-card>

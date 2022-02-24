@@ -36,6 +36,7 @@ import { CreateAccountComponent } from './views/home/account/create-account/crea
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomeComponent } from './views/home/home.component';
+import { DescricaoDirective } from './components/user/user-view/descricao.directive';
 
 
 registerLocaleData(localePt);
@@ -54,6 +55,7 @@ registerLocaleData(localePt);
     UserViewComponent,
     AppCreateComponent,
     AppEditComponent,
+    DescricaoDirective
   ],
   imports: [
     BrowserModule,
