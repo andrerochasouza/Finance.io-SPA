@@ -1,85 +1,80 @@
-<mat-card class="card">
-  <mat-card class="card_container">
-    <div class="name_and_wallet">
-      <button mat-button class="voltar" title="Voltar" (click)="toUsers()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-      <div class="title_wallet">
-        <div class="title" title="Nome do usuário">{{ nameUser }}</div>
-        <div title="Carteira">
-          <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">
-            account_balance_wallet</mat-icon>
-          <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">
-            account_balance_wallet</mat-icon>
-          <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
-          {{ walletValue | currency: 'BRL' }}
-        </div>
+<mat-card class="card_container">
+  <div class="name_and_wallet">
+    <button mat-button class="voltar" title="Voltar" (click)="toUsers()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="title_wallet">
+      <div class="title" title="Nome do usuário">{{ nameUser }}</div>
+      <div title="Carteira">
+        <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: green">
+          account_balance_wallet</mat-icon>
+        <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: red">
+          account_balance_wallet</mat-icon>
+        <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: black">account_balance_wallet</mat-icon>
+        {{ walletValue | currency: 'BRL' }}
       </div>
-      <button mat-button class="button_create" title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma
-        Aplicação
-      </button>
     </div>
-  </mat-card>
-  <mat-card class="container">
-    <table mat-table class="mat-elevation-z8" [dataSource]="page.content">
-
-      <!-- Name -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell title="Nome da aplicação" *matCellDef="let app">{{ app.name }}</td>
-      </ng-container>
-
-      <!-- Value -->
-      <ng-container matColumnDef="value">
-        <th mat-header-cell *matHeaderCellDef>Valor</th>
-        <td mat-cell title="Valor da Aplicação" class="duration-cell" *matCellDef="let app">
-          <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
-            <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline
-            </mat-icon>
-            <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline
-            </mat-icon>
-            <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear
-            </mat-icon>
-          </ng-template>
-          {{ app.value | currency: 'BRL' }}
-        </td>
-      </ng-container>
-
-      <!-- Options -->
-      <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef>Opções</th>
-        <td mat-cell class="duration-cell" *matCellDef="let app">
-          <button class="button_hover" mat-button title="Ver descrição" (click)="viewApp(app.idApp)">
-            <mat-icon>arrow_drop_down_circle</mat-icon>
-          </button>
-          <button class="button_hover" mat-button title="Editar aplicação" (click)="editApp(app.idApp)">
-            <mat-icon>build icon</mat-icon>
-          </button>
-          <button class="button_hover" mat-button title="Deletar aplicação" (click)="deleteApp(app.name, app.idApp)">
-            <mat-icon>delete forever icon</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="columnTable"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"></tr>
-
-    </table>
-    <div *ngIf="loading">
-      <mat-spinner class="spinner"></mat-spinner>
-    </div>
-    <div class="notApp" *ngIf="!loading && page.totalElements === 0">
-      <h1>
-        <b>Nenhuma aplicação na carteira</b>
-      </h1>
-      <img class="notAppImg" src="../../../../assets/img/empty_wallet.png" alt="">
-    </div>
-    <mat-card *ngIf="onViewDesc">
-      <mat-card-content> {{ descricao }} </mat-card-content>
-    </mat-card>
-    <mat-paginator class="paginator" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"
-      aria-label="Selecione a pagina" (page)="pageEvent = $event; listApp(idUser)">
-    </mat-paginator>
-
-  </mat-card>
+    <button mat-button class="button_create" title="Criar uma nova aplicação" (click)="createApp()">Adicionar uma
+      Aplicação
+    </button>
+  </div>
 </mat-card>
+<table mat-table class="mat-elevation-z8" [dataSource]="page.content">
+
+  <!-- Name -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell title="Nome da aplicação" *matCellDef="let app">{{ app.name }}</td>
+  </ng-container>
+
+  <!-- Value -->
+  <ng-container matColumnDef="value">
+    <th mat-header-cell *matHeaderCellDef>Valor</th>
+    <td mat-cell title="Valor da Aplicação" class="duration-cell" *matCellDef="let app">
+      <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
+        <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: green">add_circle_outline
+        </mat-icon>
+        <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: red">remove_circle_outline
+        </mat-icon>
+        <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: black">border_clear
+        </mat-icon>
+      </ng-template>
+      {{ app.value | currency: 'BRL' }}
+    </td>
+  </ng-container>
+
+  <!-- Options -->
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef>Opções</th>
+    <td mat-cell class="duration-cell" *matCellDef="let app">
+      <button class="button_hover" mat-button title="Ver descrição" (click)="viewApp(app.idApp)">
+        <mat-icon>arrow_drop_down_circle</mat-icon>
+      </button>
+      <button class="button_hover" mat-button title="Editar aplicação" (click)="editApp(app.idApp)">
+        <mat-icon>build icon</mat-icon>
+      </button>
+      <button class="button_hover" mat-button title="Deletar aplicação" (click)="deleteApp(app.name, app.idApp)">
+        <mat-icon>delete forever icon</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnTable"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"></tr>
+
+</table>
+<div *ngIf="loading">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+<div class="notApp" *ngIf="!loading && page.totalElements === 0">
+  <h1>
+    <b>Nenhuma aplicação na carteira</b>
+  </h1>
+  <img class="notAppImg" src="../../../../assets/img/empty_wallet.png" alt="">
+</div>
+<mat-card *ngIf="onViewDesc">
+  <mat-card-content> {{ descricao }} </mat-card-content>
+</mat-card>
+<mat-paginator class="paginator" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"
+  aria-label="Selecione a pagina" (page)="pageEvent = $event; listApp(idUser)">
+</mat-paginator>

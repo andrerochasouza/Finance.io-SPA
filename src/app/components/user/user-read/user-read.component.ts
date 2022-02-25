@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit,Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
@@ -13,12 +15,13 @@ import { UserService } from './../user.service';
   styleUrls: ['./user-read.component.css']
 })
 
-export class UserReadComponent implements OnInit {
+export class UserReadComponent implements AfterViewInit{
 
   // list
   columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
   page: Page<User> = new Page([], 0);
   pageEvent: PageEvent;
+  dataSource = new MatTableDataSource<any>()
 
   // Value color
   isValueP = false
@@ -33,92 +36,100 @@ export class UserReadComponent implements OnInit {
     private router: Router
   ) { }
 
+  @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
     this.listUser();
+    this.dataSource.sort = this.sort;
   }
 
-  // Lista os usuários
 
-  listUser(){
+  // Lista os usuários
+  listUser() {
     this.loading = true
     let queryAdicional
     this.userService.listUser(
       new PageRequest(
         {
-          pageNumber: this.pageEvent? this.pageEvent.pageIndex: 0,
-          pageSize: this.pageEvent? this.pageEvent.pageSize: 10
+          pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
+          pageSize: this.pageEvent ? this.pageEvent.pageSize : 10
         },
         queryAdicional
       )
     ).pipe(
-        take(1)
+      take(1)
     )
-    .subscribe({
-      next: page => {
-        this.page = page;
-        this.loading = false;
-      },
-      error: () => {
-        this.page = new Page([], 0)
-        this.loading = false
-      }
-    })
+      .subscribe({
+        next: page => {
+          this.page = page;
+          this.dataSource = new MatTableDataSource(page.content)
+          this.loading = false;
+        },
+        error: () => {
+          this.page = new Page([], 0)
+          this.loading = false
+        }
+      })
   }
 
   // Manda para walletRead do usuário
-  viewUser(id: number){
+  viewUser(id: number) {
     return this.router.navigate(['home/user/wallet', id]);
   }
 
   // Edita o usuário
-  editUser(id: number){
+  editUser(id: number) {
     return this.router.navigate(['home/user/edit', id]);
   }
 
   // Exclui o usuário
-  deleteUser(id: number){
-    if(confirm("ID: " + id + " - Deseja realmente excluir esse usuário" )) {
+  deleteUser(id: number) {
+    if (confirm("ID: " + id + " - Deseja realmente excluir esse usuário")) {
       this.userService.deleteUserById(id)
-      .pipe(
-        take(1)
-      )
-      .subscribe(user => this.listUser());
+        .pipe(
+          take(1)
+        )
+        .subscribe(user => this.listUser());
 
     }
+  }
+
+  // Navega para o form de novo usuário
+  newUser(): void {
+    this.router.navigate(['home/user/add']);
   }
 
   // Verificar as cores do wallet
 
-  isValuePositiveNg(walletValue: number | undefined): boolean{
-    if(walletValue != undefined){
-     if(walletValue > 0){
-      return true
-     } else {
-      return false
-     }
+  isValuePositiveNg(walletValue: number | undefined): boolean {
+    if (walletValue != undefined) {
+      if (walletValue > 0) {
+        return true
+      } else {
+        return false
+      }
     }
     return false
   }
 
-  isValueNegativeNg(walletValue: number | undefined): boolean{
-    if(walletValue != undefined){
-     if(walletValue < 0){
-      return true
-     } else {
-      return false
-     }
+  isValueNegativeNg(walletValue: number | undefined): boolean {
+    if (walletValue != undefined) {
+      if (walletValue < 0) {
+        return true
+      } else {
+        return false
+      }
     }
     return false
   }
 
-  isValueCalculatorNg(walletValue: number | undefined): boolean{
-    if(walletValue != undefined){
-      if(walletValue > 0){
+  isValueCalculatorNg(walletValue: number | undefined): boolean {
+    if (walletValue != undefined) {
+      if (walletValue > 0) {
         this.isValueP = true
         this.isValueN = false
         this.isValueE = false
-      } else if(walletValue < 0) {
+      } else if (walletValue < 0) {
         this.isValueP = false
         this.isValueN = true
         this.isValueE = false

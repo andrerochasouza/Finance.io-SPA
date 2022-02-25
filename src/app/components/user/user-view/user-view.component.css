@@ -1,14 +1,3 @@
-.card {
-  font-size: 1.4em;
-  font-weight: 500;
-  background-color: #e6e1e1;
-  max-width: 1000px;
-  border-radius: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden !important;
-}
-
 .card_container{
   max-height: 600px;
   max-width: 900px;
