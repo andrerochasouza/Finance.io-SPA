@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -79,7 +80,8 @@ registerLocaleData(localePt);
     MatPaginatorModule,
     MatProgressSpinnerModule,
     NgxMaskModule.forRoot(),
-    MatSortModule
+    MatSortModule,
+    MatExpansionModule
   ],
   providers: [
     httpInterceptorProviders,

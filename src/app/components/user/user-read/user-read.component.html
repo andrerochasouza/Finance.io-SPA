@@ -80,6 +80,6 @@
     <img src="" alt="">
   </div>
   <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-  aria-label="Usuários por página" (page)="pageEvent = $event; listUser()">
+  aria-label="Usuários por página"  (page)="pageEvent = $event; listUser()">
 </mat-paginator>
 </div>

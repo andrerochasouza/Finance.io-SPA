@@ -1,23 +1,32 @@
-import { WalletService } from './wallet.service';
-import { App } from './app';
-import { Router, ActivatedRoute } from '@angular/router';
-import { take, tap } from 'rxjs';
-import { PageEvent } from '@angular/material/paginator';
-import { Page, PageRequest } from './../../../shared/Pagination';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs';
+
+import { Page, PageRequest } from './../../../shared/Pagination';
+import { App } from './app';
+import { WalletService } from './wallet.service';
 
 @Component({
   selector: 'app-user-view',
+  styleUrls: ['./user-view.component.css'],
   templateUrl: './user-view.component.html',
-  styleUrls: ['./user-view.component.css']
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
+
 export class UserViewComponent implements OnInit {
 
   // list
   columnTable = ['name', 'value', 'options']
-  onViewDesc = false
-  idAppOld: number | undefined
-  descricao: string | undefined
+
+  expandedApp: App | null
   page: Page<App> = new Page([], 0);
   pageEvent: PageEvent;
 
@@ -99,16 +108,8 @@ export class UserViewComponent implements OnInit {
   }
 
   // Manda para walletRead do usuário
-  viewApp(idApp: number){
-    this.walletService.appById(this.idUser, idApp).subscribe(app => {
-      this.descricao = app.descricao
-      if(this.onViewDesc === true && this.idAppOld === app.idApp){
-        this.onViewDesc = false
-      } else {
-        this.idAppOld = app.idApp
-        this.onViewDesc = true
-      }
-    })
+  viewApp(){
+
   }
 
   // Exclui o usuário
