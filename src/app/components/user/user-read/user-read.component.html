@@ -2,17 +2,19 @@
   <div class="title">
     <b> Usuários </b>
   </div>
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="page.content" matSort matSort>
     <!-- Id -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
       <td mat-cell title="Id do usuário" *matCellDef="let user">{{ user.idUser }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Name -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
       <td mat-cell title="Nome do usuário" *matCellDef="let user">{{ user.name }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- CPF -->
@@ -21,6 +23,7 @@
       <td mat-cell title="CPF do usuário" class="description-cell" *matCellDef="let user">
         {{ user.cpf | mask: '000.000.000-00' }}
       </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Wallet Value -->
@@ -37,11 +40,12 @@
         </ng-template>
         {{ user.walletValue | currency: 'BRL' }}
       </td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- Options -->
     <ng-container matColumnDef="options">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Opções </th>
+      <th mat-header-cell *matHeaderCellDef> Opções </th>
       <td mat-cell class="duration-cell" *matCellDef="let user">
         <button mat-button title="Detalhes do usuário" (click)="viewUser(user.idUser)">
           <mat-icon id="viewUser">open_in_new</mat-icon>
@@ -53,11 +57,18 @@
           <mat-icon id="deleteUser">delete forever icon</mat-icon>
         </button>
       </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <div id="div_button_create">
+          <button title="Cria um novo usuário" mat-button class="button_create" (click)="newUser()">
+            Inserir Novo Registro
+          </button>
+        </div>
+      </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnTable"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnTable; sticky: true" ></tr>
     <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"></tr>
-
+    <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true"></tr>
   </table>
   <div *ngIf="loading">
     <mat-spinner class="spinner"></mat-spinner>
@@ -68,12 +79,7 @@
     </h1>
     <img src="" alt="">
   </div>
-  <div id="div_button_create">
-    <button title="Cria um novo usuário" mat-button class="button_create" (click)="newUser()">
-      Inserir Novo Registro
-    </button>
-  </div>
-  <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"
-    aria-label="Usuários por página" (page)="pageEvent = $event; listUser()">
-  </mat-paginator>
+  <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Usuários por página" (page)="pageEvent = $event; listUser()">
+</mat-paginator>
 </div>

@@ -1,6 +1,9 @@
 .container {
-  max-width: 900px;
-  overflow: hidden !important;
+  max-height: 800px;
+  scrollbar-color: rgb(1, 1, 1) rgb(110, 110, 110);
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
@@ -36,8 +39,7 @@ table {
 
 .paginator {
   background-color: #424242;
-  color: #ffffff;
-
+  color: #ffffffb3;
 }
 
 .spinner {
@@ -56,20 +58,22 @@ table {
 }
 
 .button_create {
-  background-color: #06c17f;
+  background-color: #b089df;
   margin-top: 20px;
   margin-right: 30px;
   min-width: 100px;
+  color: #121212;
   min-height: 30px;
 }
 
 #div_button_create {
   background-color: #424242;
   height: 70px;
-  position: relative;
   text-align: right;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.mat-table-sticky {
+  border-top: 0.1px solid #979191b3;
 }
 
 .mat-cell{
@@ -101,8 +105,8 @@ table {
 .mat-column-name {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 27% !important;
-  width: 27% !important;
+  flex: 0 0 35% !important;
+  width: 35% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -149,8 +153,8 @@ table {
 .mat-column-options {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 25% !important;
-  width: 25% !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -160,4 +164,29 @@ table {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+::-webkit-scrollbar {
+  /* width */
+  width: 11px;
+}
+
+::-webkit-scrollbar-track {
+  /* Track */
+  box-shadow: inset 0 0 5px grey;
+}
+
+::-webkit-scrollbar-thumb {
+  /* Handle */
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* Handle on hover */
+  background: #121212;
+}
+
+::-webkit-scrollbar-track-piece {
+  /* not handle on */
+  background: rgb(110, 110, 110);
 }

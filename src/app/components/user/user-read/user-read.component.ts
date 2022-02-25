@@ -1,7 +1,6 @@
-import { AfterViewInit,Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
@@ -15,13 +14,12 @@ import { UserService } from './../user.service';
   styleUrls: ['./user-read.component.css']
 })
 
-export class UserReadComponent implements AfterViewInit{
+export class UserReadComponent implements AfterViewInit {
 
   // list
   columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
   page: Page<User> = new Page([], 0);
   pageEvent: PageEvent;
-  dataSource = new MatTableDataSource<any>()
 
   // Value color
   isValueP = false
@@ -40,7 +38,6 @@ export class UserReadComponent implements AfterViewInit{
 
   ngAfterViewInit() {
     this.listUser();
-    this.dataSource.sort = this.sort;
   }
 
 
@@ -62,7 +59,6 @@ export class UserReadComponent implements AfterViewInit{
       .subscribe({
         next: page => {
           this.page = page;
-          this.dataSource = new MatTableDataSource(page.content)
           this.loading = false;
         },
         error: () => {
