@@ -5,7 +5,7 @@
   <form [formGroup]="formUser" (submit)="onSubmit()" autocomplete="off">
     <mat-form-field title="Insira um nome" appearance="fill">
       <mat-label class="label">Nome</mat-label>
-      <input type="text" matInput formControlName="name" maxlength="100" required />
+      <input type="text" matInput formControlName="name" maxlength="50" required />
       <mat-icon matSuffix>person</mat-icon>
       <mat-error *ngIf="this.formUser.get('name')?.errors">{{
         getErrorMessage("name")

@@ -1,18 +1,18 @@
+<div class="button_container">
+  <button mat-button class="back" title="Voltar" (click)="toUsers()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</div>
 <div class="container">
   <div class="name_and_wallet">
-    <button mat-button class="back" title="Voltar" (click)="toUsers()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <div>
-      <div title="Nome do usuário">{{ nameUser }}</div>
-      <div title="Carteira">
-        <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: #48d33f">
-          account_balance_wallet</mat-icon>
-        <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: #d33f3f">
-          account_balance_wallet</mat-icon>
-        <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: #ffffffb3">account_balance_wallet</mat-icon>
-        {{ walletValue | currency: 'BRL' }}
-      </div>
+    <div class="title" title="Nome do usuário">{{ nameUser }}</div>
+    <div class="wallet" title="Carteira">
+      <mat-icon *ngIf="walletValue > 0" title="Saldo positivo" class="v-middle" style="color: #48d33f">
+        account_balance_wallet</mat-icon>
+      <mat-icon *ngIf="walletValue < 0" title="Saldo negativo" class="v-middle" style="color: #d33f3f">
+        account_balance_wallet</mat-icon>
+      <mat-icon *ngIf="walletValue == 0" class="v-middle" style="color: #ffffffb3">account_balance_wallet</mat-icon>
+      {{ walletValue | currency: 'BRL' }}
     </div>
   </div>
   <table mat-table class="mat-elevation-z8" [dataSource]="page.content" matSort multiTemplateDataRows>
@@ -31,7 +31,8 @@
         <ng-template [ngIf]="isValueCalculatorNg(app.typeAplication, app.value)">
           <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: #48d33f">add_circle_outline
           </mat-icon>
-          <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: #d33f3f">remove_circle_outline
+          <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: #d33f3f">
+            remove_circle_outline
           </mat-icon>
           <mat-icon *ngIf="isValueE" title="Valor neutro" class="v-middle" style="color: #ffffffb3">border_clear
           </mat-icon>
@@ -76,14 +77,12 @@
     </ng-container>
 
     <!-- TR da table -->
-    <tr mat-header-row *matHeaderRowDef="columnTable"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"
-      class="app-row"
-      [class.example-expanded-row]="expandedApp === row"
-      (click)="expandedApp = expandedApp === row ? null : row"></tr>
+    <tr mat-header-row *matHeaderRowDef="columnTable; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading" class="app-row"
+      [class.example-expanded-row]="expandedApp === row" (click)="expandedApp = expandedApp === row ? null : row"></tr>
 
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-    <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true"></tr>
+    <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true" [hidden]="loading"></tr>
   </table>
 
   <!-- Loading -->
@@ -100,7 +99,7 @@
   </div>
 
   <!-- Paginação -->
-  <mat-paginator class="paginator" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Selecione a pagina" (page)="pageEvent = $event; listApp(idUser)">
+  <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecione a pagina" (page)="pageEvent = $event; listApp(idUser)">
   </mat-paginator>
 </div>

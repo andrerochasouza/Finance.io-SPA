@@ -8,18 +8,48 @@
   margin-right: auto;
   margin-top: 20px;
   border: solid 0.1px #979191b3;
+  background-color: #424242;
 }
-
-.name_and_wallet{
-  width: 100%;
+.button_container{
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  margin-top: 20px;
+  max-width: 1100px;
 }
 
 .back{
-  background: white;
-  color: #b089df;
+  background: #b089df;
+  color: #121212;
+  height: 40px;
+  width: 100px;
+}
+
+.name_and_wallet{
+  border-bottom: solid 0.1px #979191b3;
+  color: white;
+  height: 110px;
   display: inline;
-  width: 10%;
-  float: left;
+  width: 100%;
+}
+
+.title{
+  word-wrap: break-word !important;
+  font-size: 25px;
+  margin-top: 20px;
+  min-width: 45%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 25px;
+}
+
+.wallet{
+  font-size: 25px;
+  word-wrap: break-word !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-width: 50%;
+  margin-left: 25px;
 }
 
 table {

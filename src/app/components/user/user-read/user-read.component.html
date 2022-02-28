@@ -66,9 +66,9 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnTable; sticky: true" ></tr>
+    <tr mat-header-row *matHeaderRowDef="columnTable; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"></tr>
-    <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true"></tr>
+    <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true" [hidden]="loading"></tr>
   </table>
   <div *ngIf="loading">
     <mat-spinner class="spinner"></mat-spinner>

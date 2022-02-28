@@ -70,7 +70,7 @@ export class UserCreateComponent implements OnInit {
       name: new FormControl(null, Validators.compose([
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(100)])),
+        Validators.maxLength(50)])),
       cpf: new FormControl(null, Validators.compose([
         Validators.required,
         Validacoes.ValidaCpf]))
