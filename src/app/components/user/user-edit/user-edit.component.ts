@@ -29,7 +29,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
     this.formUser = this.formBuilder.group({
       id: [this.idUser],
-      name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+      name: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       cpf: [null, [Validators.required, Validacoes.ValidaCpf]]
     });
     this.getUserOld();

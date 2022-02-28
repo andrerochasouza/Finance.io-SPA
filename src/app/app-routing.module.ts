@@ -1,3 +1,4 @@
+import { UserReadComponent } from './components/user/user-read/user-read.component';
 import { AppEditComponent } from './components/user/user-view/app-edit/app-edit.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,7 +11,6 @@ import { UserViewComponent } from './components/user/user-view/user-view.compone
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { AuthGuard } from './views/home/account/shared/auth.guard';
-import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
 
       // página com a lista de usuários
-      {path: 'home/users', component: AdminCrudComponent},
+      {path: 'home/users', component: UserReadComponent},
       {path: 'home/user/add', component: UserCreateComponent},
       {path: 'home/user/edit/:id', component: UserEditComponent},
 

@@ -21,6 +21,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatSortModule } from '@angular/material/sort';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,8 +36,8 @@ import { httpInterceptorProviders } from './http-interceptors';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
-import { AdminCrudComponent } from './views/home/admin-crud/admin-crud.component';
 import { HomeComponent } from './views/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 registerLocaleData(localePt);
@@ -45,7 +47,6 @@ registerLocaleData(localePt);
     AppComponent,
     UserCreateComponent,
     UserReadComponent,
-    AdminCrudComponent,
     HomeComponent,
     LoginComponent,
     CreateAccountComponent,
@@ -54,6 +55,7 @@ registerLocaleData(localePt);
     UserViewComponent,
     AppCreateComponent,
     AppEditComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,9 @@ registerLocaleData(localePt);
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    MatSortModule,
+    MatExpansionModule
   ],
   providers: [
     httpInterceptorProviders,

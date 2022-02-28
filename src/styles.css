@@ -1,4 +1,4 @@
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .red {
   color: #e35e6b;
@@ -10,4 +10,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .purple-snackbar .mat-button-wrapper{
   color: #b089df;
+}
+
+.mat-select-value-text{
+  color: white ;
+}
+
+.mat-select-arrow{
+  color: white;
+}
+
+.mat-form-field-underline{
+  background-color: #ffffff !important;
 }
