@@ -1,35 +1,37 @@
-<mat-card class="card">
-  <mat-card-title>Novo Usuário</mat-card-title>
+<div class="box">
+  <mat-card class="card">
+    <mat-card-title class="title">Novo Usuário</mat-card-title>
 
-  <!-- Name -->
-  <form [formGroup]="formUser" (submit)="onSubmit()" autocomplete="off">
-    <mat-form-field title="Insira um nome" appearance="fill">
-      <mat-label class="label">Nome</mat-label>
-      <input type="text" matInput formControlName="name"  maxlength="50" required />
-      <mat-icon matSuffix>person</mat-icon>
-      <mat-error *ngIf="this.formUser.get('name')?.errors">{{
-        getErrorMessage("name")
-      }}</mat-error>
-    </mat-form-field>
+    <!-- Name -->
+    <form [formGroup]="formUser" (submit)="onSubmit()" autocomplete="off">
+      <mat-form-field title="Insira um nome" appearance="fill">
+        <mat-label class="label">Nome</mat-label>
+        <input type="text" matInput formControlName="name" maxlength="50" required />
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="this.formUser.get('name')?.errors">{{
+          getErrorMessage("name")
+          }}</mat-error>
+      </mat-form-field>
 
-    <!-- CPF -->
-    <mat-form-field title="Insira um CPF" appearance="fill">
-      <mat-label class="label">CPF</mat-label>
-      <input type="text" matInput formControlName="cpf" mask="000.000.000-00" required />
-      <mat-icon matSuffix>contacts</mat-icon>
-      <mat-error *ngIf="this.formUser.get('cpf')?.errors">{{
-        getErrorMessage("cpf")
-      }}</mat-error>
-    </mat-form-field>
+      <!-- CPF -->
+      <mat-form-field title="Insira um CPF" appearance="fill">
+        <mat-label class="label">CPF</mat-label>
+        <input type="text" matInput formControlName="cpf" mask="000.000.000-00" required />
+        <mat-icon matSuffix>contacts</mat-icon>
+        <mat-error *ngIf="this.formUser.get('cpf')?.errors">{{
+          getErrorMessage("cpf")
+          }}</mat-error>
+      </mat-form-field>
 
-    <!-- Actions -->
-    <mat-card-actions class="action">
-      <button mat-raised-button class="button_style" title="Voltar ao Menu" (click)="cancel()">
-        Cancelar
-      </button>
-      <button mat-raised-button class="button_style" title="Adicionar novo usuário" type="submit">
-        Adicionar
-      </button>
-    </mat-card-actions>
-  </form>
-</mat-card>
+      <!-- Actions -->
+      <mat-card-actions class="action">
+        <button mat-button class="button_style_cancel" title="Voltar ao Menu" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-button class="button_style_add" title="Adicionar novo usuário" type="submit">
+          Adicionar
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

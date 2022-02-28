@@ -70,6 +70,10 @@ export class AppCreateComponent implements OnInit {
       return 'Selecione um tipo de aplicação'
     }
 
+    if (valueString === 'descricao') {
+      return '0/255'
+    }
+
     return null
   }
 
@@ -88,9 +92,7 @@ export class AppCreateComponent implements OnInit {
         Validators.maxLength(255)])),
       typeAplication: new FormControl(null, Validators.compose([
         Validators.required])),
-      descricao: new FormControl(null, Validators.compose([
-        Validators.nullValidator,
-        Validators.maxLength(255)])),
+      descricao: new FormControl(null, Validators.maxLength(255))
     });
   }
 

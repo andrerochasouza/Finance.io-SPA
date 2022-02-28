@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
             window.localStorage.setItem('token', result),
             this.accountService.showMessage('Entrando...')
             this.dataService.set('login', this.formAdmin.get('login')?.value)
-            this.router.navigate([''])
+            this.router.navigate(['home/users'])
           },
           error: err => {
             this.accountService.showMessage('Erro no login')

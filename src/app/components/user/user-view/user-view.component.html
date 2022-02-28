@@ -15,7 +15,17 @@
       {{ walletValue | currency: 'BRL' }}
     </div>
   </div>
-  <table mat-table class="mat-elevation-z8" [dataSource]="page.content" matSort multiTemplateDataRows>
+
+  <!-- Filter -->
+  <div class="div_filter">
+    <mat-form-field class="filter">
+      <mat-label class="title_filter">Filtro</mat-label>
+      <mat-icon matSuffix>search</mat-icon>
+      <input class="input_filter" matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+  </div>
+
+  <table mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort multiTemplateDataRows>
 
     <!-- Name -->
     <ng-container matColumnDef="name">
@@ -46,7 +56,8 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opções</th>
       <td mat-cell class="duration-cell" *matCellDef="let app">
-        <button class="button_hover" mat-button title="Ver descrição" (click)="viewApp()">
+        <button class="button_hover" mat-button title="Ver descrição" (click)="viewApp()"
+          [class.expanded-row]="expandedApp === app" (click)="expandedApp = expandedApp === app ? null : app">
           <mat-icon id="viewApp">arrow_drop_down_circle</mat-icon>
         </button>
         <button class="button_hover" mat-button title="Editar aplicação" (click)="editApp(app.idApp)">
@@ -78,11 +89,15 @@
 
     <!-- TR da table -->
     <tr mat-header-row *matHeaderRowDef="columnTable; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading" class="app-row"
-      [class.example-expanded-row]="expandedApp === row" (click)="expandedApp = expandedApp === row ? null : row"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading" class="app-row"></tr>
 
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
     <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true" [hidden]="loading"></tr>
+
+    <!-- Filter -->
+    <tr class="mat-row" *matNoDataRow [hidden]="loading">
+      <td class="mat-cell" colspan="4">Nenhuma aplicação encontrada pelo filtro "{{input.value}}"</td>
+    </tr>
   </table>
 
   <!-- Loading -->
@@ -95,7 +110,8 @@
     <h1>
       <b>Nenhuma aplicação na carteira</b>
     </h1>
-    <img class="notAppImg" src="../../../../assets/img/empty_wallet.png" alt="">
+    <img class="notAppImg" src="../../../../assets/img/empty_wallet.png"
+      alt="Imagem que mostra que não há nenhuma aplicação cadastrada">
   </div>
 
   <!-- Paginação -->

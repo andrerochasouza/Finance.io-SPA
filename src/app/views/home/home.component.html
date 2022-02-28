@@ -11,17 +11,17 @@
   <span class="space"></span>
 
   <span title="Título">FINANCE.IO</span>
-  <img title="Finance.io" class="img" alt="Logo da Finance.io" src="assets/img/diamond.png" />
+  <img title="Finance.io" class="img" alt="Logo da Finance.io" src="assets/img/money.png" />
 </mat-toolbar>
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <button title="Página Home" routerLink="/" mat-raised-button class="button">
+    <button title="Página Home" routerLink="/" mat-button class="button">
       Dashboard
     </button>
-    <button title="Página de usuários" (click)="navigateToUsers()" mat-raised-button class="button">
+    <button title="Página de usuários" (click)="navigateToUsers()" mat-button class="button">
       Usuários
     </button>
-    <button title="Desconectar" (click)="logOut()" mat-raised-button class="button">
+    <button title="Desconectar" (click)="logOut()" mat-button class="button">
       Sair da conta
     </button>
   </mat-drawer>

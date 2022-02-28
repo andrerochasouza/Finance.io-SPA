@@ -17,10 +17,10 @@
         <mat-form-field title="Insira uma senha" appearance="fill">
           <mat-label class="label">Senha</mat-label>
           <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'"
+          <mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'"
             [attr.aria-pressed]="hide" required>
             <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-          </button>
+          </mat-icon-button>
           <mat-error *ngIf="this.formAdmin.get('password')?.errors">{{ getErrorMessage('password') }}</mat-error>
         </mat-form-field>
 
