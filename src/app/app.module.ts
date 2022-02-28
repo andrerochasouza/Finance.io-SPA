@@ -1,4 +1,3 @@
-import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
@@ -40,6 +39,8 @@ import { LoginComponent } from './views/home/account/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 
 
+
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -75,7 +76,6 @@ registerLocaleData(localePt);
     MatSidenavModule,
     MatIconModule,
     MatSnackBarModule,
-    CdkTableModule,
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,

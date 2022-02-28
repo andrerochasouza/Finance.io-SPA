@@ -1,3 +1,5 @@
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -19,7 +21,9 @@ export class UserReadComponent implements AfterViewInit {
   // list
   columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
   page: Page<User> = new Page([], 0);
+  dataSource = new MatTableDataSource<User>(this.page.content);
   pageEvent: PageEvent;
+
 
   // Value color
   isValueP = false
@@ -49,7 +53,7 @@ export class UserReadComponent implements AfterViewInit {
       new PageRequest(
         {
           pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
-          pageSize: this.pageEvent ? this.pageEvent.pageSize : 10
+          pageSize: this.pageEvent ? this.pageEvent.pageSize : 5
         },
         queryAdicional
       )
@@ -59,6 +63,7 @@ export class UserReadComponent implements AfterViewInit {
       .subscribe({
         next: page => {
           this.page = page;
+          this.dataSource = new MatTableDataSource<User>(page.content)
           this.loading = false;
         },
         error: () => {
@@ -137,5 +142,14 @@ export class UserReadComponent implements AfterViewInit {
       return true
     }
     return true
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

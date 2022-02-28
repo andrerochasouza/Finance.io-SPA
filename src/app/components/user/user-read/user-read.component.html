@@ -2,7 +2,14 @@
   <div class="title">
     <b> Usuários </b>
   </div>
-  <table mat-table [dataSource]="page.content" matSort matSort>
+
+  <!-- Filter -->
+  <mat-form-field class="filter">
+      <mat-label class="title_filter">Filtro</mat-label>
+      <input class="input_filter" matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort>
     <!-- Id -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
@@ -27,14 +34,15 @@
     </ng-container>
 
     <!-- Wallet Value -->
-    <ng-container matColumnDef="walletValue" >
+    <ng-container matColumnDef="walletValue">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Saldo </th>
       <td mat-cell title="Carteira do usuário" class="duration-cell" *matCellDef="let user">
         <ng-template [ngIf]="isValueCalculatorNg(user.walletValue)">
           <mat-icon *ngIf="isValueP" title="Valor positivo" class="v-middle" style="color: #48d33f">
             account_balance_wallet
           </mat-icon>
-          <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: #d33f3f">account_balance_wallet
+          <mat-icon *ngIf="isValueN" title="Valor negativo" class="v-middle" style="color: #d33f3f">
+            account_balance_wallet
           </mat-icon>
           <mat-icon *ngIf="isValueE" class="v-middle" style="color: #ffffffb3">account_balance_wallet</mat-icon>
         </ng-template>
@@ -69,7 +77,14 @@
     <tr mat-header-row *matHeaderRowDef="columnTable; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: columnTable" [hidden]="loading"></tr>
     <tr mat-footer-row *matFooterRowDef="columnTable; sticky: true" [hidden]="loading"></tr>
+
+    <!-- Filter -->
+    <tr class="mat-row" *matNoDataRow [hidden]="loading">
+      <td class="mat-cell" colspan="4">Nenhum usuário encontrado pelo filtro "{{input.value}}"</td>
+    </tr>
   </table>
+
+
   <div *ngIf="loading">
     <mat-spinner class="spinner"></mat-spinner>
   </div>
@@ -77,9 +92,9 @@
     <h1>
       Nenhum usuário registrado
     </h1>
-    <img src="" alt="">
+    <img class="notAppImg" src="../../../../assets/img/user_empty.png" alt="Imagem que mostra que não há nenhum usuário cadastrado">
   </div>
-  <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-  aria-label="Usuários por página"  (page)="pageEvent = $event; listUser()">
-</mat-paginator>
+  <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Usuários por página" (page)="pageEvent = $event; listUser()">
+  </mat-paginator>
 </div>

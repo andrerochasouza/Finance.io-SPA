@@ -230,7 +230,7 @@ table {
   background: rgb(110, 110, 110);
 }
 
-tr.example-detail-row {
+tr.detail-row {
   height: 0;
 }
 
