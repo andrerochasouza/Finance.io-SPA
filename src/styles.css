@@ -1,17 +1,22 @@
+/* Mudando o body de todos os componentes */
 body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+/* Mudando o css do footer */
 .red {
   color: #e35e6b;
 }
 
+/* Deixando os icones centralizados { Se usar o v-middle como classe }*/
 .v-middle {
   vertical-align: middle;
 }
 
+/* Mudando o nome do icone que mostra o sidenav */
 .purple-snackbar .mat-button-wrapper{
   color: #b089df;
 }
 
+/* Mudando para branco os valores dentro dos selects globais*/
 .mat-select-value-text{
   color: white ;
 }
@@ -20,6 +25,7 @@ body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-seri
   color: white;
 }
 
-.mat-form-field-underline{
-  background-color: #ffffff !important;
+/* Mudando as cores dos forms globais */
+.mat-form-field-ripple{
+  background-color: white;
 }

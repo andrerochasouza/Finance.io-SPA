@@ -1,12 +1,81 @@
-.card {
-  font-size: 1.4em;
-  font-weight: 500;
-  background-color: #e6e1e1;
-  margin: 25px;
-  border-radius: 20px;
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 }
 
-.button_style{
-  border-radius: 10px;
-  background-color: #06c17f;
+.mat-card{
+  background: #424242;
+  max-width: 400px;
+  max-height: 700px;
+  border: solid 0.1px #ffffffb3;
+}
+
+.title{
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.mat-form-field {
+  font-size: larger;
+  color: white;
+  display: block;
+  min-width: 300px;
+  max-width: 300px;
+  width: 30vw;
+  margin-bottom: 15px;
+}
+
+.mat-form-field-ripple{
+  background-color: white !important;
+  position: none !important;
+}
+
+.label{
+  color: #ffffffb3;
+}
+
+.mat-error{
+  color: #d88d8d;
+  font-size: larger;
+}
+
+.mat-icon{
+  color: #ffffffb3;
+}
+
+.hint{
+  font-size: larger;
+  color: #ffffffb3;
+}
+
+.action{
+  display: flex;
+  justify-content: center;
+}
+
+.action .button_style_cancel{
+  margin-top: 10px;
+  color: #121212;
+  background: #d88d8d;
+}
+
+.action .button_style_add{
+  margin-top: 10px;
+  color: #121212;
+  background: #8dd89f;
+}
+
+/* Cor de fundo do autocomplete */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #1e1e1e inset;
+}
+
+/* Cor do texto do autocomplete */
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
 }

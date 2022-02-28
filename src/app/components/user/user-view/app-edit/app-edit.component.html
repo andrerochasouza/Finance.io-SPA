@@ -1,59 +1,64 @@
-<mat-card class="card">
-  <mat-card-title>Editar aplicação</mat-card-title>
+<div class="box">
+  <mat-card class="card">
+    <mat-card-title class="title">Editar aplicação</mat-card-title>
 
-  <!-- Name -->
-  <form [formGroup]="formApp" (submit)="onSubmit()" autocomplete="off">
-    <mat-form-field title="Insira um novo nome" appearance="fill">
-      <mat-label class="label">Nome</mat-label>
-      <input type="text" matInput formControlName="name" maxlength="100" required />
-      <mat-icon matSuffix>person</mat-icon>
-      <mat-error *ngIf="this.formApp.get('name')?.errors">{{
-        getErrorMessage("name")
-      }}</mat-error>
-    </mat-form-field>
+    <!-- Name -->
+    <form [formGroup]="formApp" (submit)="onSubmit()" autocomplete="off">
+      <mat-form-field title="Insira um novo nome" appearance="fill">
+        <mat-label class="label">Nome</mat-label>
+        <input type="text" matInput formControlName="name" maxlength="100" required />
+        <mat-icon matSuffix>assignment</mat-icon>
+        <mat-error *ngIf="this.formApp.get('name')?.errors">{{
+          getErrorMessage("name")
+          }}</mat-error>
+      </mat-form-field>
 
-    <!-- Value -->
-    <mat-form-field title="Insira um novo valor" appearance="fill">
-      <mat-label class="label">Valor</mat-label>
-      <input type="text" matInput formControlName="value" maxlength="255" required />
-      <mat-icon matSuffix>person</mat-icon>
-      <mat-error *ngIf="this.formApp.get('value')?.errors?.['required']">
-        {{ getErrorMessage("value") }}
-      </mat-error>
-    </mat-form-field>
-
-
-    <!-- Type Aplication -->
-    <mat-form-field title="Selecione um novo tipo de aplicação" appearance="fill">
-      <mat-label class="label">Aplicação</mat-label>
-      <mat-icon matSuffix>account_balance_wallet</mat-icon>
-      <mat-select formControlName="typeAplication" required>
-        <mat-option *ngFor="let typeAplication of typeAplications" [value]="typeAplication">{{ typeAplication }}</mat-option>
-      </mat-select>
-      <mat-error *ngIf="this.formApp.get('typeAplication')?.errors">{{
-        getErrorMessage("typeAplication")
-      }}</mat-error>
-    </mat-form-field>
+      <!-- Value -->
+      <mat-form-field title="Insira um novo valor" appearance="fill">
+        <mat-label class="label">Valor</mat-label>
+        <input type="text" mask="separator.2" [dropSpecialCharacters]="true" [thousandSeparator]="'.'"
+          [decimalMarker]="','" prefix="R$ " matInput formControlName="value" maxlength="255" required />
+        <mat-icon matSuffix>attach_money</mat-icon>
+        <mat-error *ngIf="this.formApp.get('value')?.errors?.['required']">
+          {{ getErrorMessage("value") }}
+        </mat-error>
+      </mat-form-field>
 
 
-    <!-- Description -->
-    <mat-form-field title="Insira uma nova descrição" appearance="fill">
-      <mat-label class="label">Descrição</mat-label>
-      <input type="text" matInput formControlName="descricao" required />
-      <mat-icon matSuffix>contacts</mat-icon>
-      <mat-error *ngIf="this.formApp.get('descricao')?.errors">{{
-        getErrorMessage("descricao")
-      }}</mat-error>
-    </mat-form-field>
+      <!-- Type Aplication -->
+      <mat-form-field title="Selecione um novo tipo de aplicação" appearance="fill">
+        <mat-label class="label">Aplicação</mat-label>
+        <mat-icon matSuffix>account_balance_wallet</mat-icon>
+        <mat-select formControlName="typeAplication" required>
+          <mat-option *ngFor="let typeAplication of typeAplications" [value]="typeAplication">{{ typeAplication }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="this.formApp.get('typeAplication')?.errors">{{
+          getErrorMessage("typeAplication")
+          }}</mat-error>
+      </mat-form-field>
 
-    <!-- Actions -->
-    <mat-card-actions class="action">
-      <button mat-raised-button class="button_style" title="Voltar ao menu" (click)="cancel()">
-        Cancelar
-      </button>
-      <button mat-raised-button class="button_style" title="Atualiza a aplicação" type="submit">
-        Atualizar
-      </button>
-    </mat-card-actions>
-  </form>
-</mat-card>
+
+      <!-- Description -->
+      <mat-form-field title="Insira uma nova descrição" appearance="fill">
+        <mat-label class="label">Descrição</mat-label>
+        <input type="text" #input matInput formControlName="descricao" required />
+        <mat-icon matSuffix>text_fields</mat-icon>
+        <mat-hint class="hint">{{input.value?.length || 0}}/255</mat-hint>
+        <mat-error *ngIf="this.formApp.get('descricao')?.errors">{{
+          getErrorMessage("descricao")
+          }}</mat-error>
+      </mat-form-field>
+
+      <!-- Actions -->
+      <mat-card-actions class="action">
+        <button mat-raised-button class="button_style_cancel" title="Voltar ao menu" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-raised-button class="button_style_add" title="Atualiza a aplicação" type="submit">
+          Atualizar
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
