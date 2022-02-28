@@ -29,3 +29,7 @@ body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-seri
 .mat-form-field-ripple{
   background-color: white;
 }
+
+.mat-form-field-underline {
+  background-color: #ffffff !important;;
+}

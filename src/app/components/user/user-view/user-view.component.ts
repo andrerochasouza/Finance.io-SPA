@@ -1,3 +1,4 @@
+import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
@@ -28,6 +29,7 @@ export class UserViewComponent implements OnInit {
 
   expandedApp: App | null
   page: Page<App> = new Page([], 0);
+  dataSource = new MatTableDataSource<App>(this.page.content)
   pageEvent: PageEvent;
 
   idUser: number
@@ -83,6 +85,7 @@ export class UserViewComponent implements OnInit {
     .subscribe({
       next: page => {
         this.page = page;
+        this.dataSource = new MatTableDataSource<App>(page.content)
         this.loading = false;
       },
       error: () => {
@@ -146,5 +149,15 @@ export class UserViewComponent implements OnInit {
       }
     }
     return true
+  }
+
+   // Filtro
+   applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

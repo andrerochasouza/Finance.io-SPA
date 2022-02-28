@@ -21,13 +21,18 @@
 }
 
 .filter{
-  height: 60px;
-  margin-top: 10px;
+  height: 80px;
+  padding-top: 10px;
   margin-left: 20px;
+  font-size: larger;
+  color: #ffffff;
 }
 
 .title_filter{
-  color: #ffffffb3;
+  color: #ffffff;
+}
+.mat-icon{
+  color: #ffffff;
 }
 
 .input_filter{
