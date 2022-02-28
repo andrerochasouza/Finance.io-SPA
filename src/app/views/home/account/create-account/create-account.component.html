@@ -45,10 +45,10 @@
         <mat-form-field title="Insira uma nova senha" appearance="fill">
           <mat-label class="label">Senha</mat-label>
           <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" required />
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'"
+          <mat-icon-button  matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'"
             [attr.aria-pressed]="hide" required>
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-          </button>
+          </mat-icon-button>
           <mat-error *ngIf="this.formAdmin.get('password')?.errors">{{
             getErrorMessage("password")
             }}</mat-error>
@@ -56,10 +56,10 @@
 
         <!-- Actions -->
         <mat-card-actions class="action">
-          <button mat-raised-button class="button_style" title="Página de Login" (click)="cancel()">
+          <button mat-button class="button_style" title="Página de Login" (click)="cancel()">
             Cancelar
           </button>
-          <button mat-raised-button class="button_style" title="Cadastra uma nova conta" type="submit">
+          <button mat-button class="button_style" title="Cadastra uma nova conta" type="submit">
             Cadastrar
           </button>
         </mat-card-actions>
