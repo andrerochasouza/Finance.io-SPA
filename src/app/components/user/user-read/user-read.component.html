@@ -5,9 +5,9 @@
 
   <!-- Filter -->
   <mat-form-field class="filter">
-      <mat-label class="title_filter">Filtro</mat-label>
-      <mat-icon matSuffix>search</mat-icon>
-      <input class="input_filter" matInput (keyup)="applyFilter($event)" #input>
+    <mat-label class="title_filter">Pesquisar</mat-label>
+    <mat-icon matSuffix>search</mat-icon>
+    <input class="input_filter" matInput (keyup)="applyFilter($event)" #input>
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" matSort>
@@ -81,20 +81,25 @@
 
     <!-- Filter -->
     <tr class="mat-row" *matNoDataRow [hidden]="loading">
-      <td class="mat-cell" colspan="4">Nenhum usuário encontrado pelo filtro "{{input.value}}"</td>
+      <td class="mat-cell" colspan="4">Nenhum usuário encontrado pela pesquisa</td>
     </tr>
   </table>
 
-
+  <!-- Loading -->
   <div *ngIf="loading">
     <mat-spinner class="spinner"></mat-spinner>
   </div>
+
+  <!-- Se não tiver Usuário -->
   <div class="notRegister" *ngIf="!loading && page.totalElements === 0">
     <h1>
       Nenhum usuário registrado
     </h1>
-    <img class="notAppImg" src="../../../../assets/img/user_empty.png" alt="Imagem que mostra que não há nenhum usuário cadastrado">
+    <img class="notAppImg" src="../../../../assets/img/user_empty.png"
+      alt="Imagem que mostra que não há nenhum usuário cadastrado">
   </div>
+
+  <!-- Paginação -->
   <mat-paginator class="paginator" showFirstLastButtons [length]="page.totalElements" [pageSize]="5"
     [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Usuários por página" (page)="pageEvent = $event; listUser()">
   </mat-paginator>

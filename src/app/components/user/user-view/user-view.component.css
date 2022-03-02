@@ -92,6 +92,11 @@ table {
   color: #d16b6b;
 }
 
+.paginator {
+  background-color: #424242;
+  color: #ffffffb3;
+}
+
 .spinner {
   position: relative;
   margin-left: auto;
@@ -101,7 +106,6 @@ table {
 }
 
 .notApp {
-  margin-top: 25px;
   background-color: #424242;
   color: #ffffff;
   text-align: center;
@@ -129,11 +133,7 @@ table {
   text-align: right;
 }
 
-.paginator {
-  background-color: #424242;
-  color: #ffffffb3;
-}
-
+/* Configurações de tabela */
 .mat-table-sticky {
   border-top: 0.1px solid #979191b3;
 }
