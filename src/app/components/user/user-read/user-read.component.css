@@ -20,7 +20,7 @@
   height: 100px;
 }
 
-.filter{
+.filter {
   height: 80px;
   padding-top: 10px;
   margin-left: 20px;
@@ -28,14 +28,15 @@
   color: #ffffff;
 }
 
-.title_filter{
-  color: #ffffff;
-}
-.mat-icon{
+.title_filter {
   color: #ffffff;
 }
 
-.input_filter{
+.mat-icon {
+  color: #ffffff;
+}
+
+.input_filter {
   color: #ffffff;
 }
 
@@ -44,15 +45,15 @@ table {
   background-color: #424242;
 }
 
-#viewUser{
+#viewUser {
   color: #d1c96b;
 }
 
-#editUser{
+#editUser {
   color: #d1956b;
 }
 
-#deleteUser{
+#deleteUser {
   color: #d16b6b;
 }
 
@@ -70,13 +71,12 @@ table {
 }
 
 .notRegister {
-  margin-top: 25px;
   background-color: #424242;
   color: #ffffff;
   text-align: center;
 }
 
-.notAppImg{
+.notAppImg {
   margin-left: auto;
   margin-right: auto;
   max-height: 400px;
@@ -98,16 +98,17 @@ table {
   text-align: right;
 }
 
+/* Configurações de tabela */
 .mat-table-sticky {
   border-top: 0.1px solid #979191b3;
 }
 
-.mat-cell{
+.mat-cell {
   color: #ffffff;
   border-color: #979191b3;
 }
 
-.mat-header-cell{
+.mat-header-cell {
   color: #ffffffb3;
   border-color: #979191b3;
 }

@@ -19,7 +19,7 @@
   <!-- Filter -->
   <div class="div_filter">
     <mat-form-field class="filter">
-      <mat-label class="title_filter">Filtro</mat-label>
+      <mat-label class="title_filter">Pesquisar</mat-label>
       <mat-icon matSuffix>search</mat-icon>
       <input class="input_filter" matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
@@ -96,7 +96,7 @@
 
     <!-- Filter -->
     <tr class="mat-row" *matNoDataRow [hidden]="loading">
-      <td class="mat-cell" colspan="4">Nenhuma aplicação encontrada pelo filtro "{{input.value}}"</td>
+      <td class="mat-cell" colspan="4">Nenhuma aplicação encontrada pelo filtro pela pesquisa</td>
     </tr>
   </table>
 
