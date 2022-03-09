@@ -8,10 +8,16 @@ Finance.io é uma aplicação de finanças full stack web construída durante me
 
 A aplicação consiste em adicionar clientes que pediram sua ajuda em administrar suas aplicações, tendo um perfil em cada usuário, podemos adicionar aplicações que ele têm e assim administrar de forma mais conciente e rápida.
 
-## Layout web
-![Web 1]()
+## Layout Login
+![Login](https://github.com/andrerochasouza/Finance.io-SPA/blob/main/src/assets/img/login.png)
 
-![Web 2]()
+![Cadastro](https://github.com/andrerochasouza/Finance.io-SPA/blob/main/src/assets/img/cadastro.png)
+
+## Layout Usuários
+
+![Lista de usuários](https://github.com/andrerochasouza/Finance.io-SPA/blob/main/src/assets/img/usu%C3%A1rios.png)
+
+![Lista de aplicações](https://github.com/andrerochasouza/Finance.io-SPA/blob/main/src/assets/img/aplica%C3%A7%C3%B5es.png)
 
 ## Modelo conceitual
 ![Modelo Conceitual]()
