@@ -1,27 +1,68 @@
-# FinanceSPA
+# Finance.io
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1.
+# Sobre o projeto
 
-## Development server
+https://wmazoni-sds1.netlify.app
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Finance.io é uma aplicação full stack web construída para auxiliar suas finanças ou de outras pessoas, com o intuito de facilitar e economizar dinheiro seu ou dos outros!
 
-## Code scaffolding
+A aplicação consiste em adicionar clientes que pediram sua ajuda em administrar suas aplicações, tendo um perfil em cada usuário, podemos adicionar aplicações que ele têm e assim administrar de forma mais conciente e rápida.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Layout mobile
+![Mobile 1](https://github.com/acenelio/assets/raw/main/sds1/mobile1.png) ![Mobile 2](https://github.com/acenelio/assets/raw/main/sds1/mobile2.png)
 
-## Build
+## Layout web
+![Web 1](https://github.com/acenelio/assets/raw/main/sds1/web1.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![Web 2](https://github.com/acenelio/assets/raw/main/sds1/web2.png)
 
-## Running unit tests
+## Modelo conceitual
+![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Tecnologias utilizadas
+## Back end
+- Java
+- Spring Boot
+- JPA / Hibernate
+- Maven
+## Front end
+- HTML / CSS / JS / TypeScript
+- Angular (v13)
+- Material Design
+## Implantação em produção
+- Back end: Heroku
+- Front end web: Vercel
+- Banco de dados: MySQL
 
-## Running end-to-end tests
+# Como executar o projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Back end
+Pré-requisitos: Java 11
 
-## Further help
+```bash
+# clonar repositório
+git clone https://github.com/andrerochasouza/finance.io-API
+# entrar na pasta do projeto back end
+# executar o projeto
+./mvnw spring-boot:run
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Front end web
+Pré-requisitos: npm / yarn
+
+```bash
+# clonar repositório
+git clone https://github.com/andrerochasouza/Finance.io-SPA
+# entrar na pasta do projeto front end web
+# instalar dependências
+npm install
+# executar o projeto
+npm start
+```
+
+# Autor
+
+André da Rocha Souza e Thiago Furlan
+
+https://www.linkedin.com/in/andr%C3%A9darochasouza/
+https://www.linkedin.com/in/thiago-furlan-2bbb291b5/
