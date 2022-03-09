@@ -8,16 +8,13 @@ Finance.io é uma aplicação full stack web construída para auxiliar suas fina
 
 A aplicação consiste em adicionar clientes que pediram sua ajuda em administrar suas aplicações, tendo um perfil em cada usuário, podemos adicionar aplicações que ele têm e assim administrar de forma mais conciente e rápida.
 
-## Layout mobile
-![Mobile 1](https://github.com/acenelio/assets/raw/main/sds1/mobile1.png) ![Mobile 2](https://github.com/acenelio/assets/raw/main/sds1/mobile2.png)
-
 ## Layout web
-![Web 1](https://github.com/acenelio/assets/raw/main/sds1/web1.png)
+![Web 1]()
 
-![Web 2](https://github.com/acenelio/assets/raw/main/sds1/web2.png)
+![Web 2]()
 
 ## Modelo conceitual
-![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
+![Modelo Conceitual]()
 
 # Tecnologias utilizadas
 ## Back end
@@ -65,4 +62,5 @@ npm start
 André da Rocha Souza e Thiago Furlan
 
 https://www.linkedin.com/in/andr%C3%A9darochasouza/
+
 https://www.linkedin.com/in/thiago-furlan-2bbb291b5/
