@@ -4,7 +4,7 @@
 
 https://finance-io-spa.vercel.app/login
 
-Finance.io é uma aplicação full stack web construída para auxiliar suas finanças ou de outras pessoas, com o intuito de facilitar e economizar dinheiro seu ou dos outros!
+Finance.io é uma aplicação de finanças full stack web construída durante meu estágio na TOTVS, com o intuito de facilitar e economizar seu dinheiro e de outras pessoas!
 
 A aplicação consiste em adicionar clientes que pediram sua ajuda em administrar suas aplicações, tendo um perfil em cada usuário, podemos adicionar aplicações que ele têm e assim administrar de forma mais conciente e rápida.
 
