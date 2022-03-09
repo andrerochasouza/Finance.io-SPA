@@ -4,7 +4,7 @@
 
 https://finance-io-spa.vercel.app/login
 
-Finance.io é uma aplicação de finanças full stack web construída durante meu estágio na TOTVS, com o intuito de facilitar e economizar seu dinheiro e de outras pessoas!
+Finance.io é uma aplicação de finanças full stack web construída durante meu estágio na [@TOTVS](https://github.com/totvs), com o intuito de facilitar e economizar seu dinheiro e de outras pessoas!
 
 A aplicação consiste em adicionar clientes que pediram sua ajuda em administrar suas aplicações, tendo um perfil em cada usuário, podemos adicionar aplicações que ele têm e assim administrar de forma mais conciente e rápida.
 
@@ -20,7 +20,7 @@ A aplicação consiste em adicionar clientes que pediram sua ajuda em administra
 ![Lista de aplicações](https://github.com/andrerochasouza/Finance.io-SPA/blob/main/src/assets/img/aplica%C3%A7%C3%B5es.png)
 
 ## Modelo conceitual
-![Modelo Conceitual]()
+![Diagrama de Classe](https://github.com/andrerochasouza/Finance.io-SPA/blob/main/src/assets/img/diagrama%20de%20classe.png)
 
 # Tecnologias utilizadas
 ## Back end
