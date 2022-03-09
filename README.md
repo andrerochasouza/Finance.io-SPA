@@ -2,7 +2,7 @@
 
 # Sobre o projeto
 
-https://wmazoni-sds1.netlify.app
+https://finance-io-spa.vercel.app/login
 
 Finance.io é uma aplicação full stack web construída para auxiliar suas finanças ou de outras pessoas, com o intuito de facilitar e economizar dinheiro seu ou dos outros!
 
