@@ -1,14 +1,16 @@
+import { DataService } from 'src/app/data.service';
+import { AccountService } from './../../../views/home/account/shared/account.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
+import { take, Observable } from 'rxjs';
 
 import { Page, PageRequest } from './../../../shared/Pagination';
 import { User } from './../user';
 import { UserService } from './../user.service';
+import { Admin } from 'src/app/views/home/account/shared/admin.model';
 
 @Component({
   selector: 'app-user-read',
@@ -21,6 +23,7 @@ export class UserReadComponent implements AfterViewInit {
   // list
   columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
   page: Page<User> = new Page([], 0);
+  idAdmin: number | undefined
   dataSource = new MatTableDataSource<User>(this.page.content);
   pageEvent: PageEvent;
 
@@ -34,6 +37,8 @@ export class UserReadComponent implements AfterViewInit {
   loading = false;
 
   constructor(
+    private accountService: AccountService,
+    private dataService: DataService,
     private userService: UserService,
     private router: Router
   ) { }
@@ -41,6 +46,7 @@ export class UserReadComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
+    this.accountService.getAccountAdmin(this.dataService.get('login')).subscribe(admin => { this.idAdmin = admin.id })
     this.listUser();
   }
 
@@ -50,6 +56,7 @@ export class UserReadComponent implements AfterViewInit {
     this.loading = true
     let queryAdicional
     this.userService.listUser(
+      String(this.idAdmin),
       new PageRequest(
         {
           pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
