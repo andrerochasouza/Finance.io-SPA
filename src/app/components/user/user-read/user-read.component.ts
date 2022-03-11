@@ -1,16 +1,15 @@
-import { DataService } from 'src/app/data.service';
-import { AccountService } from './../../../views/home/account/shared/account.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { take, Observable } from 'rxjs';
+import { map, take, switchMap } from 'rxjs';
+import { DataService } from 'src/app/data.service';
 
 import { Page, PageRequest } from './../../../shared/Pagination';
+import { AccountService } from './../../../views/home/account/shared/account.service';
 import { User } from './../user';
 import { UserService } from './../user.service';
-import { Admin } from 'src/app/views/home/account/shared/admin.model';
 
 @Component({
   selector: 'app-user-read',
@@ -18,12 +17,11 @@ import { Admin } from 'src/app/views/home/account/shared/admin.model';
   styleUrls: ['./user-read.component.css']
 })
 
-export class UserReadComponent implements AfterViewInit {
+export class UserReadComponent implements OnInit {
 
   // list
   columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
   page: Page<User> = new Page([], 0);
-  idAdmin: number | undefined
   dataSource = new MatTableDataSource<User>(this.page.content);
   pageEvent: PageEvent;
 
@@ -45,8 +43,7 @@ export class UserReadComponent implements AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  ngAfterViewInit() {
-    this.accountService.getAccountAdmin(this.dataService.get('login')).subscribe(admin => { this.idAdmin = admin.id })
+  ngOnInit(): void {
     this.listUser();
   }
 
@@ -54,30 +51,32 @@ export class UserReadComponent implements AfterViewInit {
   // Lista os usuários
   listUser() {
     this.loading = true
-    let queryAdicional
-    this.userService.listUser(
-      String(this.idAdmin),
-      new PageRequest(
-        {
-          pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
-          pageSize: this.pageEvent ? this.pageEvent.pageSize : 5
-        },
-        queryAdicional
-      )
-    ).pipe(
-      take(1)
-    )
-      .subscribe({
-        next: page => {
-          this.page = page;
-          this.dataSource = new MatTableDataSource<User>(page.content)
-          this.loading = false;
-        },
-        error: () => {
-          this.page = new Page([], 0)
-          this.loading = false
-        }
-      })
+    this.accountService.getAccountAdmin(this.dataService.get('login'))
+        .subscribe(admin => {
+          let queryAdicional
+          const id = admin.idAdmin;
+          const listUser$ = this.userService.listUser(
+            String(id),
+            new PageRequest(
+              {
+                pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
+                pageSize: this.pageEvent ? this.pageEvent.pageSize : 5
+              },
+              queryAdicional
+            ))
+          listUser$.pipe(take(1))
+            .subscribe({
+              next: page => {
+                this.page = page;
+                this.dataSource = new MatTableDataSource<User>(page.content)
+                this.loading = false;
+              },
+              error: () => {
+                this.page = new Page([], 0)
+                this.loading = false
+              }
+            })
+        });
   }
 
   // Manda para walletRead do usuário
