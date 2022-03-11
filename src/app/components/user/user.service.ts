@@ -1,4 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
@@ -22,9 +22,10 @@ export class UserService {
   }
 
 
-  listUser(queryBuilder: QueryBuilder): Observable<Page<User>>{
+  listUser(idAdmin: string, queryBuilder: QueryBuilder): Observable<Page<User>>{
+    let headers = new HttpHeaders().append('id', idAdmin)
     return this.http
-      .get<User[]>(`${this.API}/${this.endpoint}?${queryBuilder.buildQueryString()}`, {observe: 'response'})
+      .get<User[]>(`${this.API}/${this.endpoint}?${queryBuilder.buildQueryString()}`, { headers, observe: 'response' })
       .pipe(
         map(response => <Page<User>>Page.fromResponse(response))
     );

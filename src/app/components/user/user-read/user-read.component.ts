@@ -1,12 +1,13 @@
-import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
+import { map, take, switchMap } from 'rxjs';
+import { DataService } from 'src/app/data.service';
 
 import { Page, PageRequest } from './../../../shared/Pagination';
+import { AccountService } from './../../../views/home/account/shared/account.service';
 import { User } from './../user';
 import { UserService } from './../user.service';
 
@@ -16,7 +17,7 @@ import { UserService } from './../user.service';
   styleUrls: ['./user-read.component.css']
 })
 
-export class UserReadComponent implements AfterViewInit {
+export class UserReadComponent implements OnInit {
 
   // list
   columnTable = ['id', 'name', 'cpf', 'walletValue', 'options']
@@ -34,13 +35,15 @@ export class UserReadComponent implements AfterViewInit {
   loading = false;
 
   constructor(
+    private accountService: AccountService,
+    private dataService: DataService,
     private userService: UserService,
     private router: Router
   ) { }
 
   @ViewChild(MatSort) sort: MatSort;
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
     this.listUser();
   }
 
@@ -48,29 +51,32 @@ export class UserReadComponent implements AfterViewInit {
   // Lista os usuários
   listUser() {
     this.loading = true
-    let queryAdicional
-    this.userService.listUser(
-      new PageRequest(
-        {
-          pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
-          pageSize: this.pageEvent ? this.pageEvent.pageSize : 5
-        },
-        queryAdicional
-      )
-    ).pipe(
-      take(1)
-    )
-      .subscribe({
-        next: page => {
-          this.page = page;
-          this.dataSource = new MatTableDataSource<User>(page.content)
-          this.loading = false;
-        },
-        error: () => {
-          this.page = new Page([], 0)
-          this.loading = false
-        }
-      })
+    this.accountService.getAccountAdmin(this.dataService.get('login'))
+        .subscribe(admin => {
+          let queryAdicional
+          const id = admin.idAdmin;
+          const listUser$ = this.userService.listUser(
+            String(id),
+            new PageRequest(
+              {
+                pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
+                pageSize: this.pageEvent ? this.pageEvent.pageSize : 5
+              },
+              queryAdicional
+            ))
+          listUser$.pipe(take(1))
+            .subscribe({
+              next: page => {
+                this.page = page;
+                this.dataSource = new MatTableDataSource<User>(page.content)
+                this.loading = false;
+              },
+              error: () => {
+                this.page = new Page([], 0)
+                this.loading = false
+              }
+            })
+        });
   }
 
   // Manda para walletRead do usuário

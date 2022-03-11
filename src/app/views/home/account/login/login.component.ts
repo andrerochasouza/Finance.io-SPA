@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       this.accountService.login(this.formAdmin.value)
         .subscribe({
           next: result => {
-            window.localStorage.setItem('token', result),
+            window.localStorage.setItem('token', result)
             this.accountService.showMessage('Entrando...')
             this.dataService.set('login', this.formAdmin.get('login')?.value)
             this.router.navigate(['home/users'])
