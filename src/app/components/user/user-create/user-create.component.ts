@@ -1,3 +1,5 @@
+import { take } from 'rxjs';
+import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
 import { UserService } from './../user.service';
 import { AccountService } from './../../../views/home/account/shared/account.service';
@@ -17,6 +19,7 @@ export class UserCreateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
+    private dataService: DataService,
     private accountService: AccountService,
     private formBuilder: FormBuilder
   ) { }
@@ -28,16 +31,20 @@ export class UserCreateComponent implements OnInit {
 
   onSubmit(): void {
     if (this.formUser.valid) {
-      this.userService.createUser(this.formUser.value)
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/home/users'])
-          },
-          error: err => {
-            this.accountService.showMessage('Erro ao inserir o usuário')
-            console.error('Error constraint -> ' + err)
-          }
-        });
+      this.accountService.getAccountAdmin(this.dataService.get('login'))
+        .subscribe(admin => {
+          const id = admin.idAdmin;
+          const createUser$ = this.userService.createUser(String(id), this.formUser.value)
+          createUser$.pipe(take(1)).subscribe({
+              next: () => {
+                this.router.navigate(['/home/users'])
+              },
+              error: err => {
+                this.accountService.showMessage('Erro ao inserir o usuário')
+                console.error('Error constraint -> ' + err)
+              }
+            })
+          });
     } else {
       this.accountService.showMessage("Erro na validação dos dados inseridos")
     }
