@@ -16,6 +16,9 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <button title="Página Home" routerLink="/" mat-button class="button">
+      Home
+    </button>
+    <button title="Dashboard" (click)="navigateToDashboard()" mat-button class="button">
       Dashboard
     </button>
     <button title="Página de usuários" (click)="navigateToUsers()" mat-button class="button">

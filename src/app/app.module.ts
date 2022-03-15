@@ -37,6 +37,7 @@ import { AuthenticationComponent } from './views/authentication/authentication.c
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { HomeComponent } from './views/home/home.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
@@ -57,6 +58,7 @@ registerLocaleData(localePt);
     AppCreateComponent,
     AppEditComponent,
     FooterComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

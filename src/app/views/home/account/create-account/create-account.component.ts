@@ -37,6 +37,7 @@ export class CreateAccountComponent implements OnInit {
       this.accountService.createAccount(this.formAdmin.value)
         .subscribe({
           next: () => {
+            this.accountService.showMessage('Cadastro realizado... Faça o login')
             this.router.navigate(['/login'])
           },
           error: err => {
