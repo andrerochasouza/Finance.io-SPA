@@ -3,4 +3,5 @@ export interface User {
     name: string
     cpf: string
     walletValue?: number
+    idAdmin?: string
 }

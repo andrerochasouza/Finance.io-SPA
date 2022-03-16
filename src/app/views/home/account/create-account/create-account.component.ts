@@ -1,4 +1,5 @@
-import { map, delay, tap, debounceTime, switchMap, first } from 'rxjs';
+import { DataService } from 'src/app/data.service';
+import { map, delay, tap, debounceTime, switchMap, first, take } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -34,16 +35,18 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit() {
     if (this.formAdmin.valid) {
-      this.accountService.createAccount(this.formAdmin.value)
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/login'])
-          },
-          error: err => {
-            this.accountService.showMessage('Erro no cadastro, E-mail ou Login já utilizado')
-            console.error('Admin found - Error -> ' + err)
-          }
-        });
+          this.accountService.createAccount(this.formAdmin.value)
+            .pipe(take(1))
+            .subscribe({
+              next: () => {
+                this.accountService.showMessage('Cadastro realizado... Faça o login')
+                this.router.navigate(['/login'])
+              },
+              error: err => {
+                this.accountService.showMessage('Erro no cadastro, E-mail ou Login já utilizado')
+                console.error('Admin found - Error -> ' + err)
+              }
+            });
     } else {
       this.accountService.showMessage("Erro na validação dos dados inseridos")
     }

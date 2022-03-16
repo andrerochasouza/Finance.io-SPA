@@ -17,7 +17,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(user: User): Observable<User> {
+  createUser(id: string, user: User): Observable<User> {
+    user.idAdmin = id
     return this.http.post<User>(`${this.API}/${this.endpoint}`, user)
   }
 
@@ -31,7 +32,8 @@ export class UserService {
     );
   }
 
-  updateUser(user: any): Observable<User>{
+  updateUser(id: string, user: any): Observable<User>{
+    user.idAdmin = id
     const url = `${this.API}/${this.endpoint}?iduser=${user.id}`
     return this.http.put<User>(url, user)
   }
@@ -45,5 +47,11 @@ export class UserService {
   deleteUserById(id: number): Observable<User>{
     const url =  `${this.API}/${this.endpoint}?iduser=${id}`
     return this.http.delete<User>(url)
+  }
+
+  totalValueAdmin(idAdmin: string): Observable<Array<number>>{
+    const url = `${this.API}/${this.endpoint}/maxvalue`
+    let headers = new HttpHeaders().append('id', idAdmin)
+    return this.http.get<Array<number>>(url, { headers });
   }
 }

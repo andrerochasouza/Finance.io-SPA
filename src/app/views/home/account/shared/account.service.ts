@@ -30,8 +30,8 @@ export class AccountService {
   }
 
   createAccount(admin: Admin): Observable<Admin>{
-      const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
-      return newAdmin;
+    const newAdmin = this.http.post<Admin>(this.API + '/new-admin', admin)
+    return newAdmin;
   }
 
   checkIfLoginExists(login: string): Observable<boolean> {
@@ -44,7 +44,7 @@ export class AccountService {
 
   showMessage(msg: string): void{
     this.snackBar.open(msg, 'X', {
-      duration: 3000,
+      duration: 2000,
       horizontalPosition: "right",
       verticalPosition: "top",
       panelClass: ['purple-snackbar']

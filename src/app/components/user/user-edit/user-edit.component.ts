@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/data.service';
 import { delay, take } from 'rxjs';
 import { Validacoes } from './../../../shared/validatorCPF';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -21,7 +22,8 @@ export class UserEditComponent implements OnInit {
     private router: Router,
     private routeActivated: ActivatedRoute,
     private accountService: AccountService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dataService: DataService
   ) {
     this.routeActivated.params.subscribe(params => this.idUser = params['id']);
   }
@@ -38,19 +40,21 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(): void {
     if (this.formUser.valid) {
-      this.userService.updateUser(this.formUser.value)
-        .pipe(
-          take(1)
-        )
-        .subscribe({
-          next: () => {
-            this.router.navigate(['/home/users'])
-          },
-          error: err => {
-            this.accountService.showMessage('Erro ao atualizar o usuário: ' + err)
-            console.error('Error constraint -> ' + err)
-          }
-        });
+      this.accountService.getAccountAdmin(this.dataService.get('login'))
+      .subscribe(admin => {
+        const id = admin.idAdmin
+        const updateUser$ = this.userService.updateUser(String(id), this.formUser.value)
+        updateUser$.pipe(take(1))
+          .subscribe({
+            next: () => {
+              this.router.navigate(['/home/users'])
+            },
+            error: err => {
+              this.accountService.showMessage('Erro ao atualizar o usuário: ' + err)
+              console.error('Error constraint -> ' + err)
+            }
+          })
+      });
     } else {
       this.accountService.showMessage("Erro na validação dos dados inseridos")
     }

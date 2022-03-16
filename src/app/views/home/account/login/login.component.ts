@@ -48,14 +48,16 @@ export class LoginComponent implements OnInit {
       this.accountService.login(this.formAdmin.value)
         .subscribe({
           next: result => {
-            window.localStorage.setItem('token', result)
             this.accountService.showMessage('Entrando...')
+            window.localStorage.setItem('token', result)
             this.dataService.set('login', this.formAdmin.get('login')?.value)
             this.router.navigate(['home/users'])
           },
           error: err => {
-            this.accountService.showMessage('Erro no login')
-            console.error('Admin not found - Error -> ' + err)
+            // if(err.){
+              this.accountService.showMessage('Conta não encontrada')
+            // }
+
           }
         });
     } else {
