@@ -17,7 +17,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(user: User): Observable<User> {
+  createUser(id: string, user: User): Observable<User> {
+    user.idAdmin = id
     return this.http.post<User>(`${this.API}/${this.endpoint}`, user)
   }
 

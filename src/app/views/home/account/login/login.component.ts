@@ -53,8 +53,11 @@ export class LoginComponent implements OnInit {
             this.dataService.set('login', this.formAdmin.get('login')?.value)
             this.router.navigate(['home/users'])
           },
-          error: () => {
-            this.accountService.showMessage('Conta não encontrada')
+          error: err => {
+            // if(err.){
+              this.accountService.showMessage('Conta não encontrada')
+            // }
+
           }
         });
     } else {
