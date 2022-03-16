@@ -48,4 +48,10 @@ export class UserService {
     const url =  `${this.API}/${this.endpoint}?iduser=${id}`
     return this.http.delete<User>(url)
   }
+
+  totalValueAdmin(idAdmin: string): Observable<Array<number>>{
+    const url = `${this.API}/${this.endpoint}/maxvalue`
+    let headers = new HttpHeaders().append('id', idAdmin)
+    return this.http.get<Array<number>>(url, { headers });
+  }
 }

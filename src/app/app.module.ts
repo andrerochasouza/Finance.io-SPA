@@ -21,10 +21,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { PoChartModule } from '@po-ui/ng-components';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
@@ -37,10 +39,6 @@ import { AuthenticationComponent } from './views/authentication/authentication.c
 import { CreateAccountComponent } from './views/home/account/create-account/create-account.component';
 import { LoginComponent } from './views/home/account/login/login.component';
 import { HomeComponent } from './views/home/home.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-
-
 
 registerLocaleData(localePt);
 
@@ -83,7 +81,8 @@ registerLocaleData(localePt);
     MatProgressSpinnerModule,
     NgxMaskModule.forRoot(),
     MatSortModule,
-    MatExpansionModule
+    MatExpansionModule,
+    PoChartModule
   ],
   providers: [
     httpInterceptorProviders,
