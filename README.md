@@ -33,7 +33,7 @@ https://github.com/andrerochasouza/finance.io-API
 - JPA / Hibernate
 - Maven
 ## Front end
-- HTML / CSS / JS / TypeScript
+- HTML / CSS / TypeScript (JavaScript)
 - Angular (v13)
 - Material Design
 ## Implantação em produção
@@ -55,7 +55,7 @@ git clone https://github.com/andrerochasouza/finance.io-API
 ```
 
 ## Front end web
-Pré-requisitos: npm / yarn
+Pré-requisitos: npm
 
 ```bash
 # clonar repositório
