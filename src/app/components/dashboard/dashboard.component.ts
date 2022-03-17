@@ -1,9 +1,12 @@
-import { take, tap } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './../user/user.service';
+import { PoChartSerie } from '@po-ui/ng-components';
 import { DataService } from 'src/app/data.service';
+
 import { AccountService } from './../../views/home/account/shared/account.service';
-import { Component, OnInit } from '@angular/core';
+import { UserService } from './../user/user.service';
+import { Admin } from 'src/app/views/home/account/shared/admin.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,34 +15,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  poChart = [
-    { label: 'Endividados', data: 10 },
-    { label: 'Positivos', data: 10 }
-  ]
+  poChart: Array<PoChartSerie>;
+  height = 300;
+  accountAdmin$: Observable<Admin>
+
+  // carregando pagina
+  loading = true;
+
 
   constructor(
     private accountService: AccountService,
     private dataService: DataService,
     private userService: UserService,
-    private router: Router ) { }
-
-  ngOnInit(): void {
-    this.totalValueApp();
+    private router: Router) {
   }
 
-  totalValueApp(): void{
-    this.accountService.getAccountAdmin(this.dataService.get('login'))
-      .pipe(take(1))
+  ngOnInit(): void {
+    this.accountAdmin$ = this.accountService.getAccountAdmin(this.dataService.get('login'))
+    this.graphicUser();
+  }
+
+  graphicUser(): void {
+    this.loading = true
+    this.accountAdmin$.pipe(take(1))
       .subscribe(admin => {
-        const id = admin.idAdmin
-        const poChartTotal$ = this.userService.totalValueAdmin(String(id));
-        poChartTotal$.pipe(take(1))
-          .subscribe(list => {
-            console.log(list[0])
-            this.poChart[0].data = list[0];
-            this.poChart[1].data = list[1];
+        const poChartTotal$ = this.userService.totalValueAdmin(String(admin.idAdmin));
+        poChartTotal$
+          .subscribe({
+            next: list => {
+              const poChart = [
+                { label: 'Positivos', data: list[0] },
+                { label: 'Negativos', data: list[1] }
+              ]
+              this.poChart = poChart
+              this.loading = false
+            },
+            error: err => {
+              console.log("erro: " + err)
+            }
           })
       })
   }
-
 }

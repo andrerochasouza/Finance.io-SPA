@@ -14,6 +14,7 @@ import { LoginComponent } from './views/home/account/login/login.component';
 import { AuthGuard } from './views/home/account/shared/auth.guard';
 import { HomeComponent } from './views/home/home.component';
 
+
 const routes: Routes = [
   {
     path: '',

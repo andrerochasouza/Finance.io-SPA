@@ -1,5 +1,14 @@
-<po-chart
-  class="poChart"
+<div class="container">
+  <po-chart
+  [p-height]="height"
   [p-series]="poChart"
->
-</po-chart>
+  p-title="Usuários - Endividados"
+  >
+  </po-chart>
+
+  <!-- Loading -->
+  <div *ngIf="loading">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+</div>
+

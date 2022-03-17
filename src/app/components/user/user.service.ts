@@ -26,7 +26,7 @@ export class UserService {
   listUser(idAdmin: string, queryBuilder: QueryBuilder): Observable<Page<User>>{
     let headers = new HttpHeaders().append('id', idAdmin)
     return this.http
-      .get<User[]>(`${this.API}/${this.endpoint}?${queryBuilder.buildQueryString()}`, { headers, observe: 'response' })
+      .get<Page<User>>(`${this.API}/${this.endpoint}?${queryBuilder.buildQueryString()}`, { headers, observe: 'response' })
       .pipe(
         map(response => <Page<User>>Page.fromResponse(response))
     );
