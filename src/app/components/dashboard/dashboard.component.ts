@@ -1,33 +1,58 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PoChartSerie } from '@po-ui/ng-components';
+import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from "ng-apexcharts";
 import { DataService } from 'src/app/data.service';
+import { Admin } from 'src/app/views/home/account/shared/admin.model';
 
 import { AccountService } from './../../views/home/account/shared/account.service';
 import { UserService } from './../user/user.service';
-import { Admin } from 'src/app/views/home/account/shared/admin.model';
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
 
-  poChart: Array<PoChartSerie>;
-  height = 300;
+  @ViewChild("chart") chart: ChartComponent;
   accountAdmin$: Observable<Admin>
+  chartOptions: ChartOptions  = {
+    series: [0, 0],
+    chart: {
+      width: 380,
+      type: "pie"
+    },
+    labels: ["Positivado", "Negativado"],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ]
+  };
 
   // carregando pagina
   loading = true;
 
-
   constructor(
     private accountService: AccountService,
     private dataService: DataService,
-    private userService: UserService,
-    private router: Router) {
+    private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -43,11 +68,7 @@ export class DashboardComponent implements OnInit {
         poChartTotal$
           .subscribe({
             next: list => {
-              const poChart = [
-                { label: 'Positivos', data: list[0] },
-                { label: 'Negativos', data: list[1] }
-              ]
-              this.poChart = poChart
+              this.chartOptions.series = [list[0], list[1]]
               this.loading = false
             },
             error: err => {

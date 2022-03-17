@@ -21,8 +21,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { PoChartModule } from '@po-ui/ng-components';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgApexchartsModule } from "ng-apexcharts";
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -82,7 +84,7 @@ registerLocaleData(localePt);
     NgxMaskModule.forRoot(),
     MatSortModule,
     MatExpansionModule,
-    PoChartModule
+    NgApexchartsModule
   ],
   providers: [
     httpInterceptorProviders,

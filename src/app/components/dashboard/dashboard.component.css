@@ -10,8 +10,10 @@
   border: solid 0.1px #979191b3;
 }
 
-.po-chart-wrapper{
-  background-color: #424242;
+.chart{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .spinner {

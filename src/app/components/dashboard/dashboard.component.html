@@ -1,10 +1,11 @@
-<div class="container">
-  <po-chart
-  [p-height]="height"
-  [p-series]="poChart"
-  p-title="Usuários - Endividados"
-  >
-  </po-chart>
+<div class="container" >
+
+  <apx-chart *ngIf="!loading" class="chart"
+  [series]="chartOptions.series"
+  [chart]="chartOptions.chart"
+  [labels]="chartOptions.labels"
+  [responsive]="chartOptions.responsive"
+  ></apx-chart>
 
   <!-- Loading -->
   <div *ngIf="loading">
