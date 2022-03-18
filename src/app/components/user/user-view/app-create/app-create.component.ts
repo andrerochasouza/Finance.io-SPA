@@ -84,7 +84,7 @@ export class AppCreateComponent implements OnInit {
     this.formApp = this.formBuilder.group({
       name: new FormControl(null, Validators.compose([
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(3),
         Validators.maxLength(100)])),
       value: new FormControl(null, Validators.compose([
         Validators.required,

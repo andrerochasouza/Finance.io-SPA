@@ -36,7 +36,7 @@ export class AppEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.formApp = this.formBuilder.group({
-      name: [null, [Validators.minLength(5), Validators.maxLength(100)]],
+      name: [null, [Validators.minLength(3), Validators.maxLength(100)]],
       value: [null, [Validators.min(0), Validators.maxLength(255)]],
       typeAplication: [null, [Validators.required]],
       descricao: [null, [Validators.maxLength(255)]]
