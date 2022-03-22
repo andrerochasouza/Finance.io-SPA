@@ -22,8 +22,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
-import { NgApexchartsModule } from "ng-apexcharts";
-
+import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -84,7 +83,7 @@ registerLocaleData(localePt);
     NgxMaskModule.forRoot(),
     MatSortModule,
     MatExpansionModule,
-    NgApexchartsModule
+    NgxChartsModule
   ],
   providers: [
     httpInterceptorProviders,

@@ -1,18 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Color } from 'd3';
 import { Observable, take } from 'rxjs';
-import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from "ng-apexcharts";
 import { DataService } from 'src/app/data.service';
 import { Admin } from 'src/app/views/home/account/shared/admin.model';
+import { User } from '../user/user';
 
 import { AccountService } from './../../views/home/account/shared/account.service';
 import { UserService } from './../user/user.service';
 
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
-};
 
 @Component({
   selector: 'app-dashboard',
@@ -22,31 +18,29 @@ export type ChartOptions = {
 
 export class DashboardComponent implements OnInit {
 
-  @ViewChild("chart") chart: ChartComponent;
-  accountAdmin$: Observable<Admin>
-  chartOptions: ChartOptions  = {
-    series: [0, 0],
-    chart: {
-      width: 380,
-      type: "pie"
-    },
-    labels: ["Positivado", "Negativado"],
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200
-          },
-          legend: {
-            position: "bottom"
-          }
-        }
-      }
-    ]
-  };
+  multi: any[];
 
-  // carregando pagina
+  view: number[]
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Country';
+  showYAxisLabel = true;
+  yAxisLabel = 'Population';
+
+  colorScheme: string[] | Color = ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'];
+
+
+  accountAdmin$: Observable<Admin>
+  listUser: any[]
+  positivados: number
+  negativados: number
+  idAdmin: string
+
   loading = true;
 
   constructor(
@@ -61,14 +55,32 @@ export class DashboardComponent implements OnInit {
   }
 
   graphicUser(): void {
-    this.loading = true
     this.accountAdmin$.pipe(take(1))
       .subscribe(admin => {
-        const poChartTotal$ = this.userService.totalValueAdmin(String(admin.idAdmin));
-        poChartTotal$
+        this.userService.listUser(String(admin.idAdmin))
+          .pipe(take(1))
           .subscribe({
             next: list => {
-              this.chartOptions.series = [list[0], list[1]]
+              const listUser = list
+
+              list.filter(user => {
+                if(user.walletValue){
+                  if(user.walletValue >= 0){
+                    this.positivados++
+                  } else {
+                    this.negativados++
+                  }
+                } else {
+                  this.positivados++
+                }
+
+              })
+              this.listUser = [
+                {
+                  name: "Positivados",
+                  value: this.positivados
+                }
+              ]
               this.loading = false
             },
             error: err => {

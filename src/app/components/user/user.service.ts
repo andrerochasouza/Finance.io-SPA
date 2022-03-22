@@ -23,13 +23,19 @@ export class UserService {
   }
 
 
-  listUser(idAdmin: string, queryBuilder: QueryBuilder): Observable<Page<User>>{
+  listUserPageable(idAdmin: string, queryBuilder: QueryBuilder): Observable<Page<User>>{
     let headers = new HttpHeaders().append('id', idAdmin)
     return this.http
       .get<Page<User>>(`${this.API}/${this.endpoint}?${queryBuilder.buildQueryString()}`, { headers, observe: 'response' })
       .pipe(
         map(response => <Page<User>>Page.fromResponse(response))
     );
+  }
+
+  listUser(idAdmin: string): Observable<Array<User>>{
+    let headers = new HttpHeaders().append('id', idAdmin)
+    return this.http
+      .get<Array<User>>(`${this.API}/${this.endpoint}/listdto`, { headers });
   }
 
   updateUser(id: string, user: any): Observable<User>{
@@ -47,19 +53,5 @@ export class UserService {
   deleteUserById(id: number): Observable<User>{
     const url =  `${this.API}/${this.endpoint}?iduser=${id}`
     return this.http.delete<User>(url)
-  }
-
-  totalValueAdmin(idAdmin: string): Observable<Array<number>>{
-    const url = `${this.API}/${this.endpoint}/maxvalue`
-    let headers = new HttpHeaders().append('id', idAdmin)
-    return this.http.get<Array<number>>(url, { headers });
-  }
-
-  // Implementar grafico de maximo de usuários ativos
-
-  maxUserCount(idAdmin: string): Observable<number>{
-    const url = `${this.API}/${this.endpoint}/maxcountuser`
-    let headers = new HttpHeaders().append('id', idAdmin)
-    return this.http.get<number>(url, { headers });
   }
 }

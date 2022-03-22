@@ -55,7 +55,7 @@ export class UserReadComponent implements OnInit {
         .subscribe(admin => {
           let queryAdicional
           const id = admin.idAdmin;
-          const listUser$ = this.userService.listUser(
+          const listUser$ = this.userService.listUserPageable(
             String(id),
             new PageRequest(
               {
