@@ -54,4 +54,12 @@ export class UserService {
     let headers = new HttpHeaders().append('id', idAdmin)
     return this.http.get<Array<number>>(url, { headers });
   }
+
+  // Implementar grafico de maximo de usuários ativos
+
+  maxUserCount(idAdmin: string): Observable<number>{
+    const url = `${this.API}/${this.endpoint}/maxcountuser`
+    let headers = new HttpHeaders().append('id', idAdmin)
+    return this.http.get<number>(url, { headers });
+  }
 }
