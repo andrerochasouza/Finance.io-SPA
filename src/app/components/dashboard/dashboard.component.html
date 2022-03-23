@@ -1,17 +1,11 @@
 <div class="container">
 
-  <ngx-charts-bar-vertical
+  <ngx-charts-pie-grid
+  [view]="view"
   [scheme]="colorScheme"
   [results]="listUser"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel">
-</ngx-charts-bar-vertical>
+  [label]="label">
+</ngx-charts-pie-grid>
 
   <!-- Loading -->
   <div *ngIf="loading">

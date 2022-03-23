@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { Color } from 'd3';
+import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { Observable, take } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { Admin } from 'src/app/views/home/account/shared/admin.model';
-import { User } from '../user/user';
 
 import { AccountService } from './../../views/home/account/shared/account.service';
 import { UserService } from './../user/user.service';
@@ -18,29 +16,31 @@ import { UserService } from './../user/user.service';
 
 export class DashboardComponent implements OnInit {
 
-  multi: any[];
+  // chart config data
+  label: string = "R$"
+  single: any
+  view: any[number] = [500, 400];
+  listUser: any[]
+  showLegend: boolean = true;
+  showLabels: boolean = true;
 
-  view: number[]
 
   // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  colorScheme: Color = {
+    name: "red",
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#5AA454', '#E44D25'],
+  };
 
-  colorScheme: string[] | Color = ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'];
-
-
-  accountAdmin$: Observable<Admin>
-  listUser: any[]
-  positivados: number
-  negativados: number
+  // http request get
+  valueTotalPos: number
+  pos: number
+  valueTotalNeg: number
+  neg: number
   idAdmin: string
 
+  // loading http request get
   loading = true;
 
   constructor(
@@ -50,38 +50,49 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountAdmin$ = this.accountService.getAccountAdmin(this.dataService.get('login'))
     this.graphicUser();
   }
 
   graphicUser(): void {
-    this.accountAdmin$.pipe(take(1))
+    this.accountService.getAccountAdmin(this.dataService.get('login'))
+      .pipe(take(1))
       .subscribe(admin => {
         this.userService.listUser(String(admin.idAdmin))
           .pipe(take(1))
           .subscribe({
             next: list => {
-              const listUser = list
 
-              list.filter(user => {
-                if(user.walletValue){
-                  if(user.walletValue >= 0){
-                    this.positivados++
+              this.valueTotalPos = 0
+              this.valueTotalNeg = 0
+              this.pos = 0
+              this.neg = 0
+
+              list.forEach(user => {
+                if (user.walletValue) {
+                  if (user.walletValue >= 0) {
+                    this.valueTotalPos += user.walletValue
+                    this.pos++
                   } else {
-                    this.negativados++
+                    this.valueTotalNeg += Math.abs(user.walletValue)
+                    this.neg++
                   }
                 } else {
-                  this.positivados++
+                  this.pos++
                 }
-
               })
+
               this.listUser = [
                 {
                   name: "Positivados",
-                  value: this.positivados
+                  value: this.valueTotalPos
+                },
+                {
+                  name: "Negativados",
+                  value: this.valueTotalNeg
                 }
               ]
               this.loading = false
+
             },
             error: err => {
               console.log("erro: " + err)
